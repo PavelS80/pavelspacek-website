@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pavel Špaček — Location Manager</title>
+  <meta name="description" content="Pavel Špaček — Location Manager with 25+ years of experience. Mission: Impossible, Nosferatu, Jack Ryan, Das Boot, Fubar." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Pavel Špaček — Location Manager" />
+  <meta property="og:description" content="25+ years finding locations for international film productions across Czech Republic and Slovakia." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pavelspacek.com" />
+  <link rel="canonical" href="https://pavelspacek.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pavel Špaček — Location Manager" />
+  <meta name="twitter:description" content="25+ years finding locations for international film productions across Czech Republic and Slovakia." />
+
+  <!-- Favicon: PŠ monogram -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%230A0908'/><rect x='4' y='4' width='56' height='56' fill='none' stroke='%23C9A961' stroke-width='1.5'/><text x='32' y='44' font-family='Georgia,serif' font-size='26' fill='%23C9A961' text-anchor='middle' font-style='italic'>PŠ</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400;500;600;700;800&family=Inter:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="grain"></div>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="nav">
+    <div class="nav__brand">
+      <div class="nav__squares" aria-hidden="true">
+        <span></span><span></span>
+        <span></span><span></span>
+      </div>
+      <span class="nav__monogram">PŠ</span>
+    </div>
+    <a href="#about" class="nav__label"><em data-i18n="nav.label">Location Manager</em></a>
+    <div class="nav__right">
+      <!-- Language switcher -->
+      <div class="lang-switcher" aria-label="Language">
+        <button data-lang-btn="en" class="lang-btn lang-active">EN</button>
+        <button data-lang-btn="cs" class="lang-btn">CS</button>
+        <button data-lang-btn="de" class="lang-btn">DE</button>
+        <button data-lang-btn="fr" class="lang-btn">FR</button>
+        <button data-lang-btn="ru" class="lang-btn">RU</button>
+      </div>
+      <a href="#contact" class="nav__contact" data-i18n="nav.contact">Contact</a>
+      <button class="nav__burger" aria-label="Menu" id="burger" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <img src="https://www.filmhunters.cz/images/projects/nosferatu.jpg" alt=""
+           onerror="this.src='https://img.youtube.com/vi/nulvWqYUM8k/maxresdefault.jpg'" />
+      <div class="hero__overlay"></div>
+    </div>
+
+    <div class="hero__nums" aria-hidden="true">
+      <span>50.07</span>
+      <span>14.43</span>
+      <span>25+</span>
+      <span>500+</span>
+      <span>2001</span>
+      <span>2026</span>
+    </div>
+
+    <div class="hero__main">
+      <h1 class="hero__title">
+        <span class="hero__title-deco" aria-hidden="true">Location</span>
+        <span class="hero__title-text">Location<br>Manager</span>
+      </h1>
+      <p class="hero__sub">Founder of Film Hunters · Prague, Czech Republic</p>
+    </div>
+
+    <div class="hero__foot">
+      <div class="hero__socials">
+        <a href="mailto:pavel@filmhunters.cz">Email</a>
+        <a href="https://www.imdb.com/name/nm1623179/" target="_blank" rel="noopener">IMDb</a>
+        <a href="https://filmhunters.cz" target="_blank" rel="noopener">Film Hunters</a>
+      </div>
+      <a href="#about" class="hero__pill" data-i18n="hero.pill">More Info</a>
+    </div>
+
+    <aside class="hero__panel">
+      <span class="hero__panel-dot" aria-hidden="true"></span>
+      <h2 class="hero__panel-heading">Location<br>Management</h2>
+      <p data-i18n="hero.panel">25 years of location work across Czech Republic and Slovakia — from local features to international productions. Always open to new projects.</p>
+      <a href="#contact" data-i18n="hero.panelLink">Discuss a project →</a>
+    </aside>
+  </section>
+
+  <!-- FILM STRIP -->
+  <div class="filmstrip" aria-hidden="true">
+    <div class="filmstrip__holes"></div>
+    <div class="filmstrip__reel" id="filmstripReel"></div>
+    <div class="filmstrip__holes"></div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee__track">
+      <span>Focus Features</span><span class="marquee__dot">·</span>
+      <span>Paramount</span><span class="marquee__dot">·</span>
+      <span>Netflix</span><span class="marquee__dot">·</span>
+      <span>Amazon</span><span class="marquee__dot">·</span>
+      <span>Sky</span><span class="marquee__dot">·</span>
+      <span>Lionsgate</span><span class="marquee__dot">·</span>
+      <span>ABC</span><span class="marquee__dot">·</span>
+      <span>HBO</span><span class="marquee__dot">·</span>
+      <span>Focus Features</span><span class="marquee__dot">·</span>
+      <span>Paramount</span><span class="marquee__dot">·</span>
+      <span>Netflix</span><span class="marquee__dot">·</span>
+      <span>Amazon</span><span class="marquee__dot">·</span>
+      <span>Sky</span><span class="marquee__dot">·</span>
+      <span>Lionsgate</span><span class="marquee__dot">·</span>
+      <span>ABC</span><span class="marquee__dot">·</span>
+      <span>HBO</span><span class="marquee__dot">·</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <p class="section__label" data-i18n="about.label">01 — About</p>
+
+      <div class="about__grid">
+        <div class="about__portrait">
+          <div class="avatar" aria-label="Pavel Špaček">
+            <div class="avatar__ring avatar__ring--outer"></div>
+            <div class="avatar__ring avatar__ring--inner"></div>
+            <div class="avatar__halo"></div>
+            <div class="avatar__photo">
+              <img src="assets/pavel-avatar.png" alt="Pavel Špaček" />
+            </div>
+            <span class="avatar__signature">Pavel Špaček</span>
+          </div>
+        </div>
+
+        <div class="about__text">
+          <h2 class="about__title" data-i18n="about.title">
+            Twenty-five years. Hundreds of films. <em>One location at a time.</em>
+          </h2>
+          <p data-i18n="about.p1">
+            I've been doing this work since 2001. The range of projects has been wide — Czech and Slovak features, Hollywood studio productions, Indian Bollywood films, German and international series. Each one had its own logic, and I've learned something from every single one.
+          </p>
+          <p data-i18n="about.p2">
+            I'm not chasing the biggest names. I'm interested in doing good work on projects that deserve it — whether that's a modest local film or a major international production. I bring the same care regardless of scale.
+          </p>
+          <p data-i18n="about.p3">
+            I'm happy to work with new people. If you're looking for locations across Czech Republic or Slovakia, I can put together a curated selection from our archive — or we can simply start with a conversation. No pressure.
+          </p>
+          <a href="#contact" class="link-arrow" data-i18n="about.link">Let's talk →</a>
+        </div>
+      </div>
+
+      <div class="about__stats">
+        <div class="stat">
+          <div class="stat__num">25<span>+</span></div>
+          <div class="stat__label" data-i18n="stat1.label">Years in production</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">500<span>+</span></div>
+          <div class="stat__label" data-i18n="stat2.label">Productions delivered</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">2001</div>
+          <div class="stat__label" data-i18n="stat3.label">First credit</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">CZ&nbsp;·&nbsp;SK</div>
+          <div class="stat__label" data-i18n="stat4.label">Locations covered</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWREEL -->
+  <section class="showreel" id="showreel">
+    <div class="container">
+      <div class="showreel__head">
+        <div>
+          <p class="section__label" data-i18n="showreel.label">02 — Selected Work</p>
+          <h2 class="section__title" data-i18n="showreel.title">A few titles worth <em>watching.</em></h2>
+          <p class="section__lede" data-i18n="showreel.lede">
+            A small selection from over two decades of work. Click any poster to play the official trailer.
+          </p>
+        </div>
+        <button class="btn btn--primary btn--play-all" id="playAll">
+          <span data-i18n="showreel.btn">▶ Play featured reel</span>
+        </button>
+      </div>
+
+      <div class="featured" id="featuredGrid">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDITS -->
+  <section class="credits" id="credits">
+    <div class="container">
+      <p class="section__label" data-i18n="credits.label">03 — Credits</p>
+      <h2 class="section__title" data-i18n="credits.title">Films I've worked on — <em>Czech, international, and everything in between.</em></h2>
+
+      <div class="credits__filter">
+        <button class="filter active" data-filter="all"     data-i18n="filter.all">All</button>
+        <button class="filter"        data-filter="feature" data-i18n="filter.feature">Feature</button>
+        <button class="filter"        data-filter="tv"      data-i18n="filter.tv">TV / Streaming</button>
+      </div>
+
+      <div class="credits__grid" id="creditsGrid">
+        <!-- Cards injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <p class="section__label" data-i18n="services.label">04 — Services</p>
+      <h2 class="section__title" data-i18n="services.title">What I can help with.</h2>
+
+      <div class="services__grid">
+        <div class="service">
+          <div class="service__num">01</div>
+          <h3 data-i18n="s1.title">Location scouting</h3>
+          <p data-i18n="s1.desc">Script breakdown, creative consultation and location selection. I read the material carefully and look for places that actually fit.</p>
+        </div>
+        <div class="service">
+          <div class="service__num">02</div>
+          <h3 data-i18n="s2.title">Permits & authority liaison</h3>
+          <p data-i18n="s2.desc">Permits, contracts, local government — I handle the paperwork so the production doesn't have to learn the hard way.</p>
+        </div>
+        <div class="service">
+          <div class="service__num">03</div>
+          <h3 data-i18n="s3.title">On-set location management</h3>
+          <p data-i18n="s3.desc">Base camp, set protection, logistics, clean-up and restoration. The location is ready — now it needs to stay that way through the shoot.</p>
+        </div>
+        <div class="service">
+          <div class="service__num">04</div>
+          <h3 data-i18n="s4.title">Location archive — CZ & SK</h3>
+          <p data-i18n="s4.desc">25 years of scouting across Czech Republic and Slovakia. I can put together a curated selection for any brief — happy to share on request.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <p class="section__label" data-i18n="contact.label">05 — Contact</p>
+      <h2 class="contact__title" data-i18n="contact.title">Drop me a line — <em>happy to take a look.</em></h2>
+
+      <div class="contact__grid">
+        <form class="contact__form" id="contactForm">
+          <label>
+            <span data-i18n="form.name">Name</span>
+            <input type="text" name="name" required autocomplete="name" />
+          </label>
+          <label>
+            <span data-i18n="form.email">Email</span>
+            <input type="email" name="email" required autocomplete="email" />
+          </label>
+          <label>
+            <span data-i18n="form.message">Project / Message</span>
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+          <button type="submit" class="btn btn--primary" data-i18n="form.submit">Send message →</button>
+          <div class="form__success" id="formSuccess" aria-live="polite">
+            <span class="form__success-icon">✓</span>
+            <span data-i18n="form.success">Message received. I'll be in touch soon.</span>
+          </div>
+        </form>
+
+        <aside class="contact__info">
+          <div class="contact__row">
+            <span class="contact__label" data-i18n="info.email">Email</span>
+            <a href="mailto:pavel@filmhunters.cz">pavel@filmhunters.cz</a>
+          </div>
+          <div class="contact__row">
+            <span class="contact__label" data-i18n="info.phone">Phone</span>
+            <a href="tel:+420608966700">+420 608 966 700</a>
+          </div>
+          <div class="contact__row">
+            <span class="contact__label" data-i18n="info.based">Based in</span>
+            <span>Prague, Czech Republic</span>
+          </div>
+          <div class="contact__row">
+            <span class="contact__label" data-i18n="info.company">Company</span>
+            <a href="https://filmhunters.cz" target="_blank" rel="noopener">filmhunters.cz ↗</a>
+          </div>
+          <div class="contact__row">
+            <span class="contact__label" data-i18n="info.profile">Profile</span>
+            <a href="https://www.imdb.com/name/nm1623179/" target="_blank" rel="noopener">IMDb ↗</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">
+        <span class="nav__monogram">PŠ</span>
+        <span>© 2026 Pavel Špaček · All rights reserved</span>
+      </div>
+      <div class="footer__links">
+        <a href="https://www.imdb.com/name/nm1623179/" target="_blank" rel="noopener">IMDb</a>
+        <a href="https://filmhunters.cz" target="_blank" rel="noopener">Film Hunters</a>
+        <a href="#hero">Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav class="mobile-menu__nav">
+      <a href="#about"    class="mobile-menu__link" data-close data-i18n="mob.about">About</a>
+      <a href="#showreel" class="mobile-menu__link" data-close data-i18n="mob.showreel">Selected Work</a>
+      <a href="#credits"  class="mobile-menu__link" data-close data-i18n="mob.credits">Credits</a>
+      <a href="#services" class="mobile-menu__link" data-close data-i18n="mob.services">Services</a>
+      <a href="#contact"  class="mobile-menu__link" data-close data-i18n="mob.contact">Contact</a>
+    </nav>
+    <div class="mobile-menu__foot">
+      <a href="https://www.imdb.com/name/nm1623179/" target="_blank" rel="noopener">IMDb ↗</a>
+      <a href="https://filmhunters.cz" target="_blank" rel="noopener">Film Hunters ↗</a>
+    </div>
+  </div>
+
+  <!-- VIDEO MODAL -->
+  <div class="modal" id="videoModal" aria-hidden="true">
+    <button class="modal__close" id="modalClose" aria-label="Close">
+      <svg width="28" height="28" viewBox="0 0 28 28"><path d="M4 4 L24 24 M24 4 L4 24" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+    </button>
+    <div class="modal__body">
+      <div class="modal__player" id="modalPlayer"></div>
+      <div class="modal__caption" id="modalCaption"></div>
+    </div>
+    <div class="modal__backdrop" id="modalBackdrop"></div>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
