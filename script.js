@@ -1,458 +1,340 @@
-/* ============================================
-   PAVEL ŠPAČEK — v2 LUXURY EDITION
-   ============================================ */
+/* ============================================================
+   PAVEL ŠPAČEK — THE LOCATION ARCHIVE
+   Data + rendering · v3
+   ============================================================ */
 
-// ---- Featured projects — filmhunters.cz posters + YouTube trailers ----
-const featured = [
-  {
-    title: 'Nosferatu',
-    year: 2024,
-    studio: 'Focus Features',
-    director: 'Robert Eggers',
-    type: 'Feature',
-    trailerId: 'nulvWqYUM8k',
-    img: 'https://www.filmhunters.cz/images/projects/nosferatu.jpg',
-  },
-  {
-    title: 'Mission: Impossible — Ghost Protocol',
-    year: 2011,
-    studio: 'Paramount Pictures',
-    director: 'Brad Bird',
-    type: 'Feature',
-    trailerId: 'HPB7fV7f_f8',
-    img: 'https://www.filmhunters.cz/images/projects/mission-impossible.jpg',
-  },
-  {
-    title: 'Das Boot',
-    year: 2018,
-    studio: 'Sky',
-    director: 'Andreas Prochaska',
-    type: 'TV / Streaming',
-    trailerId: '6FlNemUn78U',
-    img: 'https://www.filmhunters.cz/images/projects/das-boot.jpg',
-  },
-  {
-    title: 'Child 44',
-    year: 2015,
-    studio: 'Lionsgate',
-    director: 'Daniel Espinosa',
-    type: 'Feature',
-    trailerId: 'ENS3ucnMSdY',
-    img: 'https://www.filmhunters.cz/images/projects/child-44.jpg',
-  },
-  {
-    title: 'The Rookie',
-    year: 2018,
-    studio: 'ABC',
-    director: 'Alexi Hawley',
-    type: 'TV / Streaming',
-    trailerId: 'lApwGz6q3pE',
-    img: 'https://www.filmhunters.cz/images/projects/the-rookie.jpg',
-  },
-];
-
-// ---- Full credits list — všechny ověřené produkční práce ----
 const A = 'assets/';
+const yt = id => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+
+/* ---- Complete IMDb record — 52 credits (nm1623179) ----
+   Roles exactly as credited on IMDb. One row per title,
+   series shown with year range. Sorted by most recent year. */
 const credits = [
-  // 2025
-  { title: 'FUBAR', year: 2025, studio: 'Netflix', type: 'tv', trailerId: 'vJlfAp7ZCAY', imdb: 'tt13064902', localImg: A+'fubar.jpg', badge: 'S2' },
-  { title: 'Štěstíčku naproti', year: 2025, studio: 'Oneplay', type: 'tv', trailerId: 'LoEC0Xc8-S0', imdb: 'tt39300922', localImg: A+'stesticku-naproti.jpg' },
-  { title: 'Franz', year: 2025, studio: 'HBO / Bioscop', type: 'feature', trailerId: 'WFPrlEa294Q', imdb: 'tt17070412', localImg: A+'franz.jpg' },
-  // 2024
-  { title: 'Nosferatu', year: 2024, studio: 'Focus Features', type: 'feature', trailerId: 'r-CKgbGNLgU', imdb: 'tt5040012', localImg: A+'nosferatu.jpg' },
-  { title: 'Hrdina', year: 2024, studio: 'Prima · Oneplay', type: 'tv', imdb: 'tt33101555', localImg: A+'hrdina.jpg' },
-  { title: 'Zrádci', year: 2024, studio: 'Prima', type: 'tv', trailerId: 'vZv7nVQiF8E', imdb: 'tt33321873', localImg: A+'zradci-prima.jpg' },
-  // 2023
-  { title: 'Die Saat — Tödliche Macht', year: 2023, studio: 'Sky', type: 'tv', trailerId: 'TAd93upmJIs', imdb: 'tt20220254' },
-  { title: 'Hunters', year: 2023, studio: 'Amazon Prime Video', type: 'tv', trailerId: 'yHNZxAuhLDo', imdb: 'tt7456722', localImg: A+'hunters.jpg', badge: 'S2' },
-  { title: 'FUBAR', year: 2023, studio: 'Netflix', type: 'tv', trailerId: 'YJKzjhBswR0', imdb: 'tt13064902', localImg: A+'fubar.jpg', badge: 'S1' },
-  { title: 'Los Farad', year: 2023, studio: 'Amazon Prime Video', type: 'tv', trailerId: '1Lb333Lmaqs', imdb: 'tt21278506', localImg: A+'los-farad.jpg' },
-  { title: 'Bratři', year: 2023, studio: 'Czech Feature', type: 'feature', trailerId: '_ycEQ65wAbY', imdb: 'tt14232442', localImg: A+'bratri.jpg' },
-  { title: 'Spolu', year: 2023, studio: 'Czech Feature', type: 'feature', trailerId: 'Hof4Ji9XwpI', imdb: 'tt22037196', localImg: A+'spolu.jpg' },
-  // 2022
-  { title: 'Das Boot', year: 2022, studio: 'Sky / Bavaria Fiction', type: 'tv', trailerId: '6FlNemUn78U', imdb: 'tt5830254', localImg: A+'das-boot-3.jpg', badge: 'S3' },
-  { title: 'Běžná selhání', year: 2022, studio: 'HBO Europe', type: 'feature', trailerId: 'ALo8__vC3X0', imdb: 'tt13844844', localImg: A+'bezna-selhani.jpg' },
-  { title: 'Grand Prix', year: 2022, studio: 'Czech Feature', type: 'feature', trailerId: 'NdToBcJhFyg', imdb: 'tt14401508', localImg: A+'grand-prix.jpg' },
-  { title: 'Jack Ryan', year: 2022, studio: 'Amazon Prime Video', type: 'tv', trailerId: '1KsyZF590NM', imdb: 'tt5057054', localImg: A+'jack-ryan.jpg', badge: 'S3' },
-  { title: 'Vyšehrad: Fylm', year: 2022, studio: 'Czech Feature', type: 'feature', trailerId: '_2URNiAouqE', imdb: 'tt13086670', localImg: A+'vysehrad.jpg' },
-  { title: 'Poslední závod', year: 2022, studio: 'Czech Feature', type: 'feature', trailerId: 'qlOO0yljKso', imdb: 'tt13275560', localImg: A+'posledni-zavod.jpg' },
-  // 2020
-  { title: 'Das Boot', year: 2020, studio: 'Sky / Bavaria Fiction', type: 'tv', trailerId: '6FlNemUn78U', imdb: 'tt5830254', localImg: A+'das-boot-3.jpg', badge: 'S2' },
-  // 2019
-  { title: 'Zrádci', year: 2019, studio: 'Prima', type: 'tv', imdb: 'tt10720694', localImg: A+'zradci-prima.jpg', badge: 'S1' },
-  // 2018
-  { title: 'Das Boot', year: 2018, studio: 'Sky / Bavaria Fiction', type: 'tv', trailerId: '6FlNemUn78U', imdb: 'tt5830254', localImg: A+'das-boot-3.jpg', badge: 'S1' },
-  { title: 'The Rookie', year: 2018, studio: 'ABC', type: 'tv', trailerId: '_HgC1TN8FVk', imdb: 'tt7587890', localImg: A+'the-rookie.jpg' },
-  { title: 'Toman', year: 2018, studio: 'Czech Feature', type: 'feature', trailerId: 'LF6ANdT4Iro', imdb: 'tt6283474', localImg: A+'toman.jpg' },
-  { title: 'Čertí brko', year: 2018, studio: 'Czech Feature', type: 'feature', trailerId: 'Zoamf7DPxVw', imdb: 'tt7028140', localImg: A+'certi-brko.jpg' },
-  // 2017
-  { title: 'Interlude in Prague', year: 2017, studio: 'Stillking Films', type: 'feature', trailerId: 'uQR4nan5neM', imdb: 'tt5540194', localImg: A+'interlude-prague.jpg' },
-  { title: 'Jab Harry Met Sejal', year: 2017, studio: 'Dharma Productions', type: 'feature', trailerId: 'Ej2IYqyMzA4', imdb: 'tt5997666', localImg: A+'jab-harry-met-sejal.jpg' },
-  // 2016
-  { title: 'Polda', year: 2016, studio: 'Prima', type: 'tv', trailerId: 'aFSRE9DG5nE', imdb: 'tt6315016', localImg: A+'polda.jpg' },
-  // 2015
-  { title: 'Child 44', year: 2015, studio: 'Lionsgate', type: 'feature', trailerId: 'Uia6y9SRsj4', imdb: 'tt1014763', localImg: A+'child-44.jpg' },
-  { title: 'Sedmero krkavců', year: 2015, studio: 'Czech Feature', type: 'feature', trailerId: 'QsbFDXz6dk8', imdb: 'tt3037336', localImg: A+'sedmero-krkavcu.jpg' },
-  // 2011
-  { title: 'Mission: Impossible — Ghost Protocol', year: 2011, studio: 'Paramount Pictures', type: 'feature', trailerId: 'HPB7fV7f_f8', imdb: 'tt1229238', localImg: A+'mission-impossible.jpg' },
-  { title: 'Rockstar', year: 2011, studio: 'UTV Motion Pictures', type: 'feature', trailerId: 'bD5FShPZdpw', imdb: 'tt1839596', localImg: A+'rockstar.jpg' },
-  // 2006
-  { title: 'The Illusionist', year: 2006, studio: 'Yari Film Group', type: 'feature', trailerId: 'zuFGKcOSUfM', imdb: 'tt0443543', localImg: A+'illusionist.jpg' },
-  // 2005
-  { title: 'Příběhy obyčejného šílenství', year: 2005, studio: 'Czech Feature', type: 'feature', trailerId: 'haR12FFoOOM', imdb: 'tt0408120', localImg: 'https://m.media-amazon.com/images/M/MV5BN2VjNTYxODYtNzJlOS00NjY1LTg4YjItYThmYjM0MjVmYzAyXkEyXkFqcGc@._V1_SX600.jpg' },
-  // 2004
-  { title: 'Mistři', year: 2004, studio: 'Czech Feature', type: 'feature', imdb: 'tt0403310', localImg: 'https://m.media-amazon.com/images/M/MV5BOGFlMDMzNzItNzhkYy00ZTY1LWJiNGUtNWU5ZjFmNjI5NDQ1XkEyXkFqcGc@._V1_SX600.jpg' },
-  // 2003
-  { title: 'Želary', year: 2003, studio: 'Barrandov / Czech Film', type: 'feature', trailerId: 'z9MYQlU2V1s', imdb: 'tt0288330', localImg: A+'zelary.jpg' },
+  // — 2025
+  { t: 'FUBAR', y: 2023, ey: 2025, studio: 'Netflix', role: 'location manager · Prague unit', type: 'tv', img: A+'fubar.jpg', yt: 'vJlfAp7ZCAY', tt: 'tt13064902' },
+  { t: 'FBI: International', y: 2021, ey: 2025, studio: 'CBS · Universal Television', role: 'location manager', type: 'tv', img: A+'fbi-international.jpg', yt: 'Ss717FniM9I', tt: 'tt14449470' },
+  { t: 'Štěstíčku naproti', y: 2025, studio: 'Oneplay · Voyo', role: 'supervising location manager', type: 'tv', img: A+'stesticku-naproti.jpg', yt: 'LoEC0Xc8-S0', tt: 'tt39300922' },
+  { t: 'Franz', y: 2025, studio: 'X-Filme · Bioscop', role: 'locations', type: 'feature', img: A+'franz.jpg', yt: 'WFPrlEa294Q', tt: 'tt17070412' },
+  { t: 'Live a Little', o: 'Leva lite', y: 2025, studio: 'Film i Väst · Amarcord', role: 'location manager: Czech Republic', type: 'feature', img: A+'live-a-little.jpg', yt: '8y1DHBLoMQw', tt: 'tt32357858' },
+  { t: 'Die Frau ohne Gesicht', y: 2025, studio: 'ARTE · Lailaps Films', role: 'location manager', type: 'tv', img: A+'die-frau-ohne-gesicht.jpg', tt: 'tt38585456' },
+  // — 2024
+  { t: 'Nosferatu', y: 2024, studio: 'Focus Features', role: 'location manager', type: 'feature', img: A+'nosferatu.jpg', yt: 'nulvWqYUM8k', tt: 'tt5040012' },
+  { t: 'Hořký svět', y: 2022, ey: 2024, studio: 'Prima', role: 'supervising location manager', type: 'tv', img: A+'horky-svet.jpg', yt: 'ihgZS8vc7cM', tt: 'tt21848944' },
+  { t: 'Zrádci', y: 2024, studio: 'Prima', role: 'supervising location manager', type: 'tv', img: A+'zradci-prima.jpg', yt: 'vZv7nVQiF8E', tt: 'tt33321873' },
+  { t: 'Hrdina', y: 2024, studio: 'Prima · Oneplay', role: 'supervising location manager', type: 'tv', img: A+'hrdina.jpg', yt: 'K9iny-JqPL8', tt: 'tt33101555' },
+  { t: 'Amerikánka', y: 2024, studio: 'Bioscop · PFX', role: 'location scout', type: 'feature', img: A+'amerikanka.jpg', yt: 'GmMzuwOtczQ', tt: 'tt33499451' },
+  // — 2023
+  { t: 'Wonka', y: 2023, studio: 'Warner Bros.', role: 'location manager: sfx still shoot', type: 'feature', img: A+'wonka.jpg', yt: 'otNh9bTjXWg', tt: 'tt6166392' },
+  { t: 'Das Boot', y: 2018, ey: 2023, studio: 'Sky · Bavaria Fiction', role: 'supervising location manager · S1–S3', type: 'tv', img: A+'das-boot-3.jpg', yt: '6FlNemUn78U', tt: 'tt5830254' },
+  { t: 'Jack Ryan', y: 2018, ey: 2023, studio: 'Amazon Prime Video', role: 'location manager', type: 'tv', img: A+'jack-ryan.jpg', yt: '1KsyZF590NM', tt: 'tt5057054' },
+  { t: 'Hunters', y: 2020, ey: 2023, studio: 'Amazon Prime Video', role: 'supervising location manager', type: 'tv', img: A+'hunters.jpg', yt: 'vHE3HViq8r8', tt: 'tt7456722' },
+  { t: 'Los Farad', y: 2023, studio: 'Amazon Prime Video', role: 'supervising location manager', type: 'tv', img: A+'los-farad.jpg', yt: '1Lb333Lmaqs', tt: 'tt21278506' },
+  { t: 'Die Saat — Tödliche Macht', y: 2023, studio: 'Sky · ARD', role: 'supervising location manager', type: 'tv', img: A+'die-saat.jpg', yt: 'TAd93upmJIs', tt: 'tt20220254' },
+  { t: 'Bod obnovy', o: 'Restore Point', y: 2023, studio: 'Film Kolektiv', role: 'locations', type: 'feature', img: A+'restore-point.jpg', yt: 'JewqVAvzJnA', tt: 'tt9362492' },
+  { t: 'Bratři', o: 'Brothers', y: 2023, studio: 'FilmBrigade · Česká televize', role: 'supervising location manager', type: 'feature', img: A+'bratri.jpg', yt: '_ycEQ65wAbY', tt: 'tt14232442' },
+  { t: "John Carpenter's Suburban Screams", y: 2023, studio: 'Peacock', role: 'location scout', type: 'tv', img: A+'suburban-screams.jpg', yt: 'a9cRV4_Qgew', tt: 'tt29120536' },
+  // — 2022
+  { t: 'Iveta', y: 2022, studio: 'Voyo · TV Nova', role: 'supervising location manager', type: 'tv', img: A+'iveta.jpg', yt: 'tjIrW8SMmYc', tt: 'tt17053832' },
+  { t: 'Sedm schodů k moci', y: 2022, studio: 'Prima · Unit Sofa', role: 'supervising location manager', type: 'tv', img: A+'sedm-schodu-k-moci.jpg', yt: 'ZyAneVp7G_U', tt: 'tt20880752' },
+  { t: 'Grand Prix', y: 2022, studio: 'Offside MEN · Česká televize', role: 'supervising location manager', type: 'feature', img: A+'grand-prix.jpg', yt: 'NdToBcJhFyg', tt: 'tt14401508' },
+  { t: 'Spolu', y: 2022, studio: 'Bontonfilm', role: 'supervising location manager', type: 'feature', img: A+'spolu.jpg', yt: 'Hof4Ji9XwpI', tt: 'tt22037196' },
+  { t: 'Běžná selhání', o: 'Ordinary Failures', y: 2022, studio: 'Xova Film · HBO Europe', role: 'supervising location manager', type: 'feature', img: A+'bezna-selhani.jpg', yt: 'ALo8__vC3X0', tt: 'tt13844844' },
+  { t: 'Pánský klub', y: 2022, studio: 'Czech feature', role: 'supervising location manager', type: 'feature', img: A+'pansky-klub.jpg', yt: 'kXe0Yi82JH8', tt: 'tt13678280' },
+  { t: 'Vyšehrad: Fylm', y: 2022, studio: 'Obbod', role: 'supervising location manager', type: 'feature', img: A+'vysehrad.jpg', yt: '_2URNiAouqE', tt: 'tt13086670' },
+  { t: 'Poslední závod', y: 2022, studio: 'Punk Film', role: 'location coordinator', type: 'feature', img: A+'posledni-zavod.jpg', yt: 'qlOO0yljKso', tt: 'tt13275560' },
+  // — 2021
+  { t: "If I Can't Have Love, I Want Power", y: 2021, studio: 'IMAX · HBO Max', role: 'location manager', type: 'feature', img: A+'if-i-cant-have-love.jpg', yt: 'eM7luZ-00RI', tt: 'tt15141288' },
+  { t: 'Večírek', y: 2021, studio: 'Falcon', role: 'location coordinator', type: 'feature', img: A+'vecirek.jpg', yt: 'inOmWd0R-vE', tt: 'tt12883212' },
+  // — 2020
+  { t: 'Zrádci', o: 'The Traitors', y: 2019, ey: 2020, studio: 'Česká televize', role: 'supervising location manager', type: 'tv', img: A+'zradci.jpg', tt: 'tt10720694' },
+  { t: 'Erotica 2022', y: 2020, studio: 'Netflix', role: '2nd production manager: locations', type: 'feature', img: A+'erotica-2022.jpg', yt: 'llthIvsbP8Q', tt: 'tt10399674' },
+  { t: 'Chlap na střídačku', y: 2020, studio: 'Bohemia Motion Pictures', role: 'key assistant location manager', type: 'feature', img: A+'chlap-na-stridacku.jpg', yt: 'dEcgilolTxI', tt: 'tt10681656' },
+  // — 2019
+  { t: 'Bride of Istanbul', o: 'İstanbullu Gelin', y: 2017, ey: 2019, studio: 'Star TV', role: 'location coordinator', type: 'tv', img: A+'bride-of-istanbul.jpg', yt: 'QOBHCfrQJtc', tt: 'tt6462806' },
+  // — 2018
+  { t: '12 Monkeys', y: 2015, ey: 2018, studio: 'Syfy · Atlas Entertainment', role: 'location manager', type: 'tv', img: A+'12-monkeys.jpg', yt: 'AQEN9V8r6TM', tt: 'tt3148266' },
+  { t: 'The Rookie', y: 2018, studio: 'ABC', role: 'locations', type: 'tv', img: A+'the-rookie.jpg', yt: '_HgC1TN8FVk', tt: 'tt7587890' },
+  { t: 'Toman', y: 2018, studio: 'Total HelpArt · Česká televize', role: 'location coordinator', type: 'feature', img: A+'toman.jpg', yt: 'LF6ANdT4Iro', tt: 'tt6283474' },
+  { t: 'Čertí brko', o: 'The Magic Quill', y: 2018, studio: 'Česká televize · Punk Film', role: 'location coordinator', type: 'feature', img: A+'certi-brko.jpg', yt: 'Zoamf7DPxVw', tt: 'tt7028140' },
+  // — 2017
+  { t: 'Interlude in Prague', y: 2017, studio: 'Stillking Films', role: 'supervising location manager', type: 'feature', img: A+'interlude-prague.jpg', yt: 'uQR4nan5neM', tt: 'tt5540194' },
+  { t: 'Jab Harry Met Sejal', y: 2017, studio: 'Red Chillies Entertainment', role: 'location manager', type: 'feature', img: A+'jab-harry-met-sejal.jpg', yt: 'Ej2IYqyMzA4', tt: 'tt5997666' },
+  // — 2016
+  { t: 'Polda', y: 2016, studio: 'Prima', role: 'supervising location manager', type: 'tv', img: A+'polda.jpg', yt: 'aFSRE9DG5nE', tt: 'tt6315016' },
+  // — 2015
+  { t: 'Child 44', y: 2015, studio: 'Lionsgate · Summit', role: 'location manager', type: 'feature', img: A+'child-44.jpg', yt: 'Uia6y9SRsj4', tt: 'tt1014763' },
+  { t: 'Sedmero krkavců', o: 'The Seven Ravens', y: 2015, studio: 'Attack Film', role: 'locations scout', type: 'feature', img: A+'sedmero-krkavcu.jpg', yt: 'QsbFDXz6dk8', tt: 'tt3037336' },
+  // — 2013
+  { t: 'Strach', o: 'Little Secret', y: 2013, studio: 'Stillking Films', role: 'location manager', type: 'short', img: A+'little-secret.jpg', tt: 'tt2979030' },
+  // — 2012
+  { t: 'Manipulations', y: 2012, studio: 'Sirena Film · AB Productions', role: 'location manager', type: 'tv', img: A+'manipulations.jpg', tt: 'tt2294727' },
+  // — 2011
+  { t: 'Mission: Impossible — Ghost Protocol', y: 2011, studio: 'Paramount Pictures', role: 'assistant location manager: Prague', type: 'feature', img: A+'mission-impossible.jpg', yt: 'HPB7fV7f_f8', tt: 'tt1229238' },
+  { t: 'Rockstar', y: 2011, studio: 'Eros International', role: 'location manager', type: 'feature', img: A+'rockstar.jpg', yt: 'bD5FShPZdpw', tt: 'tt1839596' },
+  // — 2010
+  { t: 'Nodame Cantabile: The Movie II', y: 2010, studio: 'Fuji TV', role: 'location manager', type: 'feature', img: A+'nodame-cantabile.jpg', yt: 'SQTCm37Vkso', tt: 'tt1337673' },
+  // — 2006
+  { t: 'The Illusionist', y: 2006, studio: 'Yari Film Group', role: 'locations scout', type: 'feature', img: A+'illusionist.jpg', yt: 'zuFGKcOSUfM', tt: 'tt0443543' },
+  // — 2005
+  { t: 'Příběhy obyčejného šílenství', y: 2005, studio: 'Negativ', role: 'production manager', type: 'feature', img: A+'pribehy-silenstvi.jpg', yt: 'haR12FFoOOM', tt: 'tt0408120' },
+  // — 2004
+  { t: 'Mistři', y: 2004, studio: 'Negativ · Česká televize', role: 'production manager', type: 'feature', img: A+'mistri.jpg', tt: 'tt0403310' },
+  // — 2003
+  { t: 'Želary', y: 2003, studio: 'Barrandov · ALEF Film', role: 'location manager', type: 'feature', img: A+'zelary.jpg', yt: 'z9MYQlU2V1s', tt: 'tt0288330' },
 ];
 
-// ============================================
-// 3D TILT EFFECT — shared helper
-// ============================================
-function addTilt(selector) {
-  document.querySelectorAll(selector).forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${y * -8}deg) translateY(-8px)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-}
+/* ---- Featured — priority files (wide cards use trailer stills) ---- */
+const featured = [
+  { t: 'Nosferatu', y: '2024', studio: 'Focus Features', dir: 'Robert Eggers', yt: 'nulvWqYUM8k', img: yt('nulvWqYUM8k'), fb: A+'nosferatu.jpg' },
+  { t: 'Mission: Impossible — Ghost Protocol', y: '2011', studio: 'Paramount', dir: 'Brad Bird', yt: 'HPB7fV7f_f8', img: yt('HPB7fV7f_f8'), fb: A+'mission-impossible.jpg' },
+  { t: 'Wonka', y: '2023', studio: 'Warner Bros.', dir: 'Paul King', yt: 'otNh9bTjXWg', img: A+'wonka.jpg', fb: yt('otNh9bTjXWg') },
+  { t: '12 Monkeys', y: '2015–2018', studio: 'Syfy', dir: 'series', yt: 'AQEN9V8r6TM', img: A+'12-monkeys.jpg', fb: yt('AQEN9V8r6TM') },
+  { t: 'Jack Ryan', y: '2018–2023', studio: 'Amazon Prime Video', dir: 'series', yt: '1KsyZF590NM', img: A+'jack-ryan.jpg', fb: yt('1KsyZF590NM') },
+  { t: 'Das Boot', y: '2018–2023', studio: 'Sky', dir: 'series', yt: '6FlNemUn78U', img: A+'das-boot-3.jpg', fb: yt('6FlNemUn78U') },
+];
 
-// ============================================
-// FEATURED SHOWREEL
-// ============================================
+/* ---- Hero contact sheet ---- */
+const sheetFrames = [
+  { yt: 'nulvWqYUM8k', t: 'Nosferatu', circled: true },
+  { yt: 'HPB7fV7f_f8', t: 'Mission: Impossible' },
+  { yt: 'otNh9bTjXWg', t: 'Wonka' },
+  { yt: '1KsyZF590NM', t: 'Jack Ryan' },
+  { yt: '6FlNemUn78U', t: 'Das Boot' },
+];
+
+/* ---- Studio ticker ---- */
+const studios = [
+  'FOCUS FEATURES', 'WARNER BROS.', 'PARAMOUNT', 'NETFLIX', 'AMAZON PRIME VIDEO',
+  'HBO MAX', 'SKY', 'LIONSGATE', 'CBS', 'ABC', 'SYFY', 'PEACOCK', 'IMAX',
+  'FUJI TV', 'STAR TV', 'ČESKÁ TELEVIZE', 'PRIMA', 'VOYO',
+];
+
+/* ============================================================
+   RENDERING
+   ============================================================ */
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+
+/* Current year in header/footer */
+const NOW = new Date().getFullYear();
+['yearNow', 'yearNow2', 'yearNow3'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.textContent = NOW;
+});
+
+/* --- Contact sheet --- */
+const sheetEl = document.getElementById('contactSheet');
+sheetFrames.forEach((f, i) => {
+  const d = document.createElement('div');
+  d.className = 'sheet__frame' + (f.circled ? ' sheet__frame--circled' : '');
+  d.innerHTML = `
+    <img src="${yt(f.yt)}" alt="${esc(f.t)}" loading="eager"
+         onerror="this.src='https://img.youtube.com/vi/${f.yt}/hqdefault.jpg'" />
+    <span class="sheet__num">FR·${String((i + 1) * 12).padStart(3, '0')}</span>`;
+  d.addEventListener('click', () => openModal(f.yt, f.t, ''));
+  sheetEl.appendChild(d);
+});
+
+/* --- Ticker --- */
+const tick = document.getElementById('tickerTrack');
+tick.innerHTML = [...studios, ...studios]
+  .map(s => `<span>${s}</span><span class="tick-dot">●</span>`).join('');
+
+/* --- Featured --- */
 const featuredGrid = document.getElementById('featuredGrid');
-
 featured.forEach((f, i) => {
   const card = document.createElement('article');
-  card.className = 'featured__card reveal reveal--up reveal-delay-' + ((i % 6) + 1);
-  card.dataset.trailer = f.trailerId;
-  card.dataset.title = f.title;
-  card.dataset.meta = `${f.studio} · ${f.year} · dir. ${f.director}`;
+  card.className = `pfile reveal reveal-d${(i % 6) + 1}`;
   card.innerHTML = `
-    <img src="${f.img}"
-         class="featured__thumb"
-         alt="${f.title}"
-         onerror="this.src='https://img.youtube.com/vi/${f.trailerId}/maxresdefault.jpg'" />
-    <div class="featured__overlay"></div>
-    <div class="featured__play" aria-label="Play trailer">
-      <svg width="14" height="14" viewBox="0 0 14 14"><polygon points="2,1 2,13 13,7" fill="currentColor"/></svg>
-    </div>
-    <div class="featured__body">
-      <span class="featured__type">${f.type}</span>
-      <h3 class="featured__title">${f.title}</h3>
-      <div class="featured__meta">
-        <span>${f.studio}</span>
-        <span>${f.year}</span>
-        <span>${f.director}</span>
-      </div>
-    </div>
-  `;
-  card.addEventListener('click', () => openModal(f.trailerId, f.title, `${f.studio} · ${f.year} · dir. ${f.director}`));
+    <img src="${f.img}" alt="${esc(f.t)}" loading="lazy" onerror="this.onerror=null;this.src='${f.fb}'" />
+    <div class="pfile__shade"></div>
+    <span class="pfile__tag">PRIORITY · ${String(i + 1).padStart(2, '0')}</span>
+    <span class="pfile__play" aria-hidden="true">
+      <svg width="13" height="13" viewBox="0 0 14 14"><polygon points="2,1 2,13 13,7" fill="currentColor"/></svg>
+    </span>
+    <div class="pfile__body">
+      <h3 class="pfile__title">${esc(f.t)}</h3>
+      <div class="pfile__meta"><b>${esc(f.studio)}</b><span>${f.y}</span>${f.dir !== 'series' ? `<span>dir. ${esc(f.dir)}</span>` : '<span>TV series</span>'}</div>
+    </div>`;
+  card.addEventListener('click', () => openModal(f.yt, f.t, `${f.studio} · ${f.y}`));
   featuredGrid.appendChild(card);
 });
 
-// Tilt na featured kartách
-addTilt('.featured__card');
+/* --- Archive index --- */
+const tableEl = document.getElementById('indexTable');
+const peek = document.getElementById('peek');
+const peekImg = document.getElementById('peekImg');
+const finePointer = window.matchMedia('(pointer: fine)').matches;
 
-// ============================================
-// CREDITS GRID
-// ============================================
-const grid = document.getElementById('creditsGrid');
+const sortYear = c => c.ey || c.y;
+const yearLabel = c => c.ey && c.ey !== c.y ? `${c.y}–${c.ey}` : `${c.y}`;
+const typeLabel = c => c.type === 'tv' ? 'TV' : c.type === 'short' ? 'SHORT' : 'FILM';
 
-function renderCredits(filter = 'all') {
-  grid.innerHTML = '';
-  grid.className = 'credits__grid';
-  const filtered = filter === 'all' ? credits : credits.filter(c => c.type === filter);
+function renderIndex(filter = 'all') {
+  tableEl.innerHTML = '';
+  const list = credits.filter(c => filter === 'all' || (filter === 'tv' ? c.type === 'tv' : c.type !== 'tv'));
+  let lastYear = null;
 
-  filtered.forEach((c, i) => {
-    const card = document.createElement('article');
-    card.className = 'pcard zoom-frame';
-    card.style.animationDelay = (i * 0.04) + 's';
+  list.forEach(c => {
+    const gy = sortYear(c);
+    if (gy !== lastYear) {
+      lastYear = gy;
+      const h = document.createElement('div');
+      h.className = 'iyear';
+      h.textContent = gy;
+      tableEl.appendChild(h);
+    }
 
-    const ytThumb = c.trailerId ? `https://img.youtube.com/vi/${c.trailerId}/maxresdefault.jpg` : '';
-    const imgSrc = c.localImg || ytThumb || '';
+    const row = document.createElement('div');
+    row.className = 'irow';
+    const no = credits.length - credits.indexOf(c);
+    row.innerHTML = `
+      <span class="irow__no">FILE ${String(no).padStart(3, '0')}</span>
+      <span class="irow__title">${esc(c.t)}${c.o ? `<em>${esc(c.o)}</em>` : ''}</span>
+      <span class="irow__studio">${esc(c.studio)}</span>
+      <span class="irow__role">${esc(c.role)}</span>
+      <span class="irow__type">${typeLabel(c)} · ${yearLabel(c)}</span>
+      <span class="irow__actions">
+        ${c.yt ? '<button class="irow__btn irow__btn--play" aria-label="Play trailer">▶ PLAY</button>' : ''}
+        <a class="irow__btn" href="https://www.imdb.com/title/${c.tt}/" target="_blank" rel="noopener">IMDb</a>
+      </span>`;
 
-    const trailerBtn = c.trailerId
-      ? `<button class="pcard__play" aria-label="Play trailer">
-           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg>
-         </button>`
-      : '';
-
-    const imdbBtn = c.imdb
-      ? `<a class="pcard__imdb" href="https://www.imdb.com/title/${c.imdb}/" target="_blank" rel="noopener" onclick="event.stopPropagation()">IMDb ↗</a>`
-      : '';
-
-    const badgeHtml = c.badge
-      ? `<span class="pcard__badge">${c.badge}</span>`
-      : '';
-
-    card.innerHTML = `
-      ${imgSrc ? `<img src="${imgSrc}" alt="${c.title}" loading="lazy" onerror="this.style.display='none'"/>` : ''}
-      <div class="pcard__gradient"></div>
-      <div class="pcard__top">
-        <span class="pcard__num">${String(i + 1).padStart(2, '0')} / ${String(filtered.length).padStart(2, '0')}</span>
-        <div class="pcard__btns">${badgeHtml}${trailerBtn}${imdbBtn}</div>
-      </div>
-      <div class="pcard__body">
-        <span class="pcard__type">${c.type === 'tv' ? 'TV · Streaming' : 'Feature Film'}</span>
-        <h3 class="pcard__title">${c.title}</h3>
-        <div class="pcard__meta">
-          <span>${c.studio}</span>
-          <span class="pcard__dot">·</span>
-          <span>${c.year}</span>
-        </div>
-      </div>
-    `;
-
-    if (c.trailerId) {
-      card.querySelector('.pcard__play')?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openModal(c.trailerId, c.title, `${c.studio} · ${c.year}`);
+    if (c.yt) {
+      row.addEventListener('click', e => {
+        if (!e.target.closest('a')) openModal(c.yt, c.t, `${c.studio} · ${yearLabel(c)} · ${c.role}`);
       });
-      card.addEventListener('click', (e) => {
-        if (!e.target.closest('a')) openModal(c.trailerId, c.title, `${c.studio} · ${c.year}`);
+    } else {
+      row.style.cursor = 'default';
+    }
+
+    if (finePointer && c.img) {
+      row.addEventListener('mouseenter', () => { peekImg.src = c.img; peek.classList.add('on'); });
+      row.addEventListener('mouseleave', () => peek.classList.remove('on'));
+      row.addEventListener('mousemove', e => {
+        const w = 168, h = 252, m = 22;
+        let x = e.clientX + m, yPos = e.clientY - h / 2;
+        if (x + w > window.innerWidth - 12) x = e.clientX - w - m;
+        yPos = Math.max(12, Math.min(yPos, window.innerHeight - h - 12));
+        peek.style.left = x + 'px';
+        peek.style.top = yPos + 'px';
       });
     }
 
-    // 3D tilt + moving spotlight
-    card.addEventListener('mousemove', (e) => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width;
-      const y = (e.clientY - r.top) / r.height;
-      const tx = (x - 0.5) * 14;
-      const ty = (y - 0.5) * -14;
-      card.style.transform = `perspective(900px) rotateY(${tx}deg) rotateX(${ty}deg) scale(1.03)`;
-      card.style.setProperty('--mx', `${x * 100}%`);
-      card.style.setProperty('--my', `${y * 100}%`);
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-
-    grid.appendChild(card);
+    tableEl.appendChild(row);
   });
 }
+renderIndex();
 
-renderCredits();
-
-// ---- Filter buttons ----
-document.querySelectorAll('.filter').forEach(btn => {
+document.querySelectorAll('.ifilter').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.ifilter').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    renderCredits(btn.dataset.filter);
+    renderIndex(btn.dataset.filter);
   });
 });
 
-// ============================================
-// MODAL VIDEO PLAYER
-// ============================================
+/* ============================================================
+   MODAL
+   ============================================================ */
 const modal = document.getElementById('videoModal');
 const modalPlayer = document.getElementById('modalPlayer');
 const modalCaption = document.getElementById('modalCaption');
 
 function openModal(videoId, title, meta) {
   modalPlayer.innerHTML = `
-    <iframe
-      src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1"
-      title="${title} — trailer"
-      allow="autoplay; encrypted-media; picture-in-picture"
-      allowfullscreen></iframe>
-  `;
+    <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1"
+            title="${esc(title)} — trailer"
+            allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
   modalCaption.innerHTML = `
-    <span class="modal__caption-title">${title}</span>
-    <span class="modal__caption-meta">${meta}</span>
-  `;
+    <span class="modal__caption-title">${esc(title)}</span>
+    <span>${esc(meta)}</span>`;
   modal.classList.add('is-open');
+  modal.removeAttribute('aria-hidden');
   document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
   modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
   modalPlayer.innerHTML = '';
   document.body.style.overflow = '';
 }
 
 document.getElementById('modalClose').addEventListener('click', closeModal);
 document.getElementById('modalBackdrop').addEventListener('click', closeModal);
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
 });
 
-// ---- Play featured reel: cycles through featured trailers ----
-let reelIndex = 0;
-
-function playReelAt(index) {
-  const f = featured[index % featured.length];
-  reelIndex = index % featured.length;
-  const meta = `${f.studio} · ${f.year} · dir. ${f.director}`;
-  modalCaption.innerHTML = `
-    <span class="modal__caption-title">${f.title}</span>
-    <div class="modal__caption-controls">
-      <button class="modal__reel-btn" id="reelPrev" aria-label="Previous">← Prev</button>
-      <span class="modal__caption-meta">${meta}</span>
-      <button class="modal__reel-btn" id="reelNext" aria-label="Next">Next →</button>
-    </div>
-  `;
-  modalPlayer.innerHTML = `
-    <iframe
-      src="https://www.youtube.com/embed/${f.trailerId}?autoplay=1&rel=0&modestbranding=1"
-      title="${f.title} — trailer"
-      allow="autoplay; encrypted-media; picture-in-picture"
-      allowfullscreen></iframe>
-  `;
-  document.getElementById('reelPrev')?.addEventListener('click', () => playReelAt(reelIndex - 1));
-  document.getElementById('reelNext')?.addEventListener('click', () => playReelAt(reelIndex + 1));
-  modal.classList.add('is-open');
-  document.body.style.overflow = 'hidden';
-}
-
-document.getElementById('playAll').addEventListener('click', () => playReelAt(0));
-
-// ============================================
-// STICKY NAV
-// ============================================
+/* ============================================================
+   NAV + MOBILE MENU
+   ============================================================ */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
-});
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
 
-// ============================================
-// REVEAL ON SCROLL
-// ============================================
-let observer;
-function observeReveal() {
-  if (!('IntersectionObserver' in window)) return;
-  if (!observer) {
-    observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
-  }
-  document.querySelectorAll('.reveal:not(.in-view)').forEach(el => observer.observe(el));
-}
-
-// Přidat reveal třídy na statické elementy s direction variantami
-document.querySelectorAll('.about__title').forEach(el => {
-  el.classList.add('reveal', 'reveal--left');
-});
-
-document.querySelectorAll('.about__text p').forEach((el, i) => {
-  el.classList.add('reveal', 'reveal--up', 'reveal-delay-' + ((i % 6) + 1));
-});
-
-document.querySelectorAll('.stat').forEach((el, i) => {
-  el.classList.add('reveal', 'reveal--scale', 'reveal-delay-' + ((i % 6) + 1));
-});
-
-document.querySelectorAll('.service').forEach((el, i) => {
-  const direction = i % 2 === 0 ? 'reveal--left' : 'reveal--right';
-  el.classList.add('reveal', direction, 'reveal-delay-' + ((i % 6) + 1));
-});
-
-document.querySelectorAll('.section__title, .section__lede').forEach((el, i) => {
-  el.classList.add('reveal', 'reveal--up', 'reveal-delay-' + ((i % 2) + 1));
-});
-
-document.querySelectorAll('.contact__title').forEach(el => {
-  el.classList.add('reveal', 'reveal--up');
-});
-
-document.querySelectorAll('.contact__form').forEach(el => {
-  el.classList.add('reveal', 'reveal--left');
-});
-
-document.querySelectorAll('.contact__info').forEach(el => {
-  el.classList.add('reveal', 'reveal--right');
-});
-
-document.querySelectorAll('.avatar').forEach(el => {
-  el.classList.add('reveal', 'reveal--scale');
-});
-
-observeReveal();
-
-// ============================================
-// BURGER MENU — fullscreen overlay
-// ============================================
 const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobileMenu');
 
-function openMobileMenu() {
-  mobileMenu.classList.add('is-open');
-  mobileMenu.removeAttribute('aria-hidden');
-  document.body.style.overflow = 'hidden';
-  burger.setAttribute('aria-expanded', 'true');
-}
-function closeMobileMenu() {
-  mobileMenu.classList.remove('is-open');
-  mobileMenu.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-  burger.setAttribute('aria-expanded', 'false');
-}
+/* Clone language switcher into the mobile menu */
+const mmFoot = mobileMenu.querySelector('.mobile-menu__foot');
+const langClone = document.querySelector('.nav .lang-switcher').cloneNode(true);
+mmFoot.parentNode.insertBefore(langClone, mmFoot);
 
-burger?.addEventListener('click', () => {
-  if (mobileMenu.classList.contains('is-open')) closeMobileMenu();
-  else openMobileMenu();
+function setMobileMenu(open) {
+  mobileMenu.classList.toggle('is-open', open);
+  mobileMenu.setAttribute('aria-hidden', String(!open));
+  document.body.style.overflow = open ? 'hidden' : '';
+  burger.setAttribute('aria-expanded', String(open));
+}
+burger.addEventListener('click', () => setMobileMenu(!mobileMenu.classList.contains('is-open')));
+document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => setMobileMenu(false)));
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) setMobileMenu(false);
 });
 
-document.querySelectorAll('[data-close]').forEach(el =>
-  el.addEventListener('click', closeMobileMenu)
-);
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) closeMobileMenu();
-});
-
-// ============================================
-// CONTACT FORM — success state
-// ============================================
-document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+/* ============================================================
+   CONTACT FORM — opens the visitor's mail client, no backend
+   ============================================================ */
+document.getElementById('contactForm').addEventListener('submit', e => {
   e.preventDefault();
-  const form = e.currentTarget;
-  const success = document.getElementById('formSuccess');
-  form.querySelectorAll('input, textarea').forEach(el => el.value = '');
-  success.classList.add('visible');
-  setTimeout(() => success.classList.remove('visible'), 6000);
+  const f = e.currentTarget;
+  const name = f.name.value.trim();
+  const email = f.email.value.trim();
+  const msg = f.message.value.trim();
+  const subject = encodeURIComponent(`Project inquiry — ${name}`);
+  const body = encodeURIComponent(`${msg}\n\n—\n${name}\n${email}`);
+  window.location.href = `mailto:pavel@filmhunters.cz?subject=${subject}&body=${body}`;
 });
 
-// ============================================
-// FILM STRIP — celluloid scroll
-// ============================================
-const stripReel = document.getElementById('filmstripReel');
-if (stripReel) {
-  const stripProjects = [
-    { title: 'Nosferatu',               img: FH+'nosferatu.jpg',         fb: 'https://img.youtube.com/vi/nulvWqYUM8k/maxresdefault.jpg' },
-    { title: 'Mission: Impossible',     img: FH+'mission-impossible.jpg', fb: 'https://img.youtube.com/vi/HPB7fV7f_f8/maxresdefault.jpg' },
-    { title: 'Jack Ryan',               img: FH+'jack-ryan.jpg',          fb: 'https://img.youtube.com/vi/1KsyZF590NM/maxresdefault.jpg' },
-    { title: 'Das Boot',                img: FH+'das-boot.jpg',           fb: 'https://img.youtube.com/vi/6FlNemUn78U/maxresdefault.jpg' },
-    { title: 'Child 44',                img: FH+'child-44.jpg',           fb: 'https://img.youtube.com/vi/ENS3ucnMSdY/maxresdefault.jpg' },
-    { title: 'The Rookie',              img: FH+'the-rookie.jpg',         fb: 'https://img.youtube.com/vi/lApwGz6q3pE/maxresdefault.jpg' },
-    { title: 'Fubar',                   img: FH+'fubar.jpg',              fb: '' },
-    { title: 'Los Farad',               img: FH+'los-farad.jpg',          fb: '' },
-    { title: 'Vyšehrad',                img: FH+'vysehrad.jpg',           fb: '' },
-    { title: 'Zelary',                  img: FH+'zelary.jpg',             fb: '' },
-  ];
-  // Duplicate for seamless infinite loop
-  [...stripProjects, ...stripProjects].forEach((p, i) => {
-    const frame = document.createElement('div');
-    frame.className = 'filmstrip__frame';
-    frame.innerHTML = `
-      <img src="${p.img}" alt="${p.title}" loading="lazy"
-           onerror="${p.fb ? `this.src='${p.fb}'` : `this.closest('.filmstrip__frame').style.display='none'`}" />
-      <span class="filmstrip__frame-num">FR·${String((i % stripProjects.length) * 24 + 1).padStart(3,'0')}</span>
-    `;
-    stripReel.appendChild(frame);
+/* ============================================================
+   REVEAL ON SCROLL
+   ============================================================ */
+const sections = [
+  ['.sec-head', 'reveal'],
+  ['.sec-lede', 'reveal reveal-d1'],
+  ['.about__photo', 'reveal'],
+  ['.about__title', 'reveal'],
+  ['.about__text p', 'reveal'],
+  ['.stat', 'reveal'],
+  ['.op', 'reveal'],
+  ['.contact__form', 'reveal'],
+  ['.contact__info', 'reveal reveal-d2'],
+];
+sections.forEach(([sel, cls]) => {
+  document.querySelectorAll(sel).forEach((el, i) => {
+    cls.split(' ').forEach(c => el.classList.add(c));
+    if (!cls.includes('-d')) el.classList.add(`reveal-d${(i % 4) + 1}`);
   });
+});
+
+if ('IntersectionObserver' in window) {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('in-view'); obs.unobserve(en.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
 }
