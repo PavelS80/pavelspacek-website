@@ -44,9 +44,9 @@ const TRANSLATIONS = {
 
     'index.head':     'INDEX OF PRODUCTIONS',
     'index.files':    'FILES',
-    'index.lede':     'The complete record, as filed on IMDb — every title, every role, exactly as credited. Hover a row for the poster, click to play the trailer.',
+    'index.lede':     'The complete record, as filed on IMDb — every title, every role, exactly as credited. Hover a row for the poster, click to play the trailer where available.',
     'filter.all':     'ALL FILES',
-    'filter.feature': 'FEATURES',
+    'filter.feature': 'FILMS',
     'filter.tv':      'TV / STREAMING',
 
     'serv.head':      'FIELD OPERATIONS',
@@ -67,6 +67,7 @@ const TRANSLATIONS = {
     'form.email':     'EMAIL',
     'form.message':   'PROJECT / BRIEF',
     'form.submit':    'FILE THE REQUEST →',
+    'mail.subject':   'Project inquiry',
     'form.note':      'Opens your mail app with the message pre-filled — nothing is sent behind your back.',
     'info.email':     'EMAIL',
     'info.phone':     'PHONE',
@@ -119,9 +120,9 @@ const TRANSLATIONS = {
 
     'index.head':     'REJSTŘÍK PRODUKCÍ',
     'index.files':    'SPISŮ',
-    'index.lede':     'Kompletní záznam podle IMDb — každý titul, každá role, přesně jak je uvedena. Najetím na řádek zobrazíte plakát, kliknutím přehrajete trailer.',
+    'index.lede':     'Kompletní záznam podle IMDb — každý titul, každá role, přesně jak je uvedena. Najetím na řádek zobrazíte plakát, kliknutím přehrajete trailer (kde je k dispozici).',
     'filter.all':     'VŠECHNY SPISY',
-    'filter.feature': 'CELOVEČERNÍ',
+    'filter.feature': 'FILMY',
     'filter.tv':      'TV / STREAMING',
 
     'serv.head':      'PRÁCE V TERÉNU',
@@ -142,6 +143,7 @@ const TRANSLATIONS = {
     'form.email':     'E-MAIL',
     'form.message':   'PROJEKT / ZADÁNÍ',
     'form.submit':    'ZALOŽIT SPIS →',
+    'mail.subject':   'Poptávka projektu',
     'form.note':      'Otevře váš poštovní program s předvyplněnou zprávou — nic se neodesílá za vašimi zády.',
     'info.email':     'E-MAIL',
     'info.phone':     'TELEFON',
@@ -194,9 +196,9 @@ const TRANSLATIONS = {
 
     'index.head':     'PRODUKTIONSREGISTER',
     'index.files':    'AKTEN',
-    'index.lede':     'Die vollständige Aufstellung laut IMDb — jeder Titel, jede Rolle, exakt wie im Abspann. Zeile berühren für das Poster, klicken für den Trailer.',
+    'index.lede':     'Die vollständige Aufstellung laut IMDb — jeder Titel, jede Rolle, exakt wie im Abspann. Zeile mit der Maus überfahren für das Poster, klicken für den Trailer (wo verfügbar).',
     'filter.all':     'ALLE AKTEN',
-    'filter.feature': 'SPIELFILME',
+    'filter.feature': 'FILME',
     'filter.tv':      'TV / STREAMING',
 
     'serv.head':      'FELDARBEIT',
@@ -217,6 +219,7 @@ const TRANSLATIONS = {
     'form.email':     'E-MAIL',
     'form.message':   'PROJEKT / BRIEFING',
     'form.submit':    'ANTRAG EINREICHEN →',
+    'mail.subject':   'Projektanfrage',
     'form.note':      'Öffnet Ihr Mailprogramm mit vorausgefüllter Nachricht — nichts wird hinter Ihrem Rücken versendet.',
     'info.email':     'E-MAIL',
     'info.phone':     'TELEFON',
@@ -269,9 +272,9 @@ const TRANSLATIONS = {
 
     'index.head':     'INDEX DES PRODUCTIONS',
     'index.files':    'DOSSIERS',
-    'index.lede':     'Le registre complet, tel qu’archivé sur IMDb — chaque titre, chaque rôle, exactement comme crédité. Survolez une ligne pour l’affiche, cliquez pour la bande-annonce.',
+    'index.lede':     'Le registre complet, tel qu’archivé sur IMDb — chaque titre, chaque rôle, exactement comme crédité. Survolez une ligne pour l’affiche, cliquez pour la bande-annonce (si disponible).',
     'filter.all':     'TOUS LES DOSSIERS',
-    'filter.feature': 'LONGS MÉTRAGES',
+    'filter.feature': 'FILMS',
     'filter.tv':      'TV / STREAMING',
 
     'serv.head':      'OPÉRATIONS DE TERRAIN',
@@ -292,6 +295,7 @@ const TRANSLATIONS = {
     'form.email':     'E-MAIL',
     'form.message':   'PROJET / BRIEF',
     'form.submit':    'DÉPOSER LA DEMANDE →',
+    'mail.subject':   'Demande de projet',
     'form.note':      'Ouvre votre messagerie avec le message prérempli — rien n’est envoyé à votre insu.',
     'info.email':     'E-MAIL',
     'info.phone':     'TÉLÉPHONE',
@@ -322,7 +326,7 @@ const TRANSLATIONS = {
     'hero.note':      'здесь снимали ↑',
     'hero.scroll':    'СМОТРЕТЬ АРХИВ',
 
-    'ticker.label':   'ИСКАЛ ДЛЯ',
+    'ticker.label':   'ИСКАЛ ЛОКАЦИИ ДЛЯ',
 
     'about.head':     'ЛИЧНОЕ ДЕЛО',
     'about.meta':     'ШПАЧЕК, ПАВЕЛ · ПРАГА, CZ',
@@ -335,7 +339,7 @@ const TRANSLATIONS = {
     'about.link':     'ОТКРЫТЬ ДЕЛО →',
     'stat1':          'ЛЕТ В ПОЛЕ',
     'stat2':          'СДАННЫХ ПРОЕКТОВ',
-    'stat3':          'ТИТРОВ НА IMDb',
+    'stat3':          'ТИТРА НА IMDb',
     'stat4':          'ОХВАТ ТЕРРИТОРИИ',
 
     'feat.head':      'ПРИОРИТЕТНЫЕ ДЕЛА',
@@ -343,10 +347,10 @@ const TRANSLATIONS = {
     'feat.lede':      'Небольшая подборка из архива. Нажмите на дело, чтобы посмотреть официальный трейлер.',
 
     'index.head':     'УКАЗАТЕЛЬ ПРОЕКТОВ',
-    'index.files':    'ДЕЛ',
-    'index.lede':     'Полный реестр по данным IMDb — каждый фильм, каждая должность, в точности как в титрах. Наведите на строку — постер, клик — трейлер.',
+    'index.files':    'ДЕЛА',
+    'index.lede':     'Полный реестр по данным IMDb — каждый фильм, каждая должность, в точности как в титрах. Наведите на строку — постер, клик — трейлер (если доступен).',
     'filter.all':     'ВСЕ ДЕЛА',
-    'filter.feature': 'ПОЛНЫЙ МЕТР',
+    'filter.feature': 'ФИЛЬМЫ',
     'filter.tv':      'ТВ / СТРИМИНГ',
 
     'serv.head':      'ПОЛЕВАЯ РАБОТА',
@@ -361,12 +365,13 @@ const TRANSLATIONS = {
     's4.desc':        'Двадцать пять лет скаутинга, всё отснято и каталогизировано. Под любой бриф соберу подборку за несколько дней — охотно поделюсь.',
 
     'contact.head':   'ОТКРЫТЬ ДЕЛО',
-    'contact.meta':   'НОВЫЙ ПРОЕКТ — ВХОДНАЯ ФОРМА',
+    'contact.meta':   'НОВЫЙ ПРОЕКТ — ФОРМА ЗАЯВКИ',
     'contact.stamp':  'ОТВЕЧАЕТ ЛИЧНО',
     'form.name':      'ИМЯ / ПРОДАКШН',
     'form.email':     'E-MAIL',
     'form.message':   'ПРОЕКТ / БРИФ',
     'form.submit':    'ПОДАТЬ ЗАЯВКУ →',
+    'mail.subject':   'Запрос по проекту',
     'form.note':      'Откроется ваша почтовая программа с готовым текстом — ничего не отправляется без вашего ведома.',
     'info.email':     'E-MAIL',
     'info.phone':     'ТЕЛЕФОН',

@@ -14,7 +14,7 @@ const credits = [
   { t: 'FUBAR', y: 2023, ey: 2025, studio: 'Netflix', role: 'location manager · Prague unit', type: 'tv', img: A+'fubar.jpg', yt: 'vJlfAp7ZCAY', tt: 'tt13064902' },
   { t: 'FBI: International', y: 2021, ey: 2025, studio: 'CBS · Universal Television', role: 'location manager', type: 'tv', img: A+'fbi-international.jpg', yt: 'Ss717FniM9I', tt: 'tt14449470' },
   { t: 'Štěstíčku naproti', y: 2025, studio: 'Oneplay · Voyo', role: 'supervising location manager', type: 'tv', img: A+'stesticku-naproti.jpg', yt: 'LoEC0Xc8-S0', tt: 'tt39300922' },
-  { t: 'Franz', y: 2025, studio: 'X-Filme · Bioscop', role: 'locations', type: 'feature', img: A+'franz.jpg', yt: 'WFPrlEa294Q', tt: 'tt17070412' },
+  { t: 'Franz', y: 2025, studio: 'X-Filme · Bioscop', role: 'locations', type: 'feature', img: A+'franz.jpg', yt: 'f78r0tpG5fg', tt: 'tt17070412' },
   { t: 'Live a Little', o: 'Leva lite', y: 2025, studio: 'Film i Väst · Amarcord', role: 'location manager: Czech Republic', type: 'feature', img: A+'live-a-little.jpg', yt: '8y1DHBLoMQw', tt: 'tt32357858' },
   { t: 'Die Frau ohne Gesicht', y: 2025, studio: 'ARTE · Lailaps Films', role: 'location manager', type: 'tv', img: A+'die-frau-ohne-gesicht.jpg', tt: 'tt38585456' },
   // — 2024
@@ -25,7 +25,7 @@ const credits = [
   { t: 'Amerikánka', y: 2024, studio: 'Bioscop · PFX', role: 'location scout', type: 'feature', img: A+'amerikanka.jpg', yt: 'GmMzuwOtczQ', tt: 'tt33499451' },
   // — 2023
   { t: 'Wonka', y: 2023, studio: 'Warner Bros.', role: 'location manager: sfx still shoot', type: 'feature', img: A+'wonka.jpg', yt: 'otNh9bTjXWg', tt: 'tt6166392' },
-  { t: 'Das Boot', y: 2018, ey: 2023, studio: 'Sky · Bavaria Fiction', role: 'supervising location manager · S1–S3', type: 'tv', img: A+'das-boot-3.jpg', yt: '6FlNemUn78U', tt: 'tt5830254' },
+  { t: 'Das Boot', y: 2018, ey: 2023, studio: 'Sky · Bavaria Fiction', role: 'supervising location manager', type: 'tv', img: A+'das-boot-3.jpg', yt: '6FlNemUn78U', tt: 'tt5830254' },
   { t: 'Jack Ryan', y: 2018, ey: 2023, studio: 'Amazon Prime Video', role: 'location manager', type: 'tv', img: A+'jack-ryan.jpg', yt: '1KsyZF590NM', tt: 'tt5057054' },
   { t: 'Hunters', y: 2020, ey: 2023, studio: 'Amazon Prime Video', role: 'supervising location manager', type: 'tv', img: A+'hunters.jpg', yt: 'vHE3HViq8r8', tt: 'tt7456722' },
   { t: 'Los Farad', y: 2023, studio: 'Amazon Prime Video', role: 'supervising location manager', type: 'tv', img: A+'los-farad.jpg', yt: '1Lb333Lmaqs', tt: 'tt21278506' },
@@ -34,12 +34,12 @@ const credits = [
   { t: 'Bratři', o: 'Brothers', y: 2023, studio: 'FilmBrigade · Česká televize', role: 'supervising location manager', type: 'feature', img: A+'bratri.jpg', yt: '_ycEQ65wAbY', tt: 'tt14232442' },
   { t: "John Carpenter's Suburban Screams", y: 2023, studio: 'Peacock', role: 'location scout', type: 'tv', img: A+'suburban-screams.jpg', yt: 'a9cRV4_Qgew', tt: 'tt29120536' },
   // — 2022
-  { t: 'Iveta', y: 2022, studio: 'Voyo · TV Nova', role: 'supervising location manager', type: 'tv', img: A+'iveta.jpg', yt: 'tjIrW8SMmYc', tt: 'tt17053832' },
+  { t: 'Iveta', y: 2022, studio: 'Voyo · TV Nova', role: 'supervising location manager', type: 'tv', img: A+'iveta.jpg', yt: 'fCWr9mpZvB8', tt: 'tt17053832' },
   { t: 'Sedm schodů k moci', y: 2022, studio: 'Prima · Unit Sofa', role: 'supervising location manager', type: 'tv', img: A+'sedm-schodu-k-moci.jpg', yt: 'ZyAneVp7G_U', tt: 'tt20880752' },
   { t: 'Grand Prix', y: 2022, studio: 'Offside MEN · Česká televize', role: 'supervising location manager', type: 'feature', img: A+'grand-prix.jpg', yt: 'NdToBcJhFyg', tt: 'tt14401508' },
   { t: 'Spolu', y: 2022, studio: 'Bontonfilm', role: 'supervising location manager', type: 'feature', img: A+'spolu.jpg', yt: 'Hof4Ji9XwpI', tt: 'tt22037196' },
   { t: 'Běžná selhání', o: 'Ordinary Failures', y: 2022, studio: 'Xova Film · HBO Europe', role: 'supervising location manager', type: 'feature', img: A+'bezna-selhani.jpg', yt: 'ALo8__vC3X0', tt: 'tt13844844' },
-  { t: 'Pánský klub', y: 2022, studio: 'Czech feature', role: 'supervising location manager', type: 'feature', img: A+'pansky-klub.jpg', yt: 'kXe0Yi82JH8', tt: 'tt13678280' },
+  { t: 'Pánský klub', y: 2022, studio: 'Punk Film · Bontonfilm', role: 'supervising location manager', type: 'feature', img: A+'pansky-klub.jpg', yt: 'kXe0Yi82JH8', tt: 'tt13678280' },
   { t: 'Vyšehrad: Fylm', y: 2022, studio: 'Obbod', role: 'supervising location manager', type: 'feature', img: A+'vysehrad.jpg', yt: '_2URNiAouqE', tt: 'tt13086670' },
   { t: 'Poslední závod', y: 2022, studio: 'Punk Film', role: 'location coordinator', type: 'feature', img: A+'posledni-zavod.jpg', yt: 'qlOO0yljKso', tt: 'tt13275560' },
   // — 2021
@@ -53,7 +53,7 @@ const credits = [
   { t: 'Bride of Istanbul', o: 'İstanbullu Gelin', y: 2017, ey: 2019, studio: 'Star TV', role: 'location coordinator', type: 'tv', img: A+'bride-of-istanbul.jpg', yt: 'QOBHCfrQJtc', tt: 'tt6462806' },
   // — 2018
   { t: '12 Monkeys', y: 2015, ey: 2018, studio: 'Syfy · Atlas Entertainment', role: 'location manager', type: 'tv', img: A+'12-monkeys.jpg', yt: 'AQEN9V8r6TM', tt: 'tt3148266' },
-  { t: 'The Rookie', y: 2018, studio: 'ABC', role: 'locations', type: 'tv', img: A+'the-rookie.jpg', yt: '_HgC1TN8FVk', tt: 'tt7587890' },
+  { t: 'The Rookie', y: 2018, studio: 'ABC', role: 'locations', type: 'tv', img: A+'the-rookie.jpg', yt: '8BPlx6eK1vc', tt: 'tt7587890' },
   { t: 'Toman', y: 2018, studio: 'Total HelpArt · Česká televize', role: 'location coordinator', type: 'feature', img: A+'toman.jpg', yt: 'LF6ANdT4Iro', tt: 'tt6283474' },
   { t: 'Čertí brko', o: 'The Magic Quill', y: 2018, studio: 'Česká televize · Punk Film', role: 'location coordinator', type: 'feature', img: A+'certi-brko.jpg', yt: 'Zoamf7DPxVw', tt: 'tt7028140' },
   // — 2017
@@ -106,7 +106,8 @@ const sheetFrames = [
 const studios = [
   'FOCUS FEATURES', 'WARNER BROS.', 'PARAMOUNT', 'NETFLIX', 'AMAZON PRIME VIDEO',
   'HBO MAX', 'SKY', 'LIONSGATE', 'CBS', 'ABC', 'SYFY', 'PEACOCK', 'IMAX',
-  'FUJI TV', 'STAR TV', 'ČESKÁ TELEVIZE', 'PRIMA', 'VOYO',
+  'RED CHILLIES', 'EROS INTERNATIONAL', 'ARTE', 'FUJI TV', 'STAR TV',
+  'ČESKÁ TELEVIZE', 'PRIMA', 'VOYO',
 ];
 
 /* ============================================================
@@ -121,6 +122,17 @@ const NOW = new Date().getFullYear();
   if (el) el.textContent = NOW;
 });
 
+/* Make a non-button element keyboard-operable */
+function makePlayable(el, label, fn) {
+  el.tabIndex = 0;
+  el.setAttribute('role', 'button');
+  el.setAttribute('aria-label', label);
+  el.addEventListener('click', fn);
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); }
+  });
+}
+
 /* --- Contact sheet --- */
 const sheetEl = document.getElementById('contactSheet');
 sheetFrames.forEach((f, i) => {
@@ -128,9 +140,9 @@ sheetFrames.forEach((f, i) => {
   d.className = 'sheet__frame' + (f.circled ? ' sheet__frame--circled' : '');
   d.innerHTML = `
     <img src="${yt(f.yt)}" alt="${esc(f.t)}" loading="eager"
-         onerror="this.src='https://img.youtube.com/vi/${f.yt}/hqdefault.jpg'" />
+         onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${f.yt}/hqdefault.jpg'" />
     <span class="sheet__num">FR·${String((i + 1) * 12).padStart(3, '0')}</span>`;
-  d.addEventListener('click', () => openModal(f.yt, f.t, ''));
+  makePlayable(d, `Play trailer: ${f.t}`, () => openModal(f.yt, f.t, ''));
   sheetEl.appendChild(d);
 });
 
@@ -155,7 +167,7 @@ featured.forEach((f, i) => {
       <h3 class="pfile__title">${esc(f.t)}</h3>
       <div class="pfile__meta"><b>${esc(f.studio)}</b><span>${f.y}</span>${f.dir !== 'series' ? `<span>dir. ${esc(f.dir)}</span>` : '<span>TV series</span>'}</div>
     </div>`;
-  card.addEventListener('click', () => openModal(f.yt, f.t, `${f.studio} · ${f.y}`));
+  makePlayable(card, `Play trailer: ${f.t}`, () => openModal(f.yt, f.t, `${f.studio} · ${f.y}`));
   featuredGrid.appendChild(card);
 });
 
@@ -169,7 +181,14 @@ const sortYear = c => c.ey || c.y;
 const yearLabel = c => c.ey && c.ey !== c.y ? `${c.y}–${c.ey}` : `${c.y}`;
 const typeLabel = c => c.type === 'tv' ? 'TV' : c.type === 'short' ? 'SHORT' : 'FILM';
 
+/* Header range/count derived from the data itself */
+const rangeEl = document.getElementById('indexRange');
+const countEl = document.getElementById('indexCount');
+if (rangeEl) rangeEl.textContent = `${Math.min(...credits.map(c => c.y))} → ${Math.max(...credits.map(sortYear))}`;
+if (countEl) countEl.textContent = credits.length;
+
 function renderIndex(filter = 'all') {
+  peek.classList.remove('on');
   tableEl.innerHTML = '';
   const list = credits.filter(c => filter === 'all' || (filter === 'tv' ? c.type === 'tv' : c.type !== 'tv'));
   let lastYear = null;
@@ -225,9 +244,14 @@ function renderIndex(filter = 'all') {
 renderIndex();
 
 document.querySelectorAll('.ifilter').forEach(btn => {
+  btn.setAttribute('aria-pressed', String(btn.classList.contains('active')));
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.ifilter').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.ifilter').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+    });
     btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
     renderIndex(btn.dataset.filter);
   });
 });
@@ -238,8 +262,11 @@ document.querySelectorAll('.ifilter').forEach(btn => {
 const modal = document.getElementById('videoModal');
 const modalPlayer = document.getElementById('modalPlayer');
 const modalCaption = document.getElementById('modalCaption');
+const modalCloseBtn = document.getElementById('modalClose');
+let lastFocused = null;
 
 function openModal(videoId, title, meta) {
+  lastFocused = document.activeElement;
   modalPlayer.innerHTML = `
     <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1"
             title="${esc(title)} — trailer"
@@ -250,6 +277,7 @@ function openModal(videoId, title, meta) {
   modal.classList.add('is-open');
   modal.removeAttribute('aria-hidden');
   document.body.style.overflow = 'hidden';
+  modalCloseBtn.focus();
 }
 
 function closeModal() {
@@ -257,12 +285,21 @@ function closeModal() {
   modal.setAttribute('aria-hidden', 'true');
   modalPlayer.innerHTML = '';
   document.body.style.overflow = '';
+  if (lastFocused && lastFocused.focus) lastFocused.focus();
 }
 
-document.getElementById('modalClose').addEventListener('click', closeModal);
+modalCloseBtn.addEventListener('click', closeModal);
 document.getElementById('modalBackdrop').addEventListener('click', closeModal);
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  if (!modal.classList.contains('is-open')) return;
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Tab') {
+    const focusables = [modalCloseBtn, modalPlayer.querySelector('iframe')].filter(Boolean);
+    const first = focusables[0], last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    else if (!modal.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+  }
 });
 
 /* ============================================================
@@ -280,10 +317,12 @@ const mobileMenu = document.getElementById('mobileMenu');
 const mmFoot = mobileMenu.querySelector('.mobile-menu__foot');
 const langClone = document.querySelector('.nav .lang-switcher').cloneNode(true);
 mmFoot.parentNode.insertBefore(langClone, mmFoot);
+mobileMenu.inert = true;
 
 function setMobileMenu(open) {
   mobileMenu.classList.toggle('is-open', open);
   mobileMenu.setAttribute('aria-hidden', String(!open));
+  mobileMenu.inert = !open;
   document.body.style.overflow = open ? 'hidden' : '';
   burger.setAttribute('aria-expanded', String(open));
 }
@@ -302,7 +341,8 @@ document.getElementById('contactForm').addEventListener('submit', e => {
   const name = f.name.value.trim();
   const email = f.email.value.trim();
   const msg = f.message.value.trim();
-  const subject = encodeURIComponent(`Project inquiry — ${name}`);
+  const dict = (typeof TRANSLATIONS !== 'undefined' && TRANSLATIONS[document.documentElement.lang]) || {};
+  const subject = encodeURIComponent(`${dict['mail.subject'] || 'Project inquiry'} — ${name}`);
   const body = encodeURIComponent(`${msg}\n\n—\n${name}\n${email}`);
   window.location.href = `mailto:pavel@filmhunters.cz?subject=${subject}&body=${body}`;
 });

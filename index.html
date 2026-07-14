@@ -10,11 +10,16 @@
   <meta property="og:title" content="Pavel Špaček — Location Manager" />
   <meta property="og:description" content="The Location Archive — 25 years of location work across Czech Republic and Slovakia. 52 IMDb credits." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://pavelspacek.com" />
-  <link rel="canonical" href="https://pavelspacek.com" />
+  <meta property="og:url" content="https://www.pavelspacek.com/" />
+  <meta property="og:image" content="https://www.pavelspacek.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Pavel Špaček — Location Manager, The Location Archive" />
+  <link rel="canonical" href="https://www.pavelspacek.com/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Pavel Špaček — Location Manager" />
   <meta name="twitter:description" content="The Location Archive — 25 years, 52 IMDb credits. Prague, Czech Republic." />
+  <meta name="twitter:image" content="https://www.pavelspacek.com/assets/og-image.jpg" />
 
   <!-- Favicon: PŠ stamp -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%230B0A08'/><rect x='5' y='5' width='54' height='54' fill='none' stroke='%23C9A961' stroke-width='2' stroke-dasharray='6 3'/><text x='32' y='42' font-family='Courier,monospace' font-size='22' font-weight='bold' fill='%23C9A961' text-anchor='middle'>PŠ</text></svg>" />
@@ -34,7 +39,7 @@
     "jobTitle": "Location Manager",
     "email": "mailto:pavel@filmhunters.cz",
     "telephone": "+420608966700",
-    "url": "https://pavelspacek.com",
+    "url": "https://www.pavelspacek.com/",
     "address": { "@type": "PostalAddress", "addressLocality": "Prague", "addressCountry": "CZ" },
     "sameAs": [
       "https://www.imdb.com/name/nm1623179/",
@@ -72,7 +77,7 @@
         <button data-lang-btn="ru" class="lang-btn">RU</button>
       </div>
       <a href="#contact" class="nav__cta" data-i18n="nav.contact">Open a file</a>
-      <button class="nav__burger" aria-label="Menu" id="burger" aria-expanded="false">
+      <button class="nav__burger" aria-label="Menu" id="burger" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span>
       </button>
     </div>
@@ -135,7 +140,7 @@
       <div class="about__grid">
         <figure class="about__photo">
           <div class="polaroid">
-            <img src="assets/pavel-portrait.jpg" alt="Pavel Špaček" onerror="this.src='assets/pavel-avatar.png'" />
+            <img src="assets/pavel-portrait.jpg" alt="Pavel Špaček" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/pavel-avatar.png'" />
             <figcaption class="mono">SUBJ. Nº 1623179 — <span data-i18n="about.photoCap">FIELD PORTRAIT</span></figcaption>
             <span class="polaroid__tape polaroid__tape--tl" aria-hidden="true"></span>
             <span class="polaroid__tape polaroid__tape--br" aria-hidden="true"></span>
@@ -192,11 +197,11 @@
       <div class="sec-head">
         <span class="sec-head__no mono">03</span>
         <h2 class="sec-head__title" data-i18n="index.head">INDEX OF PRODUCTIONS</h2>
-        <span class="sec-head__meta mono">2001 → <span id="yearNow2">2026</span> · 52 <span data-i18n="index.files">FILES</span></span>
+        <span class="sec-head__meta mono"><span id="indexRange">2003 → 2025</span> · <span id="indexCount">52</span> <span data-i18n="index.files">FILES</span></span>
       </div>
       <p class="sec-lede" data-i18n="index.lede">The complete record, as filed on IMDb — every title, every role, exactly as credited. Hover a row for the poster, click to play the trailer.</p>
 
-      <div class="index__filters mono" role="tablist">
+      <div class="index__filters mono">
         <button class="ifilter active" data-filter="all"     data-i18n="filter.all">ALL FILES</button>
         <button class="ifilter"        data-filter="feature" data-i18n="filter.feature">FEATURES</button>
         <button class="ifilter"        data-filter="tv"      data-i18n="filter.tv">TV / STREAMING</button>
@@ -328,7 +333,7 @@
   <div class="peek" id="peek" aria-hidden="true"><img id="peekImg" alt="" /></div>
 
   <!-- VIDEO MODAL -->
-  <div class="modal" id="videoModal" aria-hidden="true">
+  <div class="modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Trailer" aria-hidden="true">
     <button class="modal__close mono" id="modalClose" aria-label="Close">ESC / ✕</button>
     <div class="modal__body">
       <div class="modal__player" id="modalPlayer"></div>
