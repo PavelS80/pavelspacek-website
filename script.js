@@ -25,7 +25,7 @@ const credits = [
   { t: 'Amerikánka', y: 2024, studio: 'Bioscop · PFX', role: 'location scout', type: 'feature', img: A+'amerikanka.jpg', yt: 'GmMzuwOtczQ', tt: 'tt33499451' },
   // — 2023
   { t: 'Wonka', y: 2023, studio: 'Warner Bros.', role: 'location manager: sfx still shoot', type: 'feature', img: A+'wonka.jpg', yt: 'otNh9bTjXWg', tt: 'tt6166392' },
-  { t: 'Das Boot', y: 2018, ey: 2023, studio: 'Sky · Bavaria Fiction', role: 'supervising location manager', type: 'tv', img: A+'das-boot-3.jpg', yt: '6FlNemUn78U', tt: 'tt5830254' },
+  { t: 'Das Boot', y: 2018, ey: 2023, studio: 'Sky · Bavaria Fiction', role: 'supervising location manager · all seasons S1–S4', type: 'tv', img: A+'das-boot-3.jpg', yt: '6FlNemUn78U', tt: 'tt5830254' },
   { t: 'Jack Ryan', y: 2018, ey: 2023, studio: 'Amazon Prime Video', role: 'location manager', type: 'tv', img: A+'jack-ryan.jpg', yt: '1KsyZF590NM', tt: 'tt5057054' },
   { t: 'Hunters', y: 2020, ey: 2023, studio: 'Amazon Prime Video', role: 'supervising location manager', type: 'tv', img: A+'hunters.jpg', yt: 'vHE3HViq8r8', tt: 'tt7456722' },
   { t: 'Los Farad', y: 2023, studio: 'Amazon Prime Video', role: 'supervising location manager', type: 'tv', img: A+'los-farad.jpg', yt: '1Lb333Lmaqs', tt: 'tt21278506' },
@@ -90,7 +90,9 @@ const featured = [
   { t: 'Wonka', y: '2023', studio: 'Warner Bros.', dir: 'Paul King', yt: 'otNh9bTjXWg', img: A+'wonka.jpg', fb: yt('otNh9bTjXWg') },
   { t: '12 Monkeys', y: '2015–2018', studio: 'Syfy', dir: 'series', yt: 'AQEN9V8r6TM', img: A+'12-monkeys.jpg', fb: yt('AQEN9V8r6TM') },
   { t: 'Jack Ryan', y: '2018–2023', studio: 'Amazon Prime Video', dir: 'series', yt: '1KsyZF590NM', img: A+'jack-ryan.jpg', fb: yt('1KsyZF590NM') },
-  { t: 'Das Boot', y: '2018–2023', studio: 'Sky', dir: 'series', yt: '6FlNemUn78U', img: A+'das-boot-3.jpg', fb: yt('6FlNemUn78U') },
+  { t: 'Das Boot', y: '2018–2023 · S1–S4', studio: 'Sky', dir: 'series', yt: '6FlNemUn78U', img: A+'das-boot-3.jpg', fb: yt('6FlNemUn78U') },
+  { t: 'Child 44', y: '2015', studio: 'Lionsgate', dir: 'Daniel Espinosa', yt: 'Uia6y9SRsj4', img: A+'child-44.jpg', fb: yt('Uia6y9SRsj4') },
+  { t: 'FUBAR', y: '2023–2025', studio: 'Netflix', dir: 'series', yt: 'vJlfAp7ZCAY', img: A+'fubar.jpg', fb: yt('vJlfAp7ZCAY') },
 ];
 
 /* ---- Hero contact sheet ---- */
@@ -208,6 +210,7 @@ function renderIndex(filter = 'all') {
     const no = credits.length - credits.indexOf(c);
     row.innerHTML = `
       <span class="irow__no">FILE ${String(no).padStart(3, '0')}</span>
+      <span class="irow__thumb">${c.img ? `<img src="${c.img}" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'" />` : ''}</span>
       <span class="irow__title">${esc(c.t)}${c.o ? `<em>${esc(c.o)}</em>` : ''}</span>
       <span class="irow__studio">${esc(c.studio)}</span>
       <span class="irow__role">${esc(c.role)}</span>

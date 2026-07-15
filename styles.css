@@ -369,7 +369,7 @@ section { padding: clamp(72px, 11vh, 130px) 0; }
 
 .irow {
   display: grid;
-  grid-template-columns: 64px minmax(0, 2.2fr) minmax(0, 1.3fr) minmax(0, 1.5fr) 110px 118px;
+  grid-template-columns: 64px 48px minmax(0, 2.2fr) minmax(0, 1.3fr) minmax(0, 1.5fr) 110px 118px;
   gap: 18px; align-items: center;
   padding: 15px 0;
   border-bottom: 1px solid var(--line-soft);
@@ -380,6 +380,16 @@ section { padding: clamp(72px, 11vh, 130px) 0; }
 .irow:hover { background: linear-gradient(90deg, var(--stamp-soft), transparent 65%); padding-left: 10px; }
 .irow__no { font-family: var(--mono); font-size: 10.5px; color: var(--dim); letter-spacing: .1em; }
 .irow:hover .irow__no { color: var(--stamp); }
+.irow__thumb {
+  width: 48px; height: 68px; overflow: hidden;
+  border: 1px solid var(--line); background: var(--card);
+}
+.irow__thumb img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: grayscale(.35);
+  transition: filter .3s, transform .3s;
+}
+.irow:hover .irow__thumb img { filter: grayscale(0); transform: scale(1.06); }
 .irow__title { font-size: clamp(16px, 1.5vw, 21px); font-weight: 600; font-stretch: 108%; line-height: 1.15; }
 .irow__title em { font-style: italic; font-weight: 300; color: var(--dim); font-size: .8em; margin-left: 8px; }
 .irow__studio { font-size: 13px; color: var(--dim); font-weight: 300; }
@@ -542,7 +552,8 @@ section { padding: clamp(72px, 11vh, 130px) 0; }
   .featured__grid { grid-template-columns: repeat(2, 1fr); }
   .pfile, .pfile:nth-child(1), .pfile:nth-child(2) { grid-column: span 1; aspect-ratio: 16/11; }
   .services__grid { grid-template-columns: repeat(2, 1fr); }
-  .irow { grid-template-columns: 48px minmax(0, 2fr) minmax(0, 1.4fr) 100px 118px; }
+  .irow { grid-template-columns: 48px 44px minmax(0, 2fr) minmax(0, 1.4fr) 100px 118px; }
+  .irow__thumb { width: 44px; height: 62px; }
   .irow__studio { display: none; }
 }
 
@@ -575,7 +586,10 @@ section { padding: clamp(72px, 11vh, 130px) 0; }
 
   .featured__grid { grid-template-columns: 1fr; }
 
-  .irow { grid-template-columns: 40px minmax(0,1fr) 76px; gap: 8px 10px; }
+  .irow { grid-template-columns: 44px minmax(0,1fr) 72px; gap: 6px 10px; }
+  .irow__no { display: none; }
+  .irow__thumb { grid-column: 1; grid-row: 1 / span 2; width: 44px; height: 62px; }
+  .irow__title { grid-column: 2; }
   .irow__role { grid-column: 2; grid-row: 2; }
   .irow__type { display: none; }
   .irow__actions { grid-column: 3; grid-row: 1 / span 2; flex-direction: column; align-items: flex-end; }
