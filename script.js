@@ -99,6 +99,12 @@ const featured = [
   { t: 'Jab Harry Met Sejal', y: '2017', studio: 'Red Chillies', dir: 'Imtiaz Ali', yt: 'Ej2IYqyMzA4', img: A+'jab-harry-met-sejal.jpg', fb: yt('Ej2IYqyMzA4') },
   { t: 'Bod obnovy', y: '2023', studio: 'Film Kolektiv', dir: 'Robert Hloz', yt: 'JewqVAvzJnA', img: A+'restore-point.jpg', fb: yt('JewqVAvzJnA') },
   { t: 'Iveta', y: '2022', studio: 'Voyo · TV Nova', dir: 'series', yt: 'fCWr9mpZvB8', img: A+'iveta.jpg', fb: yt('fCWr9mpZvB8') },
+  { t: 'The Rookie', y: '2018', studio: 'ABC', dir: 'series', yt: '8BPlx6eK1vc', img: A+'the-rookie.jpg', fb: yt('8BPlx6eK1vc') },
+  { t: 'Franz', y: '2025', studio: 'X-Filme · Bioscop', dir: 'Agnieszka Holland', yt: 'f78r0tpG5fg', img: A+'franz.jpg', fb: yt('f78r0tpG5fg') },
+  { t: 'Bratři', y: '2023', studio: 'FilmBrigade · Česká televize', dir: 'Tomáš Mašín', yt: '_ycEQ65wAbY', img: A+'bratri.jpg', fb: yt('_ycEQ65wAbY') },
+  { t: 'Zrádci', y: '2024', studio: 'Prima', dir: 'series', yt: 'vZv7nVQiF8E', img: A+'zradci-prima.jpg', fb: yt('vZv7nVQiF8E') },
+  { t: 'Vyšehrad: Fylm', y: '2022', studio: 'Obbod', dir: 'Martin Kopp', yt: '_2URNiAouqE', img: A+'vysehrad.jpg', fb: yt('_2URNiAouqE') },
+  { t: 'Los Farad', y: '2023', studio: 'Amazon Prime Video', dir: 'series', yt: '1Lb333Lmaqs', img: A+'los-farad.jpg', fb: yt('1Lb333Lmaqs') },
 ];
 
 /* ---- Hero contact sheet ---- */
