@@ -39,7 +39,7 @@ const TRANSLATIONS = {
     'stat4':          'TERRITORY COVERED',
 
     'feat.head':      'PRIORITY FILES',
-    'feat.meta':      '8 SELECTED — TRAILERS ATTACHED',
+    'feat.meta':      '14 SELECTED — TRAILERS ATTACHED',
     'feat.lede':      'A small selection from the archive. Click any file to play the official trailer.',
 
     'index.head':     'INDEX OF PRODUCTIONS',
@@ -115,7 +115,7 @@ const TRANSLATIONS = {
     'stat4':          'POKRYTÉ ÚZEMÍ',
 
     'feat.head':      'PRIORITNÍ SPISY',
-    'feat.meta':      '8 VYBRANÝCH — TRAILERY PŘILOŽENY',
+    'feat.meta':      '14 VYBRANÝCH — TRAILERY PŘILOŽENY',
     'feat.lede':      'Malý výběr z archivu. Kliknutím na spis přehrajete oficiální trailer.',
 
     'index.head':     'REJSTŘÍK PRODUKCÍ',
@@ -191,7 +191,7 @@ const TRANSLATIONS = {
     'stat4':          'ABGEDECKTES GEBIET',
 
     'feat.head':      'PRIORITÄTSAKTEN',
-    'feat.meta':      '8 AUSGEWÄHLT — TRAILER BEIGEFÜGT',
+    'feat.meta':      '14 AUSGEWÄHLT — TRAILER BEIGEFÜGT',
     'feat.lede':      'Eine kleine Auswahl aus dem Archiv. Klicken Sie auf eine Akte, um den offiziellen Trailer abzuspielen.',
 
     'index.head':     'PRODUKTIONSREGISTER',
@@ -267,7 +267,7 @@ const TRANSLATIONS = {
     'stat4':          'TERRITOIRE COUVERT',
 
     'feat.head':      'DOSSIERS PRIORITAIRES',
-    'feat.meta':      '8 SÉLECTIONNÉS — BANDES-ANNONCES JOINTES',
+    'feat.meta':      '14 SÉLECTIONNÉS — BANDES-ANNONCES JOINTES',
     'feat.lede':      'Une petite sélection des archives. Cliquez sur un dossier pour lancer la bande-annonce officielle.',
 
     'index.head':     'INDEX DES PRODUCTIONS',
@@ -343,7 +343,7 @@ const TRANSLATIONS = {
     'stat4':          'ОХВАТ ТЕРРИТОРИИ',
 
     'feat.head':      'ПРИОРИТЕТНЫЕ ДЕЛА',
-    'feat.meta':      '8 ИЗБРАННЫХ — ТРЕЙЛЕРЫ ПРИЛОЖЕНЫ',
+    'feat.meta':      '14 ИЗБРАННЫХ — ТРЕЙЛЕРЫ ПРИЛОЖЕНЫ',
     'feat.lede':      'Небольшая подборка из архива. Нажмите на дело, чтобы посмотреть официальный трейлер.',
 
     'index.head':     'УКАЗАТЕЛЬ ПРОЕКТОВ',

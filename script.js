@@ -93,6 +93,12 @@ const featured = [
   { t: 'Das Boot', y: '2018–2023 · S1–S4', studio: 'Sky', dir: 'series', yt: '6FlNemUn78U', img: A+'das-boot-3.jpg', fb: yt('6FlNemUn78U') },
   { t: 'Child 44', y: '2015', studio: 'Lionsgate', dir: 'Daniel Espinosa', yt: 'Uia6y9SRsj4', img: A+'child-44.jpg', fb: yt('Uia6y9SRsj4') },
   { t: 'FUBAR', y: '2023–2025', studio: 'Netflix', dir: 'series', yt: 'vJlfAp7ZCAY', img: A+'fubar.jpg', fb: yt('vJlfAp7ZCAY') },
+  { t: 'Hunters', y: '2020–2023', studio: 'Amazon Prime Video', dir: 'series', yt: 'vHE3HViq8r8', img: A+'hunters.jpg', fb: yt('vHE3HViq8r8') },
+  { t: 'FBI: International', y: '2021–2025', studio: 'CBS', dir: 'series', yt: 'Ss717FniM9I', img: A+'fbi-international.jpg', fb: yt('Ss717FniM9I') },
+  { t: "If I Can't Have Love, I Want Power", y: '2021', studio: 'IMAX · HBO Max', dir: 'Colin Tilley', yt: 'eM7luZ-00RI', img: A+'if-i-cant-have-love.jpg', fb: yt('eM7luZ-00RI') },
+  { t: 'Jab Harry Met Sejal', y: '2017', studio: 'Red Chillies', dir: 'Imtiaz Ali', yt: 'Ej2IYqyMzA4', img: A+'jab-harry-met-sejal.jpg', fb: yt('Ej2IYqyMzA4') },
+  { t: 'Bod obnovy', y: '2023', studio: 'Film Kolektiv', dir: 'Robert Hloz', yt: 'JewqVAvzJnA', img: A+'restore-point.jpg', fb: yt('JewqVAvzJnA') },
+  { t: 'Iveta', y: '2022', studio: 'Voyo · TV Nova', dir: 'series', yt: 'fCWr9mpZvB8', img: A+'iveta.jpg', fb: yt('fCWr9mpZvB8') },
 ];
 
 /* ---- Hero contact sheet ---- */
