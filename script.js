@@ -160,6 +160,13 @@ sheetFrames.forEach((f, i) => {
   sheetEl.appendChild(d);
 });
 
+/* Edge-print on the contact sheet rail */
+const edge = document.createElement('span');
+edge.className = 'sheet__edgeprint mono';
+edge.setAttribute('aria-hidden', 'true');
+edge.textContent = 'PŠ ARCH 35 · 0042+07';
+sheetEl.appendChild(edge);
+
 /* --- Ticker --- */
 const tick = document.getElementById('tickerTrack');
 tick.innerHTML = [...studios, ...studios]
@@ -314,10 +321,6 @@ window.addEventListener('scroll', () => {
 const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobileMenu');
 
-/* Clone language switcher into the mobile menu */
-const mmFoot = mobileMenu.querySelector('.mobile-menu__foot');
-const langClone = document.querySelector('.nav .lang-switcher').cloneNode(true);
-mmFoot.parentNode.insertBefore(langClone, mmFoot);
 mobileMenu.inert = true;
 
 function setMobileMenu(open) {
@@ -342,8 +345,7 @@ document.getElementById('contactForm').addEventListener('submit', e => {
   const name = f.name.value.trim();
   const email = f.email.value.trim();
   const msg = f.message.value.trim();
-  const dict = (typeof TRANSLATIONS !== 'undefined' && TRANSLATIONS[document.documentElement.lang]) || {};
-  const subject = encodeURIComponent(`${dict['mail.subject'] || 'Project inquiry'} — ${name}`);
+  const subject = encodeURIComponent(`Project inquiry — ${name}`);
   const body = encodeURIComponent(`${msg}\n\n—\n${name}\n${email}`);
   window.location.href = `mailto:pavel@filmhunters.cz?subject=${subject}&body=${body}`;
 });
