@@ -266,7 +266,7 @@ section { padding: clamp(72px, 11vh, 130px) 0; }
   box-shadow: 0 24px 60px rgba(0,0,0,.5);
   position: relative;
 }
-.polaroid img { width: 100%; display: block; filter: grayscale(1) contrast(1.05); }
+.polaroid img { width: 100%; display: block; }
 .polaroid figcaption { color: #4A443A; font-size: 10px; letter-spacing: .12em; padding-top: 10px; }
 .polaroid__tape {
   position: absolute; width: 88px; height: 26px;

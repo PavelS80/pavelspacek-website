@@ -87,7 +87,6 @@ const credits = [
 const featured = [
   { t: 'Nosferatu', y: '2024', studio: 'Focus Features', dir: 'Robert Eggers', yt: 'nulvWqYUM8k', img: yt('nulvWqYUM8k'), fb: A+'nosferatu.jpg' },
   { t: 'Mission: Impossible — Ghost Protocol', y: '2011', studio: 'Paramount', dir: 'Brad Bird', yt: 'HPB7fV7f_f8', img: yt('HPB7fV7f_f8'), fb: A+'mission-impossible.jpg' },
-  { t: 'Wonka', y: '2023', studio: 'Warner Bros.', dir: 'Paul King', yt: 'otNh9bTjXWg', img: A+'wonka.jpg', fb: yt('otNh9bTjXWg') },
   { t: '12 Monkeys', y: '2015–2018', studio: 'Syfy', dir: 'series', yt: 'AQEN9V8r6TM', img: A+'12-monkeys.jpg', fb: yt('AQEN9V8r6TM') },
   { t: 'Jack Ryan', y: '2018–2023', studio: 'Amazon Prime Video', dir: 'series', yt: '1KsyZF590NM', img: A+'jack-ryan.jpg', fb: yt('1KsyZF590NM') },
   { t: 'Das Boot', y: '2018–2023 · S1–S4', studio: 'Sky', dir: 'series', yt: '6FlNemUn78U', img: A+'das-boot-3.jpg', fb: yt('6FlNemUn78U') },
@@ -105,13 +104,14 @@ const featured = [
   { t: 'Zrádci', y: '2024', studio: 'Prima', dir: 'series', yt: 'vZv7nVQiF8E', img: A+'zradci-prima.jpg', fb: yt('vZv7nVQiF8E') },
   { t: 'Vyšehrad: Fylm', y: '2022', studio: 'Obbod', dir: 'Martin Kopp', yt: '_2URNiAouqE', img: A+'vysehrad.jpg', fb: yt('_2URNiAouqE') },
   { t: 'Los Farad', y: '2023', studio: 'Amazon Prime Video', dir: 'series', yt: '1Lb333Lmaqs', img: A+'los-farad.jpg', fb: yt('1Lb333Lmaqs') },
+  { t: 'Želary', y: '2003', studio: 'Barrandov · ALEF Film', dir: 'Ondřej Trojan', yt: 'z9MYQlU2V1s', img: A+'zelary.jpg', fb: yt('z9MYQlU2V1s') },
 ];
 
 /* ---- Hero contact sheet ---- */
 const sheetFrames = [
   { yt: 'nulvWqYUM8k', t: 'Nosferatu', circled: true },
   { yt: 'HPB7fV7f_f8', t: 'Mission: Impossible' },
-  { yt: 'otNh9bTjXWg', t: 'Wonka' },
+  { yt: 'Uia6y9SRsj4', t: 'Child 44' },
   { yt: '1KsyZF590NM', t: 'Jack Ryan' },
   { yt: '6FlNemUn78U', t: 'Das Boot' },
 ];
@@ -179,9 +179,9 @@ featured.forEach((f, i) => {
     </span>
     <div class="pfile__body">
       <h3 class="pfile__title">${esc(f.t)}</h3>
-      <div class="pfile__meta"><b>${esc(f.studio)}</b><span>${f.y}</span>${f.dir !== 'series' ? `<span>dir. ${esc(f.dir)}</span>` : '<span>TV series</span>'}</div>
+      <div class="pfile__meta"><b>${esc(f.studio)}</b>${f.dir !== 'series' ? `<span>dir. ${esc(f.dir)}</span>` : '<span>TV series</span>'}</div>
     </div>`;
-  makePlayable(card, `Play trailer: ${f.t}`, () => openModal(f.yt, f.t, `${f.studio} · ${f.y}`));
+  makePlayable(card, `Play trailer: ${f.t}`, () => openModal(f.yt, f.t, f.studio));
   featuredGrid.appendChild(card);
 });
 
@@ -191,32 +191,18 @@ const peek = document.getElementById('peek');
 const peekImg = document.getElementById('peekImg');
 const finePointer = window.matchMedia('(pointer: fine)').matches;
 
-const sortYear = c => c.ey || c.y;
-const yearLabel = c => c.ey && c.ey !== c.y ? `${c.y}–${c.ey}` : `${c.y}`;
 const typeLabel = c => c.type === 'tv' ? 'TV' : c.type === 'short' ? 'SHORT' : 'FILM';
 
-/* Header range/count derived from the data itself */
-const rangeEl = document.getElementById('indexRange');
+/* Header count derived from the data itself */
 const countEl = document.getElementById('indexCount');
-if (rangeEl) rangeEl.textContent = `${Math.min(...credits.map(c => c.y))} → ${Math.max(...credits.map(sortYear))}`;
 if (countEl) countEl.textContent = credits.length;
 
 function renderIndex(filter = 'all') {
   peek.classList.remove('on');
   tableEl.innerHTML = '';
   const list = credits.filter(c => filter === 'all' || (filter === 'tv' ? c.type === 'tv' : c.type !== 'tv'));
-  let lastYear = null;
 
   list.forEach(c => {
-    const gy = sortYear(c);
-    if (gy !== lastYear) {
-      lastYear = gy;
-      const h = document.createElement('div');
-      h.className = 'iyear';
-      h.textContent = gy;
-      tableEl.appendChild(h);
-    }
-
     const row = document.createElement('div');
     row.className = 'irow';
     const no = credits.length - credits.indexOf(c);
@@ -226,7 +212,7 @@ function renderIndex(filter = 'all') {
       <span class="irow__title">${esc(c.t)}${c.o ? `<em>${esc(c.o)}</em>` : ''}</span>
       <span class="irow__studio">${esc(c.studio)}</span>
       <span class="irow__role">${esc(c.role)}</span>
-      <span class="irow__type">${typeLabel(c)} · ${yearLabel(c)}</span>
+      <span class="irow__type">${typeLabel(c)}</span>
       <span class="irow__actions">
         ${c.yt ? '<button class="irow__btn irow__btn--play" aria-label="Play trailer">▶ PLAY</button>' : ''}
         <a class="irow__btn" href="https://www.imdb.com/title/${c.tt}/" target="_blank" rel="noopener">IMDb</a>
@@ -234,7 +220,7 @@ function renderIndex(filter = 'all') {
 
     if (c.yt) {
       row.addEventListener('click', e => {
-        if (!e.target.closest('a')) openModal(c.yt, c.t, `${c.studio} · ${yearLabel(c)} · ${c.role}`);
+        if (!e.target.closest('a')) openModal(c.yt, c.t, `${c.studio} · ${c.role}`);
       });
     } else {
       row.style.cursor = 'default';
