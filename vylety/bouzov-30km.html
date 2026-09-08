@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bouzov 30</title>
+<meta name="description" content="Co je do 30 km od hradu Bouzov — jeskyně, vodní plochy, lomy, rozhledny, zříceniny, adrenalin, farmy, střelnice, letiště, nádraží.">
+<style>
+:root{
+  --bg:#0a0e14; --bg-card:#131820; --bg-card-2:#1a2029;
+  --text:#e8e0d0; --text-dim:#a39880;
+  --accent:#c9a55a; --accent-bright:#e0b870;
+  --border:#2a323e;
+  --top:#d4a857; --backup:#6b8eb5; --wildcard:#b566a8;
+  --risk:#c95757; --ok:#6fa37d;
+  --maxw:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent-bright);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+/* HERO */
+.hero{padding:74px 0 54px;
+  background:radial-gradient(120% 90% at 50% 0%,#1a2231 0%,#0a0e14 62%);
+  border-bottom:1px solid var(--border);text-align:center}
+.hero .kicker{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim)}
+.hero h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;
+  font-size:clamp(38px,7vw,68px);letter-spacing:4px;color:var(--accent);margin:14px 0 6px}
+.hero .sub{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dim)}
+.hero .lede{max-width:660px;margin:22px auto 0;color:var(--text-dim);font-size:14px}
+.hero .meta{margin-top:26px;font-size:11px;letter-spacing:1px;color:#6f6a5e;text-transform:uppercase}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:40;background:rgba(10,14,20,.9);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+nav .wrap{display:flex;gap:16px;overflow-x:auto;padding-top:12px;padding-bottom:12px;scrollbar-width:thin}
+nav a{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+nav a:hover{color:var(--accent-bright);text-decoration:none}
+
+/* SECTIONS */
+section{padding:52px 0 8px;border-bottom:1px solid rgba(42,50,62,.55)}
+.shead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.shead h2{font-family:Georgia,serif;font-weight:400;font-size:26px;letter-spacing:1.5px;color:var(--accent);margin:0}
+.shead .count{font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--text-dim)}
+.intro{color:var(--text-dim);max-width:820px;margin:0 0 26px}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:26px 0 8px}
+.kpi{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:18px 16px}
+.kpi .n{font-family:Georgia,serif;font-size:34px;color:var(--accent-bright);line-height:1}
+.kpi .l{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--text-dim);margin-top:8px}
+
+/* CARDS */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:18px;margin-bottom:34px}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:5px;padding:18px 18px 16px;
+  display:flex;flex-direction:column;gap:9px}
+.card .row1{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.card h3{font-family:Georgia,serif;font-weight:400;font-size:17px;color:var(--text);margin:0;letter-spacing:.4px}
+.km{flex:none;font-family:Georgia,serif;font-size:15px;color:var(--accent);white-space:nowrap}
+.km small{display:block;font-family:inherit;font-size:9px;letter-spacing:1.2px;color:#6f6a5e;text-transform:uppercase;text-align:right}
+.why{color:var(--text-dim);font-size:13.5px;margin:0}
+.facts{font-size:12.5px;color:#8f8674;border-top:1px solid rgba(42,50,62,.8);padding-top:9px;margin-top:auto}
+.facts b{color:var(--text);font-weight:600}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:9px;letter-spacing:1.2px;text-transform:uppercase;padding:3px 8px;border-radius:2px;border:1px solid}
+.t-top{color:var(--top);border-color:rgba(212,168,87,.45);background:rgba(212,168,87,.08)}
+.t-free{color:var(--ok);border-color:rgba(111,163,125,.45);background:rgba(111,163,125,.08)}
+.t-kid{color:var(--backup);border-color:rgba(107,142,181,.45);background:rgba(107,142,181,.08)}
+.t-wild{color:var(--wildcard);border-color:rgba(181,102,168,.45);background:rgba(181,102,168,.08)}
+.t-risk{color:var(--risk);border-color:rgba(201,87,87,.45);background:rgba(201,87,87,.08)}
+.conf{font-size:9px;letter-spacing:1.1px;text-transform:uppercase;color:#6f6a5e}
+.conf b{color:var(--text-dim);font-weight:600}
+
+/* BOX */
+.box{background:var(--bg-card-2);border:1px solid var(--border);border-left:3px solid var(--accent);
+  border-radius:4px;padding:16px 18px;margin:0 0 30px}
+.box.warn{border-left-color:var(--risk)}
+.box.ok{border-left-color:var(--ok)}
+.box h4{margin:0 0 8px;font-family:Georgia,serif;font-weight:400;font-size:15px;color:var(--accent-bright);letter-spacing:.5px}
+.box.warn h4{color:#e08a8a}
+.box p,.box li{color:var(--text-dim);font-size:13px;margin:5px 0}
+.box ul{margin:6px 0 0;padding-left:18px}
+
+/* TABLE */
+.tw{overflow-x:auto;margin-bottom:34px;border:1px solid var(--border);border-radius:5px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:13px;background:var(--bg-card)}
+th{background:var(--bg-card-2);color:var(--accent);font-weight:600;text-align:left;
+  font-size:10px;letter-spacing:1.3px;text-transform:uppercase;padding:11px 13px;border-bottom:1px solid var(--border)}
+td{padding:10px 13px;border-bottom:1px solid rgba(42,50,62,.6);color:var(--text-dim);vertical-align:top}
+td:first-child{color:var(--text)}
+tr:last-child td{border-bottom:none}
+
+/* ROUTES */
+.route{background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--accent);
+  border-radius:4px;padding:16px 18px;margin-bottom:14px}
+.route h4{margin:0 0 4px;font-family:Georgia,serif;font-weight:400;font-size:16px;color:var(--text)}
+.route .path{color:var(--accent-bright);font-size:13px;margin:6px 0}
+.route .note{color:var(--text-dim);font-size:12.5px;margin:0}
+
+/* FOOTER */
+footer{padding:44px 0 60px;color:#6f6a5e;font-size:12px}
+footer h4{font-family:Georgia,serif;font-weight:400;color:var(--accent);font-size:15px;margin:0 0 10px}
+footer ul{padding-left:18px;margin:6px 0}
+footer a{color:#8f8674}
+
+@media print{
+  body{background:#fff;color:#111}
+  nav,.hero .meta{display:none}
+  .hero{background:#fff;border-bottom:1px solid #ccc}
+  .hero h1,.shead h2,.box h4,.kpi .n{color:#8a6d24}
+  .card,.box,.route,table,.kpi{background:#fff;border-color:#ccc;page-break-inside:avoid}
+  .why,.facts,.intro,td,footer{color:#333}
+  a{color:#111}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Výletní rešerše · poloměr 30 km</div>
+    <h1>BOUZOV 30</h1>
+    <div class="sub">Co všechno je do 30 km od hradu</div>
+    <p class="lede">Přehled 66 karet — míst a aktivit v okruhu 30 km od hradu Bouzov, rozdělených podle typu zážitku.
+    U každého místa vzdálenost, důvod proč tam jet, praktická poznámka a poctivá značka spolehlivosti údaje.
+    Kde v okruhu nic není (lanovky, stezky v korunách), je to napsáno rovnou — místo výplně jsou tam nejbližší reálné alternativy.</p>
+    <div class="meta">Zpracováno 8. 9. 2026 · vzdálenosti vzdušnou čarou od hradu (±2 km) · silnicí počítejte 1,2–1,4×</div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#prehled">Přehled</a>
+  <a href="#jeskyne">Jeskyně</a>
+  <a href="#voda">Vodní plochy</a>
+  <a href="#lomy">Zatopené lomy</a>
+  <a href="#rozhledny">Rozhledny</a>
+  <a href="#zriceniny">Zříceniny</a>
+  <a href="#lanovky">Lanovky / stezky</a>
+  <a href="#motory">Motokros / čtyřkolky</a>
+  <a href="#farmy">Biofarmy</a>
+  <a href="#strelnice">Střelnice</a>
+  <a href="#letiste">Letiště</a>
+  <a href="#nadrazi">Nádraží</a>
+  <a href="#dalsi">Další místa</a>
+  <a href="#top">TOP 15</a>
+  <a href="#trasy">Okruhy</a>
+  <a href="#overit">Co ověřit</a>
+</div></nav>
+
+<!-- PŘEHLED -->
+<section id="prehled"><div class="wrap">
+  <div class="shead"><h2>Přehled</h2><span class="count">Jak deck číst</span></div>
+  <p class="intro">Bouzov leží na rozhraní tří světů: <b>Bouzovské vrchoviny</b> (lesy, krasové kaňony, zříceniny),
+  <b>Litovelského Pomoraví</b> (lužní lesy, ramena Moravy, koupání) a <b>Hané</b> (rovina, zámky, letiště).
+  Proto je uvnitř 30 km hodně jeskyní, vody a hradů — a naopak nula lanovek, protože nejbližší kopce
+  s lanovkou jsou až v Jeseníkách.</p>
+
+  <div class="kpis">
+    <div class="kpi"><div class="n">66</div><div class="l">karet v decku</div></div>
+    <div class="kpi"><div class="n">12</div><div class="l">kategorií</div></div>
+    <div class="kpi"><div class="n">30 km</div><div class="l">poloměr vzdušnou čarou</div></div>
+    <div class="kpi"><div class="n">2</div><div class="l">veřejné jeskyně</div></div>
+    <div class="kpi"><div class="n">0</div><div class="l">lanovek v okruhu</div></div>
+    <div class="kpi"><div class="n">~20</div><div class="l">míst zdarma</div></div>
+  </div>
+
+  <div class="box">
+    <h4>Legenda</h4>
+    <p><span class="tag t-top">TOP</span> jistota, kvůli které stojí za to jet · <span class="tag t-free">ZDARMA</span> bez vstupného ·
+    <span class="tag t-kid">S DĚTMI</span> ověřeně rodinné · <span class="tag t-wild">NETUCTOVÉ</span> málo známé, ale zajímavé ·
+    <span class="tag t-risk">OVĚŘIT</span> údaj se mi nepodařilo potvrdit u primárního zdroje</p>
+    <p><b>Confidence</b> u každé karty: <b>high</b> = potvrzeno oficiálním nebo regionálním zdrojem ·
+    <b>medium</b> = existence jistá, detail (otevírací doba, provoz) neověřen · <b>low</b> = ověřit před výjezdem.</p>
+  </div>
+
+  <div class="box warn">
+    <h4>Než vyrazíte</h4>
+    <p>Otevírací doby, vstupné a provoz sezónních areálů se mění. Deck uvádí, co bylo v době rešerše dohledatelné;
+    <b>ceny a hodiny si potvrďte na webu provozovatele v den výjezdu.</b> Sezónní věci (koupaliště, bobová dráha,
+    vyhlídkové lety) jsou navíc závislé na počasí.</p>
+  </div>
+</div></section>
+
+<!-- JESKYNĚ -->
+<section id="jeskyne"><div class="wrap">
+  <div class="shead"><h2>Jeskyně a kras</h2><span class="count">5 míst · nejsilnější kategorie regionu</span></div>
+  <p class="intro">Bouzov sedí přímo na <b>Javoříčském a Mladečském krasu</b>. Dvě veřejnosti přístupné jeskyně
+  do 10 km je hustota, kterou v ČR jinde skoro nenajdete.</p>
+  <div class="grid">
+
+    <div class="card">
+      <div class="row1"><h3>Javoříčské jeskyně</h3><div class="km">2,5 km<small>~4 km silnicí</small></div></div>
+      <p class="why">Nejbohatší krápníková výzdoba na Moravě mimo Moravský kras — brčka, stalaktitové záclony,
+      Dóm gigantů. Nejbližší velká atrakce od hradu vůbec, dá se stihnout dopoledne a odpoledne ještě Bouzov.</p>
+      <div class="tags"><span class="tag t-top">TOP</span><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><b>Provoz:</b> hlavní sezóna duben–říjen (v dubnu–červnu a v září zhruba 9:00–16:00,
+      v létě do 16:30), v březnu jen vybrané dny s pevnými vstupy v 10:00 a 13:00, v lednu–únoru zavřeno.
+      Vstupenky a aktuální kalendář <b>javoricske.caves.cz</b>. V sezóně se doporučuje rezervace.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Mladečské jeskyně</h3><div class="km">9 km<small>vzdušnou čarou</small></div></div>
+      <p class="why">Světově významné archeologické naleziště — kosterní pozůstatky nejstarších známých
+      lidí moderního typu v Evropě. Kratší, „lidštější“ okruh než Javoříčko, dobré do horkého dne.</p>
+      <div class="tags"><span class="tag t-top">TOP</span></div>
+      <div class="facts"><b>Provoz:</b> sezóna od dubna zhruba 9:00–15:00, březen jen vybrané dny se vstupy
+      v 10:00 a 13:00, zima zavřeno. Kalendář a rezervace <b>mladecske.caves.cz</b>.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Zkamenělý zámek / vrch Špraněk</h3><div class="km">2,2 km<small>nad Javoříčkem</small></div></div>
+      <p class="why">Skalní vápencové věže nad vchodem do Javoříčských jeskyní, na temeni zbytky
+      středověkého hrádku. Volně přístupné po značce, zdarma, 20 minut chůze od parkoviště jeskyní —
+      ideální „dovětek“ po prohlídce podzemí.</p>
+      <div class="tags"><span class="tag t-free">ZDARMA</span><span class="tag t-wild">NETUCTOVÉ</span></div>
+      <div class="facts"><b>Pozor:</b> vlastní jeskynní otvory ve skále jsou nepřístupné a nebezpečné —
+      chodí se jen po povrchu. <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Třesín a Mladečský kras</h3><div class="km">9–10 km<small>u Mladče</small></div></div>
+      <p class="why">Zalesněný vápencový vrch nad Mladčí s naučnou stezkou, empírovými romantickými
+      stavbičkami z panství Nových Zámků (mj. kamenný můstek zvaný Čertův most) a vyhlídkami do
+      Pomoraví. Klidná varianta, když jsou u jeskyní fronty.</p>
+      <div class="tags"><span class="tag t-free">ZDARMA</span></div>
+      <div class="facts"><b>Terén:</b> lesní pěšiny, kočárek jen po hlavní cestě.
+      <br><span class="conf">Confidence: <b>medium</b> — trasování stezky ověřit v mapě před výjezdem</span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Vápencový lom Skalka (Vitoul)</h3><div class="km">6,7 km<small>Měrotín–Mladeč</small></div></div>
+      <p class="why">Činný vápencový lom přímo v krasu mezi Mladčí a Měrotínem. Jako zážitek nefunguje —
+      uvádím ho proto, aby nedošlo k omylu: <b>není to zatopený lom ke koupání</b> a je nepřístupný.</p>
+      <div class="tags"><span class="tag t-risk">NEPŘÍSTUPNÉ</span></div>
+      <div class="facts"><b>Vstup:</b> provozní areál firmy Vitoul s.r.o., bez veřejného vstupu.
+      Vjezd / natáčení jen po dohodě s provozovatelem.<br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- VODA -->
+<section id="voda"><div class="wrap">
+  <div class="shead"><h2>Vodní plochy a koupání</h2><span class="count">6 míst · nejsilnější v červenci a srpnu</span></div>
+  <p class="intro">Vodu v okruhu tvoří tři různé typy: <b>zatopený vápencový lom</b> (nejhezčí voda),
+  <b>štěrkovny po těžbě</b> (velké plochy, minimální zázemí) a <b>klasická koupaliště</b> (zázemí, ale bez atmosféry).</p>
+  <div class="grid">
+
+    <div class="card">
+      <div class="row1"><h3>Zatopený lom Nová Ves u Litovle</h3><div class="km">10 km<small>vzdušnou čarou</small></div></div>
+      <p class="why">Nejlepší poměr atmosféry a pohodlí v okruhu. Bývalý vápencový lom s velmi čistou vodou,
+      hlavní pláž je navezená štěrkopískem s pozvolným vstupem, kolem skalní stěny. Pro děti tu město Litovel
+      postavilo hřiště a u vody vyrostl skoro 10 m vysoký herní „hrad“ se skluzavkami.</p>
+      <div class="tags"><span class="tag t-top">TOP</span><span class="tag t-free">ZDARMA</span><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><b>Vstup:</b> zdarma. <b>Parkování:</b> parkoviště před areálem — pro sezónu 2026 se
+      parkovné podle města nevybírá (potvrdit na místě). <b>Zázemí:</b> stánek s občerstvením, lavičky,
+      mobilní WC, stojan na kola.<br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Jezero Moravičany</h3><div class="km">8,9 km<small>vzdušnou čarou</small></div></div>
+      <p class="why">Velká štěrkovna severně od Moravičan, plocha kolem 90 ha vzniklá těžbou štěrkopísku.
+      Dnes rybářský revír i volné koupání. Prostor a klid místo davů — za cenu skoro nulového zázemí.</p>
+      <div class="tags"><span class="tag t-free">ZDARMA</span><span class="tag t-wild">NETUCTOVÉ</span></div>
+      <div class="facts"><b>Vstup:</b> volný, <b>koupání na vlastní nebezpečí</b>, bez plavčíka.
+      Část ploch je rybářská — respektovat značení.<br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Jezero Poděbrady (Olomoucké přírodní koupaliště)</h3><div class="km">~18 km<small>u Nákla</small></div></div>
+      <p class="why">Největší „udělaná“ přírodní vodní plocha v dojezdu: cca 27 ha, tři písečné pláže,
+      zhruba 5 000 m² upravených travnatých ploch a oddělená dětská pláž s herním koutkem a velmi pozvolným vstupem.</p>
+      <div class="tags"><span class="tag t-top">TOP</span><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><b>Sezóna:</b> léto, provoz a vstupné na <b>olomouckepodebrady.cz</b>.
+      <br><span class="conf">Confidence: <b>high</b> na parametry, <b>medium</b> na aktuální ceník</span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Pískovna Náklo</h3><div class="km">~18 km<small>mezi Litovlí a Olomoucí</small></div></div>
+      <p class="why">Druhá velká štěrkovna v Pomoraví, koupání na vymezených plážích, čistá voda,
+      pozvolný sklon dna. Volnější a lacinější alternativa k Poděbradům, často jedním autem obojí.</p>
+      <div class="tags"><span class="tag t-free">ZDARMA</span></div>
+      <div class="facts"><b>Pozor:</b> koupat se smí jen ve vyznačených místech, zbytek plochy je
+      těžební / rybářský. <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Přírodní koupaliště Litovel</h3><div class="km">13,4 km<small>Koupaliště 561</small></div></div>
+      <p class="why">Klasika se zázemím, když je potřeba jistota: skluzavky, masážní trysky, perličková
+      vodní křesla, dětské brouzdaliště, bufet a půjčovna sportovního vybavení.</p>
+      <div class="tags"><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><b>Sezóna:</b> zhruba červen–září, běžně 9:00–19:00.
+      <br><span class="conf">Confidence: <b>high</b> na vybavení, <b>medium</b> na hodiny v konkrétní den</span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Řeka Morava / CHKO Litovelské Pomoraví</h3><div class="km">10–20 km<small>pás podél Moravy</small></div></div>
+      <p class="why">„Moravská Amazonie“ — meandry, slepá ramena a lužní les mezi Mohelnicí a Olomoucí.
+      Sjízdné úseky pro kánoe, brody, tůně. Nejlepší způsob, jak vidět region jinak než z auta.</p>
+      <div class="tags"><span class="tag t-free">ZDARMA</span><span class="tag t-wild">NETUCTOVÉ</span></div>
+      <div class="facts"><b>Pozor:</b> CHKO — část ramen je v I. zóně a nepřístupná, sjezd řešit
+      přes půjčovnu lodí v Litovli/Olomouci.<br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- LOMY -->
+<section id="lomy"><div class="wrap">
+  <div class="shead"><h2>Zatopené lomy</h2><span class="count">1 v okruhu + 2 mimo · poctivě</span></div>
+  <div class="box warn">
+    <h4>Realita kategorie</h4>
+    <p>V okruhu 30 km je <b>jediný veřejně přístupný zatopený lom ke koupání — Nová Ves u Litovle</b> (viz sekce Vodní plochy).
+    Ostatní vápencové lomy Javoříčského a Mladečského krasu jsou buď <b>činné a nepřístupné</b> (Skalka / Vitoul u Měrotína),
+    nebo rekultivované bez veřejného přístupu. Kdo chce druhý „lomový“ zážitek, musí za hranici 30 km.</p>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="row1"><h3>Lom Nová Ves u Litovle</h3><div class="km">10 km<small>hlavní tip</small></div></div>
+      <p class="why">Viz sekce Vodní plochy — vápencový lom, štěrkopísková pláž, skalní stěny, vstup i parkování
+      pro rok 2026 bez poplatku, dětské hřiště a herní „hrad“ se skluzavkami.</p>
+      <div class="tags"><span class="tag t-top">TOP</span><span class="tag t-free">ZDARMA</span></div>
+      <div class="facts"><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Lom Grygov (Ovčačka)</h3><div class="km">~36 km<small>mimo okruh</small></div></div>
+      <p class="why">Ikonický zatopený lom jižně od Olomouce se strmými stěnami a tyrkysovou vodou —
+      fotogeničtější než Nová Ves, ale bez zázemí a s neoficiálním statusem koupání.</p>
+      <div class="tags"><span class="tag t-wild">NETUCTOVÉ</span><span class="tag t-risk">OVĚŘIT</span></div>
+      <div class="facts"><b>Pozor:</b> přístup a povolenost koupání se v čase mění, ověřit před cestou.
+      <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Lomy u Slatinic a Slatinek</h3><div class="km">~20 km<small>pod Velkým Kosířem</small></div></div>
+      <p class="why">Opuštěné vápencové lůmky v okolí Kosíře — zajímavé geologicky a fotograficky,
+      ne jako koupaliště. Dobré spojit s výstupem na rozhlednu Velký Kosíř.</p>
+      <div class="tags"><span class="tag t-risk">OVĚŘIT</span></div>
+      <div class="facts"><b>Nutno ověřit:</b> aktuální přístupnost jednotlivých lůmků a vlastnictví pozemků.
+      <br><span class="conf">Confidence: <b>low</b></span></div>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- ROZHLEDNY -->
+<section id="rozhledny"><div class="wrap">
+  <div class="shead"><h2>Rozhledny a vyhlídky</h2><span class="count">4 v okruhu + 2 bonusy</span></div>
+  <p class="intro">Region je nízký a zalesněný, takže rozhledny tu nejsou husté. Zato tři z nich stojí
+  na výrazných solitérních kopcích a je z nich vidět Bouzovsko, Haná i Jeseníky najednou.</p>
+  <div class="grid">
+
+    <div class="card">
+      <div class="row1"><h3>Rozhledna Velký Kosíř</h3><div class="km">21,6 km<small>Čechy pod Kosířem</small></div></div>
+      <p class="why">„Hanácký Mont Blanc“ — nejvýraznější kopec celé Hané. Dřevěná věž tvaru komolého kužele
+      z roku 2013, vyhlídková plošina ve 25 m, 158 schodů po krytém točitém schodišti. Výhled na Bouzovskou
+      vrchovinu i Nízký Jeseník.</p>
+      <div class="tags"><span class="tag t-top">TOP</span></div>
+      <div class="facts"><b>Přístup:</b> pěšky z Čech pod Kosířem nebo Slatinic (30–45 min stoupání).
+      Sezónní provoz a vstupné — ověřit na kosirsko.cz.<br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Radniční věž Litovel</h3><div class="km">13,4 km<small>náměstí Přemysla Otakara</small></div></div>
+      <p class="why">Věž z konce 15. století, o skoro sto let starší než samotná radnice. Vysoká 65,4 m,
+      vyhlídkový ochoz ve 33,5 m — za dobré viditelnosti odsud vidíte až na Bradlo. Nejlepší „městský“ výhled v okruhu.</p>
+      <div class="tags"><span class="tag t-top">TOP</span></div>
+      <div class="facts"><b>Vstup:</b> přes informační centrum Litovel, sezónní otevírací doba.
+      <br><span class="conf">Confidence: <b>high</b> na parametry, <b>medium</b> na aktuální režim vstupu</span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Rozhledna Kopaninka (Repechy)</h3><div class="km">~24 km<small>Drahanská vrchovina</small></div></div>
+      <p class="why">Nejmladší rozhledna v dojezdu (veřejnosti od roku 2018), 22 m vysoká, nosná konstrukce
+      z modřínového dřeva s ocelovým točitým schodištěm, v 635 m n. m. Půl kilometru jižně od Repech.</p>
+      <div class="tags"><span class="tag t-wild">NETUCTOVÉ</span></div>
+      <div class="facts"><b>Přístup:</b> po zpevněné cestě, parkování v obci.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Věž hradu Bouzov</h3><div class="km">0 km<small>výchozí bod</small></div></div>
+      <p class="why">Hradní věž je vyhlídka sama o sobě a je součástí prohlídkového okruhu.
+      Nejlepší orientační bod na začátek — z ochozu si nejrychleji „přečtete“ celý zbytek tohoto seznamu.</p>
+      <div class="tags"><span class="tag t-top">TOP</span></div>
+      <div class="facts"><b>Provoz:</b> podle sezónního režimu hradu, v létě rezervace na konkrétní čas.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Městská věž Mohelnice</h3><div class="km">8,5 km<small>historické jádro</small></div></div>
+      <p class="why">Gotická městská věž ze 14. století v jádru Mohelnice. Nejbližší „výškový“ objekt od Bouzova,
+      spojitelný s návštěvou vlastivědného muzea a náměstí.</p>
+      <div class="tags"><span class="tag t-risk">OVĚŘIT</span></div>
+      <div class="facts"><b>Nutno ověřit:</b> zda je věž v současnosti přístupná veřejnosti a v jakém režimu
+      (informační centrum Mohelnice).<br><span class="conf">Confidence: <b>medium</b> na existenci, <b>low</b> na přístupnost</span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Bonusy mimo 30 km</h3><div class="km">32–38 km<small>za zajížďku</small></div></div>
+      <p class="why"><b>Rozhledna v ZOO Olomouc na Svatém Kopečku</b> (~32 km) — bývá uváděna jako jediná
+      rozhledna v ČR uvnitř zoologické zahrady. <b>Rozhledna Božka, Přáslavice</b> (~38 km) — zděná,
+      21 m, výhledy na Olomouc.</p>
+      <div class="tags"><span class="tag t-wild">NETUCTOVÉ</span></div>
+      <div class="facts"><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- ZŘÍCENINY -->
+<section id="zriceniny"><div class="wrap">
+  <div class="shead"><h2>Zříceniny, hrady a zámky</h2><span class="count">9 míst · druhá nejsilnější kategorie</span></div>
+  <p class="intro">Kolem Bouzova je hustota středověkých sídel mimořádná — od volně přístupných zřícenin
+  přes fungující muzea až po hrad, do kterého se nedostanete, protože je v něm věznice.</p>
+  <div class="grid">
+
+    <div class="card">
+      <div class="row1"><h3>Zřícenina Cimburk u Městečka Trnávky</h3><div class="km">13,3 km<small>západ</small></div></div>
+      <p class="why">Nejromantičtější zřícenina v dojezdu. Kamenný hrad vznikl kolem roku 1300 (Ctibor z Lipnice),
+      stojí na kopci nad městečkem. „Starý“ Cimburk je volně přístupný — dobré na západ slunce.</p>
+      <div class="tags"><span class="tag t-top">TOP</span><span class="tag t-free">ZDARMA</span></div>
+      <div class="facts"><b>Přístup:</b> pěšky od Městečka Trnávky, krátké stoupání.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Zřícenina hradu Brníčko</h3><div class="km">16,5 km<small>severovýchod, u Zábřehu</small></div></div>
+      <p class="why">Hrad založený ve 14. století, už roku 1513 uváděný jako pustý. Torzo věže a hradeb
+      na kopci nad stejnojmennou vsí, volně přístupné, s výhledem na Zábřežskou vrchovinu.</p>
+      <div class="tags"><span class="tag t-free">ZDARMA</span><span class="tag t-wild">NETUCTOVÉ</span></div>
+      <div class="facts"><b>Terén:</b> krátký, ale strmější výstup od parkoviště v obci.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Hrad Úsov</h3><div class="km">13,1 km<small>sever</small></div></div>
+      <p class="why">Hrad z roku 1260 (založil Jiljí ze Švábenic) na místě dřevěného hrádku, později
+      přestavěný. Dnes v něm sídlí <b>lovecko-lesnické muzeum</b> — jedna z nejstarších sbírek tohoto typu
+      u nás, s trofejemi z celého světa. Pro děti silnější zážitek než klasická zámecká prohlídka.</p>
+      <div class="tags"><span class="tag t-top">TOP</span><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><b>Provoz:</b> sezónní, prohlídky s průvodcem — ověřit na webu Vlastivědného muzea v Šumperku.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Hrad Mírov</h3><div class="km">10,1 km<small>sever</small></div></div>
+      <p class="why">Původně biskupský hrad, dnes <b>věznice s nejpřísnějším režimem</b> — dovnitř se nedostanete.
+      Zařazuji ho proto, aby to nebylo překvapení: jde o působivý exteriér při silnici, který se dá vyfotit z dálky,
+      nic víc.</p>
+      <div class="tags"><span class="tag t-risk">NEPŘÍSTUPNÉ</span></div>
+      <div class="facts"><b>Pozor:</b> objekt s ostrahou, focení v bezprostřední blízkosti oplocení nedoporučuji.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Hrádek Špraněk (Zkamenělý zámek)</h3><div class="km">2,2 km<small>nad Javoříčkem</small></div></div>
+      <p class="why">Nejbližší „zřícenina“ vůbec — zbytky středověkého hrádku na vápencovém skalisku
+      přímo nad Javoříčskými jeskyněmi. Volně přístupné, 20 minut od parkoviště.</p>
+      <div class="tags"><span class="tag t-free">ZDARMA</span></div>
+      <div class="facts"><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Zámek Náměšť na Hané</h3><div class="km">18,0 km<small>jihovýchod</small></div></div>
+      <p class="why">Barokní čtyřkřídlý zámek na kopci s okrouhlým francouzským parkem a expozicí
+      historických kočárů. Kontrast k „hradnímu“ Bouzovu — Haná ve své šlechtické podobě.
+      V dosahu je i přírodní park <b>Terezské údolí</b> (~15 km) s romantickými stavbami.</p>
+      <div class="tags"><span class="tag t-top">TOP</span></div>
+      <div class="facts"><b>Provoz:</b> sezónní, prohlídkové okruhy. <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Zámek Konice</h3><div class="km">12,5 km<small>jih</small></div></div>
+      <p class="why">Barokní zámek v centru Konice s muzejní expozicí a galerií, součást zázemí
+      informačního centra. Nenáročná zastávka po cestě na Drahanskou vrchovinu.</p>
+      <div class="tags"><span class="tag t-wild">NETUCTOVÉ</span></div>
+      <div class="facts"><b>Nutno ověřit:</b> aktuální expozice a otevírací doba.
+      <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Hrad Šternberk</h3><div class="km">29,5 km<small>na samé hranici okruhu</small></div></div>
+      <p class="why">Gotický hrad nad městem, romanticky přestavěný Liechtensteiny — bohaté interiéry
+      a sbírka uměleckého řemesla. Největší „konkurent“ Bouzova v dojezdu; sedí přesně na hranici 30 km.</p>
+      <div class="tags"><span class="tag t-top">TOP</span></div>
+      <div class="facts"><b>Provoz:</b> sezónní, prohlídkové okruhy NPÚ.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Zřícenina Rabštejn (Bedřichov u Oskavy)</h3><div class="km">~27 km<small>severovýchod, Jeseníky</small></div></div>
+      <p class="why">Zbytky hradu na skalnatém hřebeni v lesích nad Oskavou — nejdivočejší zřícenina
+      v okruhu, spojená se skalním terénem. Vhodné pro zdatnější, výletu předchází delší lesní výstup.</p>
+      <div class="tags"><span class="tag t-free">ZDARMA</span><span class="tag t-wild">NETUCTOVÉ</span></div>
+      <div class="facts"><b>Pozor:</b> nezaměňovat s jinými Rabštejny v ČR (Vysočina, Chrudimsko).
+      <br><span class="conf">Confidence: <b>medium</b> — vzdálenost na hraně, ověřit v mapě</span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Bonusy: Tepenec a Sovinec</h3><div class="km">31–32 km<small>těsně mimo</small></div></div>
+      <p class="why"><b>Tepenec / Karlsburg u Jívové</b> (~32 km) — hrad, který nechal postavit Karel IV.
+      v letech 1340–1346 a který byl roku 1391 pobořen; z většiny zničený těžbou kamene, dochovaly se
+      hlavně opevnění na východní straně. <b>Hrad Sovinec</b> (~31 km) — rozsáhlý hrad s bohatým
+      programem šermířských a sokolnických akcí.</p>
+      <div class="tags"><span class="tag t-wild">NETUCTOVÉ</span></div>
+      <div class="facts"><span class="conf">Confidence: <b>high</b> (Tepenec — historie), <b>medium</b> (vzdálenosti)</span></div>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- LANOVKY -->
+<section id="lanovky"><div class="wrap">
+  <div class="shead"><h2>Lanovky, stezky v korunách, zorbing</h2><span class="count">Poctivá odpověď: v okruhu nic</span></div>
+  <div class="box warn">
+    <h4>V okruhu 30 km není ani jedna osobní lanovka ani stezka v korunách stromů</h4>
+    <p>Bouzovsko je nízká vrchovina bez lyžařských areálů. Nejbližší sedačkové lanovky jsou až
+    v Jeseníkách a na Králickém Sněžníku, tedy 45–55 km daleko. Stejně tak zorbing nemám v okruhu 30 km
+    ověřeného u žádného provozovatele. Níže jsou <b>nejbližší reálné alternativy</b>, ne náhražky.</p>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="row1"><h3>Park Sportu Hrubá Voda</h3><div class="km">~37 km<small>nejbližší adrenalin</small></div></div>
+      <p class="why">Nejbližší kompletní adrenalinový areál. <b>Celoroční bobová dráha</b> s dvoumístnými
+      boby německého výrobce Wiegand (až 40 km/h) vedená lesem, <b>Kamzíková stezka</b> — systém
+      lezeckých průchodů, skluzavek a lanového bludiště <b>ve 13 metrech nad zemí</b>, dále trampolíny,
+      minigolf, lukostřelba a discgolf.</p>
+      <div class="tags"><span class="tag t-top">TOP</span><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><b>Provoz:</b> bobová dráha celoročně, zbytek sezónně — ověřit na resorthrubavoda.cz.
+      <b>Bonus:</b> v místě resort s wellness a saunovým světem.<br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Stezka v oblacích, Dolní Morava</h3><div class="km">~50 km<small>nejbližší stezka v korunách</small></div></div>
+      <p class="why">Nejbližší skutečná vyhlídková stezka nad korunami. Stojí v 1 116 m n. m.
+      u horní stanice lanovky na Sněžník, konstrukce je 55 m vysoká, s odpočinkovou sítí, tunelem
+      a obřím tobogánem. Výhled na Králický Sněžník, Jeseníky i Krkonoše.</p>
+      <div class="tags"><span class="tag t-top">TOP</span></div>
+      <div class="facts"><b>Zároveň řeší i lanovku:</b> nahoru se jede kabinovou/sedačkovou lanovkou.
+      Celodenní výlet, počítejte 60–75 min jízdy z Bouzova.<br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Lanovky Jeseníky</h3><div class="km">48–65 km<small>mimo okruh</small></div></div>
+      <p class="why">Nejbližší klasické lanovky: <b>Kouty nad Desnou</b> (~48 km, kabinová na Medvědí horu),
+      <b>Ramzová – Šerák</b> (~65 km, historická sedačková na hřeben) a <b>Dolní Morava – Sněžník</b> (~50 km).
+      Všechny jezdí i v létě.</p>
+      <div class="tags"><span class="tag t-wild">MIMO OKRUH</span></div>
+      <div class="facts"><b>Tip:</b> pokud je „lanovka“ podmínka, plánujte ji jako samostatný den, ne jako
+      půldenní odskok z Bouzova.<br><span class="conf">Confidence: <b>medium</b> na přesné vzdálenosti</span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Lanová centra v Olomouci</h3><div class="km">~28–30 km<small>na hranici okruhu</small></div></div>
+      <p class="why">V Olomouci fungují lanová centra a překážkové parky pro skupiny a rodiny —
+      nejbližší „lanovka nad zemí“ v dosahu. Vhodné jako doplněk, ne jako cíl výletu.</p>
+      <div class="tags"><span class="tag t-risk">OVĚŘIT</span></div>
+      <div class="facts"><b>Nutno ověřit:</b> konkrétní provozovatel, otevírací doba a nutnost rezervace —
+      nabídka se v posledních letech měnila.<br><span class="conf">Confidence: <b>low</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Zorbing</h3><div class="km">—<small>neověřeno v okruhu</small></div></div>
+      <p class="why">V okruhu 30 km jsem nenašel stálého provozovatele zorbingu. Realisticky se dá
+      pořídit jako <b>mobilní atrakce na objednávku</b> (firemní akce, dětský den) přes zážitkové
+      agentury z Olomouce nebo Brna.</p>
+      <div class="tags"><span class="tag t-risk">OVĚŘIT</span></div>
+      <div class="facts"><b>Doporučený postup:</b> poptat mobilní zorbing přímo pro adresu Bouzov —
+      dojezd provozovatele bývá levnější než celodenní výjezd skupiny.<br><span class="conf">Confidence: <b>low</b></span></div>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- MOTORY -->
+<section id="motory"><div class="wrap">
+  <div class="shead"><h2>Motokros, čtyřkolky, motokáry</h2><span class="count">6 míst · silné hned za humny</span></div>
+  <p class="intro">Tady je Bouzov nečekaně dobře obsloužený — v Mohelnici, 8,5 km od hradu, stojí
+  jedna z mála krytých motokrosových hal v ČR.</p>
+  <div class="grid">
+
+    <div class="card">
+      <div class="row1"><h3>Aréna MX Mohelnice (krytá hala)</h3><div class="km">8,5 km<small>sever</small></div></div>
+      <p class="why">Multifunkční hala otevřená v prosinci 2011 speciálně pro zimní motokrosový trénink.
+      Vytápěná, větraná a nasvícená plocha přes <b>3 000 m²</b> pojme trať dlouhou zhruba <b>530 m</b>,
+      která se každý měsíc přestavuje. Součástí je sportbar, šatny jezdců, ubytování a hlediště pro diváky.</p>
+      <div class="tags"><span class="tag t-top">TOP</span><span class="tag t-wild">NETUCTOVÉ</span></div>
+      <div class="facts"><b>Provoz:</b> tréninkové bloky / rezervace — nutná domluva předem.
+      Silná varianta na déšť a na zimu.<br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Motokrosová trať Mohelnice (venkovní)</h3><div class="km">8,5 km<small>sever</small></div></div>
+      <p class="why">Venkovní hliněná trať u Mohelnice, tradiční dějiště závodů. Nejbližší klasický
+      motokros od Bouzova.</p>
+      <div class="tags"><span class="tag t-risk">OVĚŘIT</span></div>
+      <div class="facts"><b>Nutno ověřit:</b> tréninkové dny pro veřejnost a podmínky vjezdu.
+      <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Motokros „Loučská kotlina“, Dlouhá Loučka</h3><div class="km">23,8 km<small>severovýchod</small></div></div>
+      <p class="why">Motokrosový areál u Uničova, známý po celé republice — přírodní kotlina
+      s výborným výhledem pro diváky. Nejlepší volba, když chcete <b>vidět závod</b>, ne jezdit.</p>
+      <div class="tags"><span class="tag t-top">TOP</span></div>
+      <div class="facts"><b>Tip:</b> plánovat podle kalendáře závodů, mimo ně je areál poloprázdný.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Motokáry Bílá Lhota</h3><div class="km">~8 km<small>východ</small></div></div>
+      <p class="why">Nejbližší motokárová dráha od hradu — spojitelná s arboretem v téže obci
+      do jednoho půldne (adrenalin + botanika, funguje překvapivě dobře na smíšenou partu).</p>
+      <div class="tags"><span class="tag t-kid">S DĚTMI</span><span class="tag t-risk">OVĚŘIT</span></div>
+      <div class="facts"><b>Nutno ověřit:</b> aktuální provoz, sezóna a rezervace — objekt je veden
+      v katalozích, provoz jsem nepotvrdil u provozovatele.<br><span class="conf">Confidence: <b>low</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Lamborghini Kart Arena Olomouc</h3><div class="km">~28 km<small>jihovýchod</small></div></div>
+      <p class="why">Krytá dvoupatrová motokárová trať se sportbarem — jede za každého počasí,
+      online rezervace. Nejjistější varianta pro skupinu, když prší.</p>
+      <div class="tags"><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><b>Rezervace:</b> online předem, o víkendech nutnost.
+      <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Půjčovny čtyřkolek a motorek</h3><div class="km">~27–30 km<small>Olomouc</small></div></div>
+      <p class="why">V okruhu 30 km není ověřená ATV půjčovna přímo na Bouzovsku. Nejbližší jsou
+      v Olomouci — např. <b>Dirtbikes</b> (prodejna a půjčovna motorek, čtyřkolek a skútrů, olomoucká
+      pobočka od dubna 2025) nebo <b>Moto Olomouc</b>.</p>
+      <div class="tags"><span class="tag t-risk">OVĚŘIT</span></div>
+      <div class="facts"><b>Pozor:</b> půjčovny čtyřkolek často půjčují jen na uzavřený areál nebo
+      s doprovodem — ptejte se, kde smíte jezdit, ne jen na cenu.<br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- FARMY -->
+<section id="farmy"><div class="wrap">
+  <div class="shead"><h2>Biofarmy a agroturistika</h2><span class="count">4 tipy · nejblíž ze všech kategorií</span></div>
+  <p class="intro">Dvě ekologické farmy jsou od hradu do 8 km — obě fungují především jako hospodářství,
+  ne jako atrakce, takže návštěvu je potřeba domluvit předem.</p>
+  <div class="grid">
+
+    <div class="card">
+      <div class="row1"><h3>Biofarma Ve dvoře, Střemeníčko</h3><div class="km">4,7 km<small>nejbližší farma</small></div></div>
+      <p class="why">Soukromý ekologický zemědělský statek na samotě u Střemeníčka, tedy prakticky
+      pod hradem. Klasická česká biofarma bez turistické fasády — právě proto autentická.</p>
+      <div class="tags"><span class="tag t-wild">NETUCTOVÉ</span></div>
+      <div class="facts"><b>Návštěva:</b> domluvit předem, nejde o veřejně otevřený areál.
+      <br><span class="conf">Confidence: <b>high</b> na existenci, <b>medium</b> na režim návštěv</span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Ekologická farma Hvozd u Konice</h3><div class="km">7,1 km<small>jih</small></div></div>
+      <p class="why">Chov ovcí a koz s možností prohlídky farmy pro návštěvníky, v obci Hvozd
+      pod Bouzovem. Nejlepší varianta „farma s dětmi“ v okruhu — zvířata na dosah, ne za sklem.</p>
+      <div class="tags"><span class="tag t-kid">S DĚTMI</span><span class="tag t-top">TOP</span></div>
+      <div class="facts"><b>Návštěva:</b> po domluvě; v místě bývá i ubytování.
+      <br><span class="conf">Confidence: <b>high</b> na existenci a zaměření, <b>medium</b> na aktuální nabídku</span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Zemědělská expozice, Arboretum Bílá Lhota</h3><div class="km">7,6 km<small>východ</small></div></div>
+      <p class="why">Sbírka historických zemědělských strojů Vlastivědného muzea v Olomouci —
+      secí a žací stroje, mlátičky s lisy na slámu a další dnes už zapomenutá technika.
+      Součást areálu arboreta, takže jedna zastávka, dva zážitky.</p>
+      <div class="tags"><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><b>Provoz:</b> se sezónou arboreta (zhruba duben–říjen),
+      arboretumbilalhota.cz.<br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Exkurze „Život na ekofarmě“</h3><div class="km">okolí<small>regionální program</small></div></div>
+      <p class="why">Ekofarmy v regionu pořádají vzdělávací exkurze pro školy, rodiny s dětmi
+      i veřejnost. Pokud jedete se skupinou, tohle je nejsnazší způsob, jak se na farmu vůbec dostat.</p>
+      <div class="tags"><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><b>Kde hledat:</b> portál lovime.bio, sekce projekty.
+      <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- STŘELNICE -->
+<section id="strelnice"><div class="wrap">
+  <div class="shead"><h2>Střelnice a lukostřelba</h2><span class="count">4 tipy · slabší kategorie</span></div>
+  <div class="box warn">
+    <h4>Důležitá změna</h4>
+    <p><b>Lazecká střelnice v Olomouci ukončuje provoz pro veřejnost k 31. 3. 2026.</b>
+    Pokud máte tuto střelnici v starších tipech, počítejte s tím. Ověřeno v době rešerše —
+    před cestou potvrdit u provozovatele.</p>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="row1"><h3>Lukostřelba Olomouc (UPOL)</h3><div class="km">~28 km<small>U Sportovní haly 2a</small></div></div>
+      <p class="why">Nejlépe dostupná pravidelná lukostřelba pro veřejnost v okruhu. Krytá lukostřelnice
+      v podkroví loděnice UP plus venkovní a dvě mobilní střelnice. Pro nováčky jsou lekce pro veřejnost,
+      kde se seznámíte s vybavením i technikou.</p>
+      <div class="tags"><span class="tag t-top">TOP</span><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><b>Vstup:</b> jednorázový vstup nebo měsíční permanentka, na místě nebo přes
+      rezervační systém (lukostrelba.upol.cz).<br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Střelnice Křelov</h3><div class="km">~24 km<small>západně od Olomouce</small></div></div>
+      <p class="why">Nejbližší střelnice v dojezdu, u pevnostního Křelova. Vhodná pro zážitkové střelby
+      s instruktorem i pro držitele zbrojního průkazu.</p>
+      <div class="tags"><span class="tag t-risk">OVĚŘIT</span></div>
+      <div class="facts"><b>Nutno ověřit:</b> otevírací dny pro veřejnost a nabídku zážitkových balíčků.
+      <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Sportovně střelecký areál Jívová</h3><div class="km">~32 km<small>těsně mimo okruh</small></div></div>
+      <p class="why">Střelecký areál v kopcích nad Olomoucí, uváděný mezi hlavními střelnicemi kraje.
+      Dá se spojit se zříceninou Tepenec ve stejné obci.</p>
+      <div class="tags"><span class="tag t-wild">MIMO OKRUH</span></div>
+      <div class="facts"><b>Nutno ověřit:</b> režim pro veřejnost.
+      <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Lukostřelba v Park Sportu Hrubá Voda</h3><div class="km">~37 km<small>součást areálu</small></div></div>
+      <p class="why">Pokud stejně jedete na bobovou dráhu, lukostřelba je tam součástí nabídky —
+      ušetříte samostatný výjezd.</p>
+      <div class="tags"><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+  </div>
+  <div class="box">
+    <h4>Poznámka k okresu Šumperk</h4>
+    <p>V severní části okruhu (Mohelnice, Zábřeh, Loštice) jsem <b>nedohledal veřejně přístupnou střelnici</b>.
+    Sportovně střelecké kluby tam fungují, ale bez ověřeného veřejného režimu — pokud je střelba priorita,
+    doporučuji zavolat přímo na SSK v Mohelnici nebo Zábřehu.</p>
+  </div>
+</div></section>
+
+<!-- LETIŠTĚ -->
+<section id="letiste"><div class="wrap">
+  <div class="shead"><h2>Letiště a létání</h2><span class="count">4 tipy</span></div>
+  <p class="intro">V okruhu 30 km není žádné letiště s pravidelnou dopravou — zato jsou tu tři sportovní
+  letiště, ze kterých se létá vyhlídkově, a jedno, kde se skáče padákem.</p>
+  <div class="grid">
+
+    <div class="card">
+      <div class="row1"><h3>Letiště Prostějov (Stichovice)</h3><div class="km">28,9 km<small>jih</small></div></div>
+      <p class="why">Nejsilnější letecký zážitek v dojezdu: <b>tandemové seskoky až ze 4 200 metrů</b> —
+      minuta volného pádu rychlostí přes 200 km/h. K tomu vyhlídkové lety, při hodinovém letu doletíte
+      třeba nad Ostravu nebo k Jihlavě. Areál má restauraci, bar, terasu, dětské hřiště, bazén i trampolínu,
+      takže doprovod se nenudí.</p>
+      <div class="tags"><span class="tag t-top">TOP</span><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><b>Rezervace:</b> předem, seskoky jsou závislé na počasí a bývají posouvány.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Letiště Olomouc-Neředín</h3><div class="km">26,4 km<small>jihovýchod</small></div></div>
+      <p class="why">Nejbližší letiště v okruhu. Vyhlídkové lety Cessnou 172 (až 3 cestující) nad Olomouc,
+      Svatý Kopeček nebo kamkoli podle domluvy — dá se doletět i nad Bouzov.</p>
+      <div class="tags"><span class="tag t-top">TOP</span></div>
+      <div class="facts"><b>Tip:</b> při objednávce výslovně požádejte o přelet nad hradem Bouzov,
+      trasa se dá upravit.<br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Letiště Šumperk (Bratrušov)</h3><div class="km">~32 km<small>těsně mimo okruh</small></div></div>
+      <p class="why">Vnitrostátní travnaté letiště, dráha <b>700 × 100 m</b>, létá se jednomotorovými
+      Cessnou 172 nebo Zlínem Z-43, motorově i bezmotorově. Aeroklub sám nabízí lety <b>nad hrady a zámky
+      Bouzov, Sovinec a Úsov</b> a nad Jeseníky (Praděd, Dlouhé Stráně) — z hlediska „vidět Bouzov shora“
+      je to nejlepší volba v širokém okolí. Nabízejí i zážitek „Jeden den pilotem“.</p>
+      <div class="tags"><span class="tag t-top">TOP</span><span class="tag t-wild">MIMO OKRUH</span></div>
+      <div class="facts"><b>Rezervace:</b> aeroklub-sumperk.cz, i zimní vyhlídkové lety.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Balon, vrtulník, vírník</h3><div class="km">okolí Olomouce<small>na objednávku</small></div></div>
+      <p class="why">Lety balonem a vrtulníkem se v regionu prodávají přes zážitkové agentury —
+      startovní místo bývá dohodnutelné, takže lze startovat blíž Bouzovu než z letiště.</p>
+      <div class="tags"><span class="tag t-risk">OVĚŘIT</span></div>
+      <div class="facts"><b>Pozor:</b> u agentur ověřte, který aeroklub let reálně provádí a odkud startuje.
+      <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- NÁDRAŽÍ -->
+<section id="nadrazi"><div class="wrap">
+  <div class="shead"><h2>Historická nádraží a železnice</h2><span class="count">5 míst · pro fajnšmekry</span></div>
+  <p class="intro">Region protínají dvě lokálky z roku 1914 a jedna zapomenutá „pohraniční“ trať.
+  Tohle je kategorie, kde je Bouzovsko výrazně bohatší, než by čekal kdokoli, kdo tudy jen projíždí.</p>
+  <div class="grid">
+
+    <div class="card">
+      <div class="row1"><h3>Nádraží Litovel předměstí</h3><div class="km">13 km<small>Litovel</small></div></div>
+      <p class="why">Uzlová stanice dvou lokálek — tratí <b>Červenka – Senice na Hané</b> a
+      <b>Litovel předměstí – Mladeč</b>. U výpravní budovy je jako pomník odstavená parní lokomotiva.
+      První vlak s cestujícími odsud (tehdy Litovel Chořelice) vyjel <b>1. srpna 1914</b> do Velkých Senic.</p>
+      <div class="tags"><span class="tag t-top">TOP</span><span class="tag t-free">ZDARMA</span></div>
+      <div class="facts"><b>Tip:</b> spojit s Muzeem Litovel, které mělo výstavu ke 100 letům obou tratí.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Nádraží Dzbel</h3><div class="km">11,4 km<small>jihozápad</small></div></div>
+      <p class="why">Nejzajímavější nádraží v okruhu. Konečná stanice lokálky v 499 m n. m.;
+      <b>od října 1938 do března 1939 to byla československá pohraniční stanice</b> a zároveň konečná
+      na trati Prostějov–Třebovice. Sestává z menší přijímací budovy s křídlem se štítem a přístavbami
+      po obou stranách, malého skladiště a vodárny.</p>
+      <div class="tags"><span class="tag t-wild">NETUCTOVÉ</span><span class="tag t-free">ZDARMA</span></div>
+      <div class="facts"><b>Stav:</b> výpravní budova se dočkala / dočká opravy — ověřit aktuální podobu.
+      <br><span class="conf">Confidence: <b>high</b> na historii, <b>medium</b> na současný stav</span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Nádraží Senice na Hané</h3><div class="km">14,8 km<small>jihovýchod</small></div></div>
+      <p class="why">Opačný pól k Dzbelu: <b>kompletní rekonstrukce výpravní budovy dokončená
+      na začátku roku 2025 za 16 milionů korun</b> — nový interiér, fasáda i střecha. Ukázka, jak může
+      vypadat zachráněná lokálková stanice.</p>
+      <div class="tags"><span class="tag t-free">ZDARMA</span></div>
+      <div class="facts"><b>Tip:</b> Dzbel a Senice jeden den vedle sebe = „před a po“.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Nádraží Mladeč</h3><div class="km">9 km<small>konec lokálky</small></div></div>
+      <p class="why">Koncová stanice trati z Litovle, přímo v krasu. Nejjednodušší způsob, jak se
+      k Mladečským jeskyním dostat vlakem a vrátit se pěšky přes Třesín.</p>
+      <div class="tags"><span class="tag t-free">ZDARMA</span></div>
+      <div class="facts"><b>Provoz:</b> lokálka s omezeným počtem spojů, ověřit v jízdním řádu.
+      <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Muzeum Litovel — železniční expozice</h3><div class="km">13,4 km<small>město</small></div></div>
+      <p class="why">Městské muzeum, které zpracovalo <b>100 let tratí Litovel – Senice na Hané
+      a Litovel předměstí – Mladeč</b>. Kontext k nádražím výše; k tomu má Litovel i expozici harmonik.</p>
+      <div class="tags"><span class="tag t-wild">NETUCTOVÉ</span></div>
+      <div class="facts"><b>Nutno ověřit:</b> zda je železniční výstava stále instalována.
+      <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- DALŠÍ -->
+<section id="dalsi"><div class="wrap">
+  <div class="shead"><h2>Další zajímavá místa</h2><span class="count">8 tipů</span></div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="row1"><h3>Areál Nové Javoříčko — památník</h3><div class="km">2,5 km<small>jih</small></div></div>
+      <p class="why">Nejsilnější místo v celém okruhu. <b>5. května 1945</b> německé oddíly vypálily osadu
+      a zavraždily <b>38 mužů starších 15 let</b>; Javoříčko bývá označováno za „moravské Lidice“.
+      Expozice sídlí v historické škole — jedné z mála budov, které vypálení přečkaly — a byla veřejnosti
+      otevřena v květnu 2015, sedmdesát let po tragédii.</p>
+      <div class="tags"><span class="tag t-top">TOP</span></div>
+      <div class="facts"><b>Kombinace:</b> logicky se řadí za návštěvu Javoříčských jeskyní (stejná obec).
+      Provoz na javoricko.cz.<br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Muzeum Olomouckých tvarůžků A. W., Loštice</h3><div class="km">5,5 km<small>sever</small></div></div>
+      <p class="why">Jediné muzeum v ČR věnované historii a výrobě olomouckých tvarůžků, v nových
+      prostorách od června 2014. Prohlídka trvá zhruba hodinu a končí ochutnávkou a prodejnou —
+      dá se odsud odvézt dárek, který jinde nekoupíte.</p>
+      <div class="tags"><span class="tag t-top">TOP</span><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><b>Adresa:</b> Palackého 2, Loštice. <b>Poslední vstup</b> pro individuální
+      návštěvníky doporučen v 17:15.<br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Arboretum Bílá Lhota</h3><div class="km">7,6 km<small>východ</small></div></div>
+      <p class="why">Národní přírodní památka na jižním svahu, necelé tři hektary, přes <b>500 druhů</b>
+      listnatých, jehličnatých i stálezelených dřevin. Roste tu pravděpodobně <b>nejstarší a největší
+      sbírka japonských javorů v ČR</b> a skupina dubů starých kolem 400 let. Nejlepší v květnu a v říjnu.</p>
+      <div class="tags"><span class="tag t-top">TOP</span><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><b>Provoz:</b> sezónní, arboretumbilalhota.cz. V areálu i zemědělská expozice.
+      <br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Litovel — „Hanácké Benátky“</h3><div class="km">13,4 km<small>východ</small></div></div>
+      <p class="why">Město, kterým protéká Morava v několika ramenech — odtud přezdívka. K tomu
+      renesanční radnice s vyhlídkovou věží, pivovar Litovel a informační centrum, kde se dá poskládat
+      zbytek dne v Pomoraví.</p>
+      <div class="tags"><span class="tag t-top">TOP</span></div>
+      <div class="facts"><b>Tip:</b> exkurze do pivovaru objednat předem.
+      <br><span class="conf">Confidence: <b>high</b> na město, <b>medium</b> na exkurze</span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Sluňákov — Dům přírody Litovelského Pomoraví</h3><div class="km">23,8 km<small>Horka nad Moravou</small></div></div>
+      <p class="why">Nízkoenergetické centrum ekologických aktivit s <b>15hektarovým parkem</b>,
+      venkovní expozicí o přírodě Pomoraví, herními prvky a land-artovými objekty. Areál je volně
+      přístupný a bezbariérový — vhodný pro kočárky, kola i vozíčkáře.</p>
+      <div class="tags"><span class="tag t-free">ZDARMA</span><span class="tag t-kid">S DĚTMI</span></div>
+      <div class="facts"><b>Adresa:</b> Skrbeňská 669/70, Horka nad Moravou. Vstupné se platí jen do
+      interiérů Rajské zahrady a Slunečních snů.<br><span class="conf">Confidence: <b>high</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Loštice — židovská čtvrť</h3><div class="km">5,5 km<small>sever</small></div></div>
+      <p class="why">Kromě tvarůžků má Loštice dochovanou synagogu a jeden z nejzajímavějších
+      židovských hřbitovů na střední Moravě. Tichý kontrapunkt k hradnímu ruchu.</p>
+      <div class="tags"><span class="tag t-wild">NETUCTOVÉ</span></div>
+      <div class="facts"><b>Nutno ověřit:</b> režim zpřístupnění synagogy (bývá sezónní / na klíč).
+      <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>Muzeum Mohelnice</h3><div class="km">8,5 km<small>sever</small></div></div>
+      <p class="why">Vlastivědné muzeum v historickém jádru Mohelnice s archeologickou expozicí
+      regionu. Dobrá varianta na déšť, blízko hradu.</p>
+      <div class="tags"><span class="tag t-risk">OVĚŘIT</span></div>
+      <div class="facts"><b>Nutno ověřit:</b> otevírací doba a aktuální expozice.
+      <br><span class="conf">Confidence: <b>medium</b></span></div>
+    </div>
+
+    <div class="card">
+      <div class="row1"><h3>ZOO Olomouc, Svatý Kopeček</h3><div class="km">~32 km<small>těsně mimo okruh</small></div></div>
+      <p class="why">Největší rodinný celodenní cíl v širokém okolí, k tomu poutní bazilika na Svatém Kopečku
+      a rozhledna přímo v areálu zoo. Pokud je v partě malé dítě, tohle přebije většinu položek výše.</p>
+      <div class="tags"><span class="tag t-kid">S DĚTMI</span><span class="tag t-wild">MIMO OKRUH</span></div>
+      <div class="facts"><span class="conf">Confidence: <b>high</b> na zoo, <b>medium</b> na rozhlednu</span></div>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- TOP -->
+<section id="top"><div class="wrap">
+  <div class="shead"><h2>TOP 15 — kdybyste měli jen pár dnů</h2><span class="count">seřazeno podle síly zážitku, ne vzdálenosti</span></div>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th>Místo</th><th>Km</th><th>Kategorie</th><th>Proč právě tohle</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Javoříčské jeskyně</td><td>2,5</td><td>Jeskyně</td><td>Nejbohatší krápníková výzdoba v dosahu, 4 km od hradu</td></tr>
+      <tr><td>2</td><td>Areál Nové Javoříčko</td><td>2,5</td><td>Památník</td><td>Nejsilnější místo okruhu, ve stejné obci jako jeskyně</td></tr>
+      <tr><td>3</td><td>Zatopený lom Nová Ves</td><td>10</td><td>Voda</td><td>Nejhezčí koupání, vstup i parkování bez poplatku</td></tr>
+      <tr><td>4</td><td>Mladečské jeskyně</td><td>9</td><td>Jeskyně</td><td>Nejstarší lidé moderního typu v Evropě</td></tr>
+      <tr><td>5</td><td>Muzeum tvarůžků, Loštice</td><td>5,5</td><td>Muzeum</td><td>Unikát, který nikde jinde nemají; hodinová prohlídka</td></tr>
+      <tr><td>6</td><td>Zřícenina Cimburk</td><td>13,3</td><td>Zřícenina</td><td>Volně přístupná romantická ruina, ideální na podvečer</td></tr>
+      <tr><td>7</td><td>Hrad Úsov</td><td>13,1</td><td>Hrad + muzeum</td><td>Lovecko-lesnické muzeum — pro děti silnější než zámek</td></tr>
+      <tr><td>8</td><td>Arboretum Bílá Lhota</td><td>7,6</td><td>Příroda</td><td>Japonské javory, 400leté duby, zemědělská expozice</td></tr>
+      <tr><td>9</td><td>Aréna MX Mohelnice</td><td>8,5</td><td>Motokros</td><td>Krytá hala 3 000 m² — jediná jistota za deště</td></tr>
+      <tr><td>10</td><td>Rozhledna Velký Kosíř</td><td>21,6</td><td>Rozhledna</td><td>Výhled na Bouzovsko i Jeseníky z 25 m</td></tr>
+      <tr><td>11</td><td>Letiště Prostějov</td><td>28,9</td><td>Létání</td><td>Tandemový seskok ze 4 200 m + zázemí pro doprovod</td></tr>
+      <tr><td>12</td><td>Radniční věž Litovel</td><td>13,4</td><td>Vyhlídka</td><td>65 m vysoká věž starší než radnice sama</td></tr>
+      <tr><td>13</td><td>Nádraží Dzbel</td><td>11,4</td><td>Železnice</td><td>Bývalá pohraniční stanice 1938–39, dnes ticho</td></tr>
+      <tr><td>14</td><td>Ekofarma Hvozd</td><td>7,1</td><td>Farma</td><td>Ovce a kozy na dosah, 7 km od hradu</td></tr>
+      <tr><td>15</td><td>Hrad Šternberk</td><td>29,5</td><td>Hrad</td><td>Jediný srovnatelný „velký“ hrad na hranici okruhu</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<!-- TRASY -->
+<section id="trasy"><div class="wrap">
+  <div class="shead"><h2>Šest hotových okruhů</h2><span class="count">každý na jeden den, start i cíl Bouzov</span></div>
+
+  <div class="route">
+    <h4>A · Podzemí a paměť <span style="color:var(--text-dim);font-size:11px">— nejkratší, nejsilnější</span></h4>
+    <p class="path">Bouzov → Javoříčské jeskyně → Zkamenělý zámek / Špraněk → Areál Nové Javoříčko → Biofarma Ve dvoře</p>
+    <p class="note">Celkem do 15 km jízdy. Jeskyně dopoledne (rezervace), památník odpoledne. Emočně náročné —
+    s menšími dětmi zvažte pořadí. Farma na závěr jako oddech.</p>
+  </div>
+
+  <div class="route">
+    <h4>B · Voda celý den</h4>
+    <p class="path">Bouzov → zatopený lom Nová Ves → Litovel (radniční věž, oběd) → přírodní koupaliště Litovel <em>nebo</em> jezero Moravičany</p>
+    <p class="note">Zhruba 50–60 km. Lom ráno, než se zaplní parkoviště. Litovel jako městská pauza,
+    odpoledne buď zázemí (koupaliště), nebo prostor a klid (Moravičany).</p>
+  </div>
+
+  <div class="route">
+    <h4>C · Zříceniny na sever</h4>
+    <p class="path">Bouzov → Mírov (jen exteriér) → Hrad Úsov + lovecko-lesnické muzeum → zřícenina Brníčko</p>
+    <p class="note">Kolem 70 km. Mírov je pětiminutová zastávka u silnice, Úsov hlavní chod,
+    Brníčko na závěr kvůli světlu. Na Brníčko pevná obuv.</p>
+  </div>
+
+  <div class="route">
+    <h4>D · Zříceniny na západ</h4>
+    <p class="path">Bouzov → Konice (zámek) → nádraží Dzbel → zřícenina Cimburk u Městečka Trnávky</p>
+    <p class="note">Kolem 60 km, nejklidnější trasa z celého decku — nepotkáte skoro nikoho.
+    Cimburk načasovat na západ slunce.</p>
+  </div>
+
+  <div class="route">
+    <h4>E · Motory a adrenalin</h4>
+    <p class="path">Bouzov → motokáry Bílá Lhota → Aréna MX Mohelnice → (za pěkného počasí) Loučská kotlina, Dlouhá Loučka</p>
+    <p class="note">Vše nutno domluvit předem — jde o provozy, ne o atrakce s pokladnou.
+    Za deště zůstaňte u kryté haly v Mohelnici.</p>
+  </div>
+
+  <div class="route">
+    <h4>F · Výhledy a vzduch</h4>
+    <p class="path">Bouzov → rozhledna Velký Kosíř → rozhledna Kopaninka (Repechy) → letiště Prostějov (seskok / vyhlídkový let)</p>
+    <p class="note">Kolem 90 km, nejnáročnější okruh. Alternativa pro ty, kdo chtějí vidět Bouzov shora:
+    vyhlídkový let z letiště Šumperk, které přelet nad Bouzovem, Sovincem a Úsovem přímo nabízí.</p>
+  </div>
+
+</div></section>
+
+<!-- OVĚŘIT -->
+<section id="overit"><div class="wrap">
+  <div class="shead"><h2>Co si před výjezdem ověřte</h2><span class="count">poctivý seznam slabin decku</span></div>
+
+  <div class="box warn">
+    <h4>Vysoká priorita</h4>
+    <ul>
+      <li><b>Otevírací doby jeskyní</b> — Javoříčko i Mladeč mají v mimosezóně jen pevné vstupy ve vybrané dny; v lednu a únoru zavřeno.</li>
+      <li><b>Lazecká střelnice Olomouc</b> — ukončuje provoz pro veřejnost k 31. 3. 2026.</li>
+      <li><b>Parkovné u lomu Nová Ves</b> — pro rok 2026 se podle města nevybírá, ale režim se mění každou sezónu.</li>
+      <li><b>Motokáry Bílá Lhota</b> — provoz nepotvrzen u provozovatele, jen katalogový záznam.</li>
+      <li><b>Zorbing a lanová centra</b> — v okruhu bez ověřeného stálého provozovatele.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h4>Metodika a limity</h4>
+    <ul>
+      <li>Vzdálenosti jsou <b>vzdušnou čarou od hradu Bouzov</b>, dopočítané z map, s tolerancí zhruba ±2 km. Po silnici počítejte 1,2–1,4násobek.</li>
+      <li>Položky označené „na hranici okruhu“ (Šternberk 29,5 km, Prostějov 28,9 km) mohou po přeměření vyjít lehce nad 30 km.</li>
+      <li>Položky uvedené jako „mimo okruh“ jsou tam vědomě — v dané kategorii uvnitř 30 km nic srovnatelného není.</li>
+      <li>Ceny záměrně neuvádím: mění se každou sezónu a chybný ceník je horší než žádný.</li>
+    </ul>
+  </div>
+
+  <div class="box ok">
+    <h4>Kde se dá seznam dál rozšířit</h4>
+    <ul>
+      <li><b>Mapy.com / Mapy.cz</b> — vrstva „Turistická“ + kategorie Zajímavá místa v okruhu 30 km kolem Bouzova; nejlepší nástroj na doplnění drobných kapliček, studánek a vyhlídek.</li>
+      <li><b>ok-tourism.cz</b> (turistický portál Olomouckého kraje) a <b>litovelsko.eu</b> — oficiální regionální databáze cílů.</li>
+      <li><b>Facebook</b> — stránky obcí (Bouzov, Luká, Bílá Lhota, Loštice) mají aktuální informace o sezónních akcích dřív než turistické portály.</li>
+      <li><b>caves.cz</b> — jediný spolehlivý zdroj otevíracích dob a rezervací obou jeskyní.</li>
+    </ul>
+  </div>
+
+</div></section>
+
+<footer><div class="wrap">
+  <h4>Zdroje a poznámka k důvěryhodnosti</h4>
+  <p>Deck vychází z veřejně dostupných zdrojů dohledaných 8. 9. 2026: Správa jeskyní ČR (caves.cz),
+  turistický portál Olomouckého kraje (ok-tourism.cz), Litovelsko.eu, město Litovel, Olomoucký deník,
+  Muzeum Olomouckých tvarůžků, Arboretum Bílá Lhota, Areál Nové Javoříčko, Sluňákov, Aeroklub Šumperk,
+  Lukostřelba Olomouc (UPOL), Kudy z nudy, Resort Hrubá Voda a regionální zpravodajství.</p>
+  <p><b>Nefabrikuji.</b> Kde jsem si nebyl jistý, je u karty značka <em>OVĚŘIT</em> a confidence <em>low</em>
+  nebo <em>medium</em>. Kde v kategorii v okruhu nic není (lanovky, stezky v korunách, zorbing),
+  je to napsané rovnou místo doplňování nesmyslů.</p>
+  <p style="margin-top:18px;color:#57534a">Bouzov 30 · výletní rešerše · zpracováno 8. 9. 2026</p>
+</div></footer>
+
+</body>
+</html>
