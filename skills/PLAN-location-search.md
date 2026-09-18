@@ -112,6 +112,42 @@ Python 3.11.15. (Pillow a imagehash zatím chybí — doinstalovat pro §6.)
 Tvůj seznam beru celý. Doplňuji o to, co mi v něm chybělo — a tam je podle mě
 největší okamžitý zisk (řádky označené ⭐).
 
+### Tier 0 — location libraries a filmové databáze ⭐ (doplněno 2026-09-18)
+
+Tohle je kategorie, kterou jsem v první verzi plánu podcenil. Jsou to weby
+postavené přímo pro natáčení — ne realitní inzeráty, ne turistické fotky.
+
+**A. Location agentury / libraries** — majitel už *souhlasil s natáčením*.
+Fotky jsou dělané záměrně jako lokační: široké, čtou prostor, s praktickými údaji
+(výška stropu, proud, parkování). Přesně to, co rubrika v §6 chce.
+
+| Web | Co má |
+|---|---|
+| `locationworks.com` | podle vlastního tvrzení nejstarší agentura na světě a první online library; jeden z nejrozsáhlejších katalogů |
+| `1st-option.com` | Londýn + UK, luxusní lokace, multi-service |
+| `shootfactory.co.uk` | Londýn + UK, velké portfolio |
+| `lavishlocations.com` | 1 500+ lokací UK |
+| `locationsdirect.co`, `filmlocations.co.uk` | další UK library |
+| **CZ:** Lokacni.cz, Czech Film Locations, Finders | viz Tier 1 |
+| Giggster, Peerspace, Splacer | marketplace model, roste i v EU |
+
+**Proč je to lepší než reality:** u realitního inzerátu musíš majitele teprve
+přesvědčit. Tady už řekl ano. A fotí se tam na prostor, ne na prodej —
+odpadá ultra-wide zkreslení a staging z §6.3.
+
+**B. Databáze filmových míst** — kde se co natáčelo.
+
+| Web | Co má |
+|---|---|
+| **`filmovamista.cz`** ⭐ | 2 200+ filmů a seriálů, **39 000+ identifikovaných míst natáčení** z ~50 000 záběrů, interaktivní mapa. Od 2007. Pro ČR unikát. |
+| `movie-locations.com`, FilmingMap, latlong.net, IMDb | mezinárodní |
+| "Filmed in…" sekce regionálních film offices | model Kent Film Office / Filming in England |
+
+**Dvojí užitek — a druhý je cennější.** První je inspirace. Druhý:
+**signál vyčerpanosti.** Když je lokace na filmovamista.cz u dvaceti titulů, je
+divácky spálená. Do rubriky proto přidat inverzní faktor — *jak moc je to
+okoukané*. Pro "hledáme nové varianty" je to přesně ten filtr, co chybí.
+
 ### Tier 1 — profesionální lokační databáze ⭐ (největší přidaná hodnota)
 
 Tohle jsou databáze postavené přesně pro tvůj účel, s GPS, kontaktem na majitele
@@ -412,6 +448,28 @@ Dokumenty, kde už proběhl výběr a šly ven klientovi:
 | `Brothers Location summary 2205.pdf` | 41 MB | location summary pro produkci |
 | `FAVORITE LOCATIONS - ALLEGRO CZ.pdf` | 33 MB | "favorite" = explicitní schválení |
 | `004_VVK2_LOCATION_REŽIJNÍ_OBHLÍDKY 13.2.2026` | složka | režijní obhlídky = co prošlo až k režisérovi |
+
+### A2. PDF prezentace na Drivu — úplný soupis (ověřeno 2026-09-18)
+
+Prohledáno na PDF s fotkami. Pět nosných souborů, dohromady ~237 MB:
+
+| Soubor | MB | Typ | ID |
+|---|---|---|---|
+| `Vraždy v kraji 2_vyber lokaci.pdf` | 67 | **výběr lokací** ⭐ | `12B8V7qx14I3Hb1w3gEW5uH3OeRanBv1D` |
+| `Victura Scout Plan V4.pdf` | 50 | scout plan, finální | `17YscLyfQ8ckfm2u74aIik4zG2nvz_YFI` |
+| `Victura Scout Plan V2.docx.pdf` | 46 | scout plan, raná verze | `1l9kveQ8wo8K-hGkzd5T68OabPmeN8Xte` |
+| `Brothers Location summary 2205.pdf` | 41 | location summary | `16Q1u760YaOZt_hV_8mWMApOupG9cVTyq` |
+| `FAVORITE LOCATIONS - ALLEGRO CZ.pdf` | 33 | **favorite** ⭐ | `18CKuj8KOAQ_T-ZpGlamabzo3IKp4qd__` |
+
+**Řada Victura V2 → V3 → V4 je nejcennější kus celého seed setu.** V2 má 46 MB,
+V3 jen 3 MB (zjevně jen text), V4 zase 50 MB. Diff mezi V2 a V4 ukáže,
+**co z výběru vypadlo** — a to jsou negativní exempláře, které podle §12/C jinde
+neexistují. Zpracovat prioritně.
+
+Ostatní PDF (`VVK2_transport obhlidky`, `Režijní obhlídky PLÁN`, `Tech scout
+schedule`) jsou desítky kB — jízdní řády a logistika, žádné fotky. Pro seed
+nepoužitelné, ale jako vzor **výstupního formátu scoutovací trasy** (§9 master
+promptu) se hodí.
 
 ### B. Vlastní recce fotky — baseline (~25 složek)
 
