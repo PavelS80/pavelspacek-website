@@ -1,0 +1,12 @@
+{"base":"Litoměřice","date":"návrh — 1 den","note":"Dojezdy jsou odhady po silnici; nahradit Mapy.com routing (dráha B).",
+ "stops":[
+  {"time":"09:00–09:30","what":"Železářství FILMEX","where":"Pokratická 73, Litoměřice","drive":"ze základny 5 min"},
+  {"time":"09:40–10:05","what":"BUNEK železářství","where":"Vavřinecká 277/3, Litoměřice (centrum)","drive":"5 min"},
+  {"time":"10:15–10:45","what":"Policie ČR — Územní odbor (jen exteriér + vstup, dokud KŘP neschválí)","where":"Eliášova 7, Litoměřice","drive":"4 min"},
+  {"time":"10:55–11:15","what":"Večerka 28. října (varianta A)","where":"ul. 28. října, Litoměřice","drive":"4 min"},
+  {"time":"11:30–12:00","what":"Velké Žernoseky — večerka (varianta B) + OÚ","where":"Velké Žernoseky 63 (OÚ)","drive":"10 min"},
+  {"time":"12:00–13:00","what":"oběd","where":"Litoměřice / Žernoseky","drive":""},
+  {"time":"13:20–14:20","what":"ZŠ Polepy — tělocvična + kulturní dům","where":"Polepy (OÚ Polepy 112 zprostředkuje)","drive":"15 min"},
+  {"time":"14:30–14:50","what":"Dům kultury Litoměřice (záloha)","where":"Litoměřice","drive":"15 min zpět"},
+  {"time":"15:00","what":"konec — 3 company moves mimo město, 5 zastávek v Litoměřicích","where":"základna","drive":""}
+ ]}

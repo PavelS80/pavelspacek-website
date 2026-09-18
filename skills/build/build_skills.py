@@ -25,6 +25,9 @@ def build():
             shutil.copy(f, dst / "references" / f.name)
         for f in (src / "references").glob("*.md"):
             shutil.copy(f, dst / "references" / f.name)   # own refs win on name clash
+        (dst / "scripts").mkdir(exist_ok=True)
+        for f in (ROOT / "location-core" / "scripts").glob("*.py"):
+            shutil.copy(f, dst / "scripts" / f.name)
         # location-web needs the DB to exclude known locations
         if name == "location-web":
             shutil.copy(ROOT / "location-db" / "references" / "lokace_database.md",

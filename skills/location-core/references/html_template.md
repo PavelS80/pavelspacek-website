@@ -43,9 +43,14 @@ Tmavé prémiové pozadí, gold accent, filmový look. Print-friendly.
 ## Print
 - `@media print` — bg white, černý text, žádné nav, page-break:avoid u karet
 
-## Plný HTML skeleton
+## Plný HTML skeleton → `scripts/render_deck.py`
 
-Viz `LONGLIST_lokaci_CZ_SK_v1.html` v projektu Lúpežnícka princezná — referenční implementace.
+**Oprava 2026-09-18:** původní šablona odkazovala na `LONGLIST_lokaci_CZ_SK_v1.html` v projektu
+Lúpežnícka princezná — soubor, který ve skillu není. Skeleton je teď **kód, ne odkaz**:
+`scripts/render_deck.py <run_dir>` vezme `sources.json` (schéma v `karta_lokace.md`) a volitelný
+`plan.json` a vyrenderuje `deck.html` — self-contained, print-friendly, bez CDN. Lokace bez fotek
+zobrazí frontu dráhy B místo obrázku; nikdy nevymýšlí `<img src>`. Referenční běh:
+`skills/runs/2026-09-18_VVK2-test/`.
 
 ## Nikdy
 - Externí CDN/knihovny
