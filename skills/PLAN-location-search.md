@@ -7,7 +7,11 @@
 
 ## 1. Cíl a hranice
 
-**Cíl.** Postavit vyhledávací systém pro location scouting v ČR/SR, který z textové
+**Rozsah: pouze Česká republika.** Slovensko je mimo zadání (upřesněno 2026-09-18).
+Stávající skill `location-research-czsk` je CZ/SK — nové skilly SK nedědí: žádné
+slovenské lokace, žádná vzdálenost od Bratislavy, dostupnost se měří jen z Prahy.
+
+**Cíl.** Postavit vyhledávací systém pro location scouting v ČR, který z textové
 nebo obrazové reference najde **nové, dosud nepoužité lokace** — a to ze dvou zdrojů:
 (a) vlastní databáze, (b) internet. Výstup musí být filmařsky použitelný, ne
 "hezké obrázky".
@@ -94,6 +98,49 @@ Ověřeno v tomto kontejneru: `PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers`,
 `chromium-1194` + `chromium_headless_shell-1194` nainstalované, Node v22.22.2,
 Python 3.11.15. (Pillow a imagehash zatím chybí — doinstalovat pro §6.)
 
+
+### 4.1 ⛔ BLOKÁTOR: egress policy tohoto prostředí (ověřeno 2026-09-18)
+
+Dráhu A jsem otestoval proti reálným zdrojům. **Neprojde ani jeden.**
+
+```
+000  filmovamista.cz        000  pamatkovykatalog.cz    000  api.mapy.com
+000  lokacni.cz             000  prazdnedomy.cz         000  commons.wikimedia.org
+000  strednicechyfilm.cz    000  sreality.cz
+```
+
+Diagnostika proxy: `gateway answered 403 to CONNECT (policy denial)` — na každý
+z nich. Není to chyba ani ochrana cílového webu; je to **egress policy tohoto
+cloudového prostředí**. Povolený je jen allowlist (npm, PyPI, crates, API
+Anthropic). Totéž platí pro Chromium — jde přes stejnou proxy.
+
+**Co z prostředí funguje:** `WebSearch` (jde přes Anthropic, ne přes egress),
+Google Drive / Gmail / Kalendář, GitHub.
+**Co nefunguje:** jakýkoli přímý HTTP request na české weby, Mapy.com API,
+Wikimedia API, stahování fotek.
+
+#### Důsledek — a je vážný
+
+Dráha A, jak jsem ji navrhl v první verzi, **v tomto prostředí nejede.** Sběr
+fotek z cloudu je nemožný, dokud se nezmění síťová politika. To není detail:
+padá tím ~80 % objemu, který jsem na dráhu A plánoval.
+
+#### Dvě cesty ven
+
+**1. Změnit síťovou politiku prostředí** (doporučeno). Politiku sis vybral při
+zakládání prostředí a jde změnit — buď povolit konkrétní domény z §5, nebo
+volnější režim. Dokumentace: `code.claude.com/docs/en/claude-code-on-the-web`.
+Po změně dráha A funguje podle původního návrhu. **Tohle je jediná změna, která
+odemkne automatický sběr.**
+
+**2. Těžiště přesunout na dráhu B** (funguje hned). Claude in Chrome na tvém
+Macu — tvůj reálný prohlížeč, tvoje přihlášení, tvoje IP. Žádná egress proxy
+v cestě. Pomalejší a vázané na to, že sedíš u počítače, ale **běží dneska.**
+
+Do rozhodnutí platí: **dráha B je primární, ne doplňková.** Pořadí fází v §9 se
+tím nemění — F1 (fotografický standard) stojí na PDF z Drivu, a Drive dostupný
+je. Kritická cesta tedy blokovaná není.
+
 ### Dvoudráhový návrh
 
 - **Dráha A — cloud Chromium (80 % objemu).** Otevřený web, veřejná API,
@@ -121,15 +168,26 @@ postavené přímo pro natáčení — ne realitní inzeráty, ne turistické fo
 Fotky jsou dělané záměrně jako lokační: široké, čtou prostor, s praktickými údaji
 (výška stropu, proud, parkování). Přesně to, co rubrika v §6 chce.
 
-| Web | Co má |
+**České lokační agentury** (ověřeno 2026-09-18). Jsou to tvoji konkurenti — ale
+jejich **veřejné galerie** jsou legitimní reference: ukazují, co v ČR existuje
+a co se dá zakontraktovat.
+
+| Web | Poznámka |
 |---|---|
-| `locationworks.com` | podle vlastního tvrzení nejstarší agentura na světě a první online library; jeden z nejrozsáhlejších katalogů |
-| `1st-option.com` | Londýn + UK, luxusní lokace, multi-service |
-| `shootfactory.co.uk` | Londýn + UK, velké portfolio |
-| `lavishlocations.com` | 1 500+ lokací UK |
-| `locationsdirect.co`, `filmlocations.co.uk` | další UK library |
-| **CZ:** Lokacni.cz, Czech Film Locations, Finders | viz Tier 1 |
-| Giggster, Peerspace, Splacer | marketplace model, roste i v EU |
+| `lokacni.cz` | DíkyČau s.r.o., Táboritská 14, Praha 3; 10+ let; **archiv 100 000+ lokací**; člen Location Managers Guild International |
+| `locationservice.cz` | Location service s.r.o., kompletní lokační služby, veřejná sekce lokací |
+| `nwlocation.cz` | NW Location, lokační agentura |
+| `locaters.cz` | LOCATERS |
+| `66location.com` | lokační firma Praha |
+| Czech Film Locations | ~70 000 fotek, přes Czech Film Commission |
+| Finders | databáze lokací + eventové prostory |
+
+**Wikipedie: „Seznam českých filmových lokací"** — kurátorovaný seznam, dobrý
+výchozí bod a zadarmo licenčně čistý.
+
+⚠️ UK agentury (Locationworks, 1st Option, Shootfactory, Lavish Locations)
+a marketplace (Giggster, Peerspace) **vyřazeny** — mimo rozsah ČR. Ponechávám je
+jen jako *vzor UX a datového modelu*, ne jako zdroj.
 
 **Proč je to lepší než reality:** u realitního inzerátu musíš majitele teprve
 přesvědčit. Tady už řekl ano. A fotí se tam na prostor, ne na prodej —
@@ -405,7 +463,8 @@ F1 je kritická cesta. Bez fotografického standardu je zbytek jen generátor š
 
 | Riziko | Dopad | Co s tím |
 |---|---|---|
-| Fotografický standard postavený jen na mých předpokladech, ne na tvých schválených výběrech | **Vysoký** — celý systém míjí cíl | Blokující: potřebuji seed (§11) |
+| **Egress policy blokuje všechny zdroje (§4.1)** | **Kritický** — automatický sběr nejede vůbec | Změnit síťovou politiku prostředí, nebo jet dráhu B z Macu |
+| Fotografický standard postavený jen na mých předpokladech | **Vysoký** — celý systém míjí cíl | Seed z PDF na Drivu (§12) — Drive dostupný je |
 | IG/FB/Airbnb zpřísní přístup i pro přihlášené procházení | Střední | Dráha A nese 80 % hodnoty a na nich nezávisí |
 | Mapy.com API limit 250 000 kreditů/měsíc | Nízký | Pro tento objem bohatě stačí; cachovat |
 | Duplicita s `reality-kladno` harvesterem | Nízký | Sdílet kód pro realitní portály |
