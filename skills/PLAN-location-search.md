@@ -1,6 +1,6 @@
 # Plán: Location Search — databáze + internet
 
-**Autor podkladu:** Claude Code · **Datum:** 2026-09-18 · **Stav:** návrh k schválení
+**Autor podkladu:** Claude Code · **Datum:** 2026-09-18 · **Stav:** schváleno, F0–F2 kostra postavena (viz §13)
 **Zadavatel:** Pavel Špaček / FILM HUNTERS s.r.o.
 
 ---
@@ -884,6 +884,26 @@ fotkami s licenční stopou (§8). Tím se uzavírá smyčka, kterou jsi v v2 ne
 otevřenou.
 
 ---
+
+## 13. Stav stavby (2026-09-18)
+
+Pavel: *„film offices super, stránky města super, fotografové architektury super — chci postavit
+mocný location search skill."* → postaveno v `skills/`:
+
+| Složka | Obsah | Fáze |
+|---|---|---|
+| `location-core/` | `scoring_rubric.md` (6 dim + Acc + okoukanost), `photo_standard.md` (filtry, Q, typy, brány, seed TODO), `karta_lokace.md` (GPS povinné, JSON), `source_policy.md`, `html_template.md` | **F1 kostra** — exempláře čekají na PDF seed |
+| `location-db/` | opravený stávající skill, ČR only, bez odkazů na neexistující soubory, doručení podle prostředí; `lokace_database.md` bez SK + sekce současných motivů | **F0 + F2 hotovo** |
+| `location-web/` | `SKILL.md` (8 kroků), `sources.md` (7 rodin, každý zdroj se statusem, polohou a dveřmi), `query_playbook.md` (český slovník, dotazy po zdrojích, SPARQL, Commons), `lanes.md` (test egressu, A/B), `geo_resolve.md` (řetězec na GPS) | **F3/F4 návrh** — harvester se píše až po rozhodnutí o síti |
+| `build/build_skills.py` | zkopíruje jádro do obou skillů → `dist/` self-contained; kontrola, že SKILL.md neodkazuje na neexistující soubor (přísná — právě tahle chyba byla v původním skillu) | hotovo |
+| `dist/` | to, co se nahrává na claude.ai | generováno |
+
+Nově přidané zdroje: **stránky měst a obcí** (galerie, „natáčení", ceník — Praha ověřena),
+**fotografové architektury** (portfolio → název stavby → Archiweb → adresa; fotograf = dveře k majiteli
+i architektovi; konkrétní jména doplní Pavel).
+
+**Co blokuje další krok:** (1) síťová politika prostředí, nebo dráha B z Macu; (2) seed
+fotografického standardu z pěti PDF na Drivu — Drive je dostupný, jde spustit hned na „ano".
 
 ## Zdroje ověřené k 2026-09-18
 

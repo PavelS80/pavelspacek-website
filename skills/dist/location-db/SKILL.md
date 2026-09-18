@@ -40,7 +40,7 @@ Ulož jako `LONGLIST_lokaci_{projekt}_v{N}.html` / `SHORTLIST_…` do projektov�
   (oficiální web, Mapy.com, Wikimedia Commons, NPÚ, film office).
 
 ## Opravy oproti location-research-czsk (2026-09)
-- Odkazy na neexistující `podhradi.md`, `hrad.md`, `mlyn.md`, `les_potok.md`, `cesta_krajina.md` odstraněny —
+- Odkazy na neexistující motivové soubory (podhradi, hrad, mlyn, les_potok, cesta_krajina) odstraněny —
   vše je v `lokace_database.md`.
 - Rozporuplný příklad TOP s Total 7.2 odstraněn; štítky odpovídají definici.
 - `mcp__cowork__present_files` už není natvrdo — doručení podle prostředí.
