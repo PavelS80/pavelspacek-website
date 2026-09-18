@@ -82,7 +82,11 @@ Archiweb → adresa. Oslovit fotografa (má vztah s majitelem i architektem).
 `<město> památky`, `<město> fotogalerie`, `<město> natáčení`, `<město> pronájem prostor`. Odbor kultury / tiskové oddělení =
 dveře; velká města mají ceník natáčení (Praha ověřeno).
 
-## 3. Anti-vzory
+## 3. Anti-vzory (rozšířeno po ground-truth testu 2026-09-18)
+- **Ulice ≈ příjmení.** `kadeřnictví Havlíčkova` najde paní Havlíčkovou v Praze. Stavět dotaz jako
+  `<typ provozovny> <obec>` (nebo kategorii adresáře pro obec) a adresu ověřit až v detailu.
+- **Homonymní obce.** Polepy jsou v okrese Litoměřice *i* Kolín. Vždy `<obec> okres <okres>` a
+  kandidáta bez shody okresu zahodit — jinak štáb jede 80 km vedle.
 - Anglický dotaz na českém webu.
 - Hledat „hrad", když brief říká „byt".
 - Hashtag na Instagramu místo 20–30 sledovaných účtů.

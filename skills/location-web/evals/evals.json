@@ -1,0 +1,24 @@
+{
+  "skill_name": "location-web",
+  "ground_truth_source": "Režijní obhlídky VVK2 (Vraždy v kraji 2), 23.2.–13.3.2026, Google Drive; režim soucasny, základna Litoměřice",
+  "evals": [
+    {"id": 1, "name": "autoservis-polepy", "prompt": "Základna Litoměřice, rádius 25 min. Scéna 2. díl: autoservis na vesnici, kde se dá točit uvnitř i na dvoře, majitel ochotný. Najdi 5 kandidátů s adresou, telefonem a GPS.",
+     "ground_truth": ["Polepy 210 (Roman Tuhý)", "Polepy 35 (autodílna)"],
+     "assertions": ["každý kandidát má GPS nebo adresu s č. p.", "každý kandidát má telefon", "všichni v okrese Litoměřice (žádné homonymní obce z jiného okresu)", "ground truth Polepy 210 je mezi kandidáty (hit@5)", "výstup obsahuje návrh dne obhlídek s dojezdy ze základny"]},
+    {"id": 2, "name": "restaurace-zahradka", "prompt": "Základna Litoměřice, rádius 20 min. Scéna 2. díl: vesnická restaurace se zahrádkou, ne turistická, autentická. 5 kandidátů.",
+     "ground_truth": ["Polepy 185 (Restaurace Polepy)", "Kamýk 45 (Hostinec Na Kamýku)"],
+     "assertions": ["adresa + telefon u každého", "okres Litoměřice", "hit@5 na alespoň jeden ground truth", "u každého kandidáta štítek typu fotky a licenční tier"]},
+    {"id": 3, "name": "kadernictvi-terezin", "prompt": "Základna Litoměřice. Scéna: malé kadeřnictví v Terezíně nebo do 10 km, interiér s výlohou do ulice. 4 kandidáti.",
+     "ground_truth": ["Havlíčkova 124, Terezín"],
+     "assertions": ["dotaz nezaměňuje název ulice s příjmením (viz query_playbook anti-vzory)", "kandidáti jen z Terezína a okolí do 10 km", "hit@4"]},
+    {"id": 4, "name": "jzd-statek", "prompt": "Základna Litoměřice, rádius 30 min. Scéna 5. díl: fungující zemědělské družstvo nebo statek s halou a dvorem. 5 kandidátů s jednatelem/kontaktem.",
+     "ground_truth": ["Agroslužby Trnovany 33", "ZD Sulejovice", "Statek Třebušín – Dolní Týnec"],
+     "assertions": ["kontakt na jednatele nebo firmu (rejstřík / firmy.cz)", "okres Litoměřice", "hit@5 na alespoň jeden"]},
+    {"id": 5, "name": "chatova-osada", "prompt": "Základna Litoměřice, ale klidně i do 1 h k Praze. Scéna: chatová osada u vody, kde se dá točit noc. 3 kandidáti s kontaktem na osadní výbor nebo obec.",
+     "ground_truth": ["Chatová osada Kotlík, Sojovice"],
+     "assertions": ["GPS u každého", "kontakt (obec / osadní výbor)", "hit@3"]},
+    {"id": 6, "name": "bytovka-balkon-nove", "prompt": "Základna Litoměřice. Scéna 4. díl: byt v bytovce s balkónem, původní stav 80. léta, majitel ochotný, NENÍ v naší databázi ani mezi už obhlédnutými (Alšova 17, Pražská 12, Pražská 89, Novobradská 271, Rooseveltova 1661). 5 nových kandidátů.",
+     "ground_truth": [],
+     "assertions": ["žádný kandidát ze seznamu už obhlédnutých (test vyloučení ZNÁMÁ)", "každý má pin alespoň na ulici", "zdroj = reality nebo správce; ne Pinterest/IG", "fronta pro dráhu B, když egress blokován"]}
+  ]
+}

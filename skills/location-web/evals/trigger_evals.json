@@ -1,0 +1,22 @@
+[
+ {"query":"máme nový díl, základna zase Litoměřice, potřebuju do pátku 5 variant večerky a nějaký sběrný dvůr do 20 minut, co je na trhu?","should_trigger":true},
+ {"query":"najdi mi na netu nové byty v původním stavu v Ústí nebo Děčíně, ne ty co už máme v databázi","should_trigger":true},
+ {"query":"location search: statek s dvorem a halou u Roudnice, majitel ochotný, potřebuju kontakty","should_trigger":true},
+ {"query":"hele tohle je referenční fotka od režiséra (přiložená), něco takového u Prahy do hodiny, kde to najdu","should_trigger":true},
+ {"query":"udělej mi frontu pro Chrome — co mám otevřít na Sreality a Mapy.com pro řadovky 80. léta Kladno","should_trigger":true},
+ {"query":"jaké chatové osady u vody jsou do hodiny od Prahy a kdo je tam kontakt","should_trigger":true},
+ {"query":"potřebuju nové varianty mlýna, ne Hoslovice ani Dolský, něco co ještě nikdo netočil","should_trigger":true},
+ {"query":"co je nového na trhu s vilami v Litoměřicích a okolí, tenhle týden","should_trigger":true},
+ {"query":"kde v ČR najdu funkcionalistickou vilu, co se dá pronajmout na natáčení, s adresou","should_trigger":true},
+ {"query":"udělej longlist hradů a podhradí pro pohádku, máme scénář","should_trigger":false},
+ {"query":"nahrávám breakdown, chci location deck z naší databáze","should_trigger":false},
+ {"query":"kolik stojí natáčení na Karlově mostě","should_trigger":false},
+ {"query":"koupím byt na Vinohradech jako investici, spočítej výnos 80/20","should_trigger":false},
+ {"query":"týdenní report hal na prodej Kladno","should_trigger":false},
+ {"query":"jak se skóruje lokace, jaké jsou váhy rubriky","should_trigger":false},
+ {"query":"přepiš mi tuhle kartu lokace do HTML decku","should_trigger":false},
+ {"query":"najdi mi restauraci na večeři v Litoměřicích dneska","should_trigger":false},
+ {"query":"ověř, jestli je Křivoklát v naší databázi a jaké má skóre","should_trigger":false},
+ {"query":"udělej režijní obhlídky na čtvrtek z lokací, co už máme potvrzené","should_trigger":false},
+ {"query":"jaké fotky z obhlídky Raisová 18 dát do decku pro klienta","should_trigger":false}
+]
