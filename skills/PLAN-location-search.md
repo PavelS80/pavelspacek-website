@@ -260,15 +260,60 @@ a často i s informací o film-friendly historii. Veřejně dostupné.
 | **Czech Film Commission** adresář | ~70 000 fotek lokací (Czech Film Locations), Lokacni.cz 100 000+ lokací | A |
 | **NPÚ Památkový katalog** — otevřená data | ÚSKP: všechny kulturní památky ČR, s fotkami a GPS, strojově čitelné | A |
 
-### Tier 2 — otevřená data a mapy (licenčně čisté)
+### Tier 2 — MAPY (po zúžení 2026-09-18 hlavní páteř)
 
-| Zdroj | Poznámka | Dráha |
+**Tři vrstvy, každá odpovídá na jinou otázku.** Nejsou to alternativy, doplňují se.
+
+#### Vrstva 1 — Ortofoto shora: ČÚZK ⭐ `ODVOZENO`
+
+Zdroj, který v tvém seznamu nebyl a podle mě patří na první místo.
+
+| Služba | Co dává |
+|---|---|
+| **WMS Ortofoto** | aktuální letecké snímky, **100 % území ČR (~78 866 km²)** |
+| **WMS Archivní ortofoto** ⭐ | **historické** snímky — jak místo vypadalo dřív |
+| WMS ortofoto CIR | infračervené, na vegetaci; pro tebe okrajové |
+
+**Zdarma a bez registrace.** Standard OGC WMS 1.1.1 / 1.3.0, INSPIRE.
+
+Pro scouta odpovídá na to, co z fotky nikdy nevyčteš: **dispozice areálu, příjezd,
+kde se dá zaparkovat technika, co je za barákem, hustota stromů, jak daleko je
+soused.** Tohle rozhodne, jestli tam vůbec má smysl jet.
+
+A archivní vrstva umí věc, kterou neumí nikdo jiný: **najít, co zmizelo.**
+Porovnáš snímek z 2003 a dnešní → vidíš zbořené areály, zarostlé cesty, vypuštěné
+rybníky. Pro dobový film a pro urbex zlatý důl.
+
+#### Vrstva 2 — Panorama v úrovni očí: Mapy.com API `ODVOZENO`
+
+**⚠️ KOREKCE: Mapy.com REST API uživatelské fotky NEMÁ.** Ověřeno —
+endpointy jsou: geokódování (forward, reverse, autocomplete), routing, elevation,
+map tiles, timezone a **static panorama**. Žádný photo endpoint. V předchozí
+verzi plánu jsem u Mapy.com API napsal "POI, panorama" a myslel tím i fotky.
+Fotky uživatelů jsou **jen ve webovém UI → dráha B.**
+
+**Ale Static Panorama API je pro tebe cennější než ty fotky.** Vrací statický
+obrázek pohledu z daného bodu — **zadáš pozici a směr pohledu.** Tedy: systematické
+pokrytí, tvoje volba úhlu, programově. To je nejblíž obhlídce, aniž bys tam jel.
+Uživatelská fotka ti dá jeden náhodný úhel, který si vybral turista.
+
+Registrace klíče zdarma, Basic plán 250 000 kreditů/měsíc.
+
+#### Vrstva 3 — Uživatelské fotky: reálné světlo a sezóna `dráha B`
+
+| Zdroj | Co dává | Co je problém |
 |---|---|---|
-| **Mapy.com REST API** | oficiální API, registrace klíče zdarma, 250 000 kreditů/měsíc v Basic plánu — geokódování, POI, panorama | A |
-| **Mapy.com uživatelské fotky** | to, co jsi zmiňoval; přes web, ne přes API | A |
-| **Wikimedia Commons API (geosearch)** | `list=geosearch` + `prop=imageinfo` → fotky v okruhu N metrů od GPS, **s licencí v metadatech** | A |
-| **Google Maps / Street View / photospheres** | uživatelské fotky pod hrady, jak píšeš; pozor na licenci Places Photos | A/B |
-| **Mapillary, OpenStreetMap** | street-level fotky, CC-BY-SA | A |
+| **Mapy.com fotky u míst** | reálné počasí, roční doba, davy | jen web UI, ne API |
+| **Google Maps / Street View / photospheres** | totéž + Street View pokrytí | licence Places Photos je restriktivní — neukládat, nepřepoužívat |
+| **Mapillary** | street-level, **CC-BY-SA** = licenčně čisté, API | pokrytí je komunitní a nerovnoměrné; mimo města v ČR může být řídké |
+| **Wikimedia Commons geosearch** | `list=geosearch` + `prop=imageinfo`, **licence v metadatech** | jen to, co někdo nahrál |
+
+#### ⭐ Mapy.com „Moje mapy" — kurátorované veřejné kolekce
+
+Kategorie, kterou jsem přehlédl. Lidé si na Mapy.com skládají a **veřejně sdílejí**
+sady míst (nalezeno např. „Tajná místa v Česku"). Je to ručně vybraný seznam
+zajímavých míst od někoho, kdo je tam byl — tedy předtříděné a s GPS.
+Hledat systematicky, je to levný zdroj kvalitních kandidátů.
 
 ### Tier 3 — reality (prodej i pronájem)
 
@@ -304,23 +349,57 @@ navrhuji metodu, jak ten seznam spolehlivě sestavit:
 **Výstup fáze:** tabulka `správce → počet jednotek → vlastní web → kvalita fotek`.
 Realisticky 30–60 firem pro Prahu a okolí.
 
-### Tier 5 — komunita a urbex
+### Tier 5 — FACEBOOK a komunita (po zúžení 2026-09-18 druhá páteř)
 
-Upřesnění: **Instagram nemá skupiny** — má účty, hashtagy a "místa". Skupiny má
-Facebook. Podle toho se liší i strategie.
+#### Stránky vs. skupiny — zásadní rozdíl
 
-- **Facebook skupiny** — hledat vzorem: *"urbex"*, *"opuštěná místa"*,
-  *"zapomenutá místa"*, *"krásy Česka"*, *"zaniklé obce"*, *"staré fotografie
-  \<město\>"*. Konkrétní názvy neuvádím zpaměti — ověříme při první dávce dráhy B.
-- **Instagram** — hashtagy `#urbexcz`, `#opustenamista`, `#prazdnedomy`,
-  `#ceskarepublika` + kurátorské účty. Pozor: hashtagy jsou dnes slabé,
-  hodnotnější je najít 20–30 dobrých účtů a sledovat je.
-- **prazdnedomy.cz ⭐** — databáze prázdných a chátrajících domů s historií,
-  ~7 600 objektů (k 2/2023), z toho ~3 700 v kategorii prázdné / k záchraně,
-  s fotkami a časovou osou. **Pro tvůj obor mimořádný zdroj.**
-- **zanikleobce.cz ⭐** — zaniklé obce a objekty, historické i současné fotky
-- **fotohistorie.cz** — dobové fotografie míst
-- **hrady.cz, turistika.cz, kudyznudy.cz** — velké fotobanky míst
+Ověřeno: to hodnotné v ČR jsou většinou **Stránky** (`facebook.com/jmeno`), ne
+Skupiny (`facebook.com/groups/…`). **Stránky jsou veřejné a procházejí se bez
+členství** — na rozdíl od skupin, které jsou podle zdrojů *"většinou zavřené"*.
+
+| Stránka | Dosah |
+|---|---|
+| `facebook.com/OpustenaMista/` ⭐ | **64 000+**, Praha, urbex ČR — největší |
+| `facebook.com/urbexpraha/` | 10 000+, URBEX Praha |
+| `facebook.com/urbexak/` | 9 000+, Urbex – Opuštěná místa |
+
+Mimo FB: `urbexhunt.com` · `lostczechman.com/urbex-v-cr`
+
+Další hledat vzorem: *krásy Česka* · *zapomenutá místa* · *staré fotografie
+\<město\>* · *zaniklé obce*. Konkrétní jména neuvádím, dokud je neuvidím (§ disciplína ověřování).
+
+#### ⛔ Zádrhel, který mění postup: urbex fotky nemají lokaci
+
+Z rešerše: *urbexeři běžně nesdílejí přesná místa* — chrání objekty před vandaly.
+Dostaneš tedy **nádhernou fotku a nulovou informaci, kde to je.**
+
+Pro tebe je to horší problém než zamčené weby. Fotka bez GPS je pro produkci
+bezcenná — nemůžeš tam jet, nemůžeš zjistit majitele, nemůžeš spočítat dojezd.
+
+#### Řešení: křížit Facebook s prazdnedomy.cz
+
+**FB dává fotku bez adresy. `prazdnedomy.cz` dává adresu s fotkou.**
+Jedno doplňuje druhé — ~7 600 objektů, z toho ~3 700 prázdných, **s adresou,
+GPS a časovou osou.**
+
+Postup: vizuálně shodná stavba na FB a v prázdných domech → máš fotku *i* adresu.
+Když shoda není, zbývají v tomto pořadí:
+
+1. **Archivní ortofoto ČÚZK** — charakteristický půdorys areálu se dá shora najít
+2. **Rozpoznatelná architektura** → typ stavby + region → Památkový katalog NPÚ
+3. **Reverzní vyhledávání obrázku** v tvém prohlížeči (dráha B)
+4. **Zeptat se autora** — nejspolehlivější a nejrychlejší; urbexeři lokaci často
+   dají soukromě, když jde o film a ne o dav
+
+**Pravidlo do rubriky: kandidát bez GPS nejde do decku.** Skončí v samostatném
+bucketu „vizuálně zajímavé, lokace neznámá" — mood, ne shortlist.
+
+#### Právní rámec — beze změny
+
+Automatizovaný sběr z Facebooku porušuje jeho podmínky užití (jistota: vysoká).
+**Dráha B: ty přihlášený, rychlostí člověka, já čtu obrazovku.** U veřejných
+Stránek je to navíc procházení veřejného obsahu, ne obcházení přihlášení.
+Fotky lidí = osobní údaje, do decku nepatří (GDPR, §8).
 
 ### Tier 6 — architektura
 
