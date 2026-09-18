@@ -169,7 +169,6 @@ Druhá osa hned za ní: **je tam někdo, kdo nás chce pustit dovnitř?**
 
 | Zdroj | Kde to je | Dveře dovnitř | Verdikt |
 |---|---|---|---|
-| **Dražby** (exdrazby, portaldrazeb, okdrazby…) | **přesně** — ze zákona LV + parcela | dražebník, prohlídky vypsané | ⭐⭐⭐ nejlepší poměr |
 | **Reality** (Sreality, Bezrealitky, iDNES, S&W, Luxent…) | **přesný pin** (č. p. skryté; inzerent může rozmazat na ulici/čtvrť) | makléř — *chce* být kontaktován | ⭐⭐⭐ |
 | **Airbnb / Booking správci** | přibližně (kruh) → přesně po kontaktu | správce 20–200 jednotek = jeden telefonát, mnoho interiérů | ⭐⭐⭐ |
 | **prazdnedomy.cz** | adresa + GPS | majitel často neznámý → přes obec / katastr | ⭐⭐ |
@@ -216,13 +215,10 @@ Totéž pro `earch.cz`, Českou cenu za architekturu, Grand Prix architektů,
 Realitní server je **nejlepší DVEŘE v celém seznamu** a tvůj instinkt byl
 správný. Tři poznámky navíc:
 
-1. **Dražby > běžné inzeráty.** Dražba má ze zákona LV a parcelu → poloha
-   je jistá na metr, prohlídky jsou vypsané veřejně, a objekty jsou typicky ty,
-   které jinde nejsou: prázdné zámky, areály, fabriky, statky po exekuci.
-2. **Segment určuje kvalitu fotek** — luxus (S&W, Luxent, Lexxus, E&V) má
+1. **Segment určuje kvalitu fotek** — luxus (S&W, Luxent, Lexxus, E&V) má
    profesionálního fotografa a prázdný prostor; objem (Sreality, Bazoš) má
    mobil a nábytek. Ale objem má *počet*. Obojí.
-3. **Rozmazaná poloha není překážka.** Když inzerent rozmaže na ulici, makléř ti
+2. **Rozmazaná poloha není překážka.** Když inzerent rozmaže na ulici, makléř ti
    adresu řekne během minuty — chce prodat. Pro shortlist stačí pin na ulici,
    přesná adresa se dotáhne jedním hovorem.
 
@@ -399,9 +395,7 @@ nejlepší fotky (profesionální fotograf, prázdný prostor, denní světlo).
 - **Komerční / industriál:** 108 Real Estate, CBRE, Cushman & Wakefield, Colliers,
   Knight Frank, JLL, Procházka & Partners, Naxos
   *(tento blok se překrývá s tvým skillem `reality-kladno` — sdílet harvester)*
-- **Dražby ⭐** — sem se dostanou objekty, které nikde jinde nejsou: prázdné
-  zámky, areály, brownfieldy. `exdrazby.cz`, `drazby.net`, `portaldrazeb.cz`,
-  `okdrazby.cz`, `verejnedrazby.cz`
+- ~~Dražby~~ — **vyřazeno na žádost (2026-09-18)**
 - **CzechInvest brownfieldy ⭐** — národní databáze průmyslových areálů
 
 ### Tier 4 — krátkodobé pronájmy (Airbnb ekosystém)
@@ -473,6 +467,133 @@ Automatizovaný sběr z Facebooku porušuje jeho podmínky užití (jistota: vys
 **Dráha B: ty přihlášený, rychlostí člověka, já čtu obrazovku.** U veřejných
 Stránek je to navíc procházení veřejného obsahu, ne obcházení přihlášení.
 Fotky lidí = osobní údaje, do decku nepatří (GDPR, §8).
+
+### Tier 7 — HISTORIE: hrady, zámky, mlýny, kostely, vesnice (doplněno 2026-09-18)
+
+Doporučení, na které ses ptal. Řazeno podle motivů z tvého master promptu.
+U každého zdroje: **kde to je** + **dveře dovnitř** (§5.0).
+
+#### Doporučení č. 1 — nech si motivy předtřídit státem
+
+NPÚ už za tebe udělal tu nejdražší práci: **vybral místa bez moderních rušivých
+prvků a dal jim právní status.** V Památkovém katalogu (otevřená data, `ODVOZENO`)
+jsou to filtrovatelné kategorie:
+
+| Kategorie NPÚ | Kolik | = motiv z master promptu |
+|---|---|---|
+| **Vesnické památkové rezervace (VPR)** ⭐⭐ | ~60 | *Vesnice* — celý soubor chráněný, žádné novostavby v záběru |
+| **Vesnické památkové zóny (VPZ)** ⭐ | ~200 | *Vesnice / statek* — mírnější režim, víc variant |
+| **Městské památkové rezervace (MPR)** ⭐⭐ | 40 | *Podhradí / městečko* |
+| **Městské památkové zóny (MPZ)** | ~250 | totéž, širší výběr |
+| **Krajinné památkové zóny (KPZ)** ⭐⭐ | ~25 | *Krajina* — chráněná *kulturní krajina*: aleje, rybníky, cesty bez asfaltu (Lednicko-valtický areál, Žehušicko, Osovsko…) |
+
+Tohle je **nejlevnější longlist pro dobový film, jaký existuje** — poloha
+přesná (katastr), kurátorováno odborníky, licenčně otevřené. Začít tady.
+
+#### Doporučení č. 2 — Wikidata jako strukturovaná páteř
+
+Každý hrad, zámek, zřícenina, klášter, mlýn s článkem na Wikipedii má ve
+**Wikidata** záznam s **GPS, kategorií na Commons (= fotky s licencí), ID
+v Památkovém katalogu a odkazem na článek.** Jeden SPARQL dotaz = celá ČR.
+Plně otevřené, strojově čitelné, `ODVOZENO` s vysokou jistotou.
+
+Tohle je *join key*: Wikidata ID spojí NPÚ záznam + Commons fotky + Wikipedii
++ souřadnice do jedné karty lokace. Bez ručního párování.
+
+#### Doporučení č. 3 — motiv → specializovaná databáze
+
+Pro každý motiv existuje jedna komunitní databáze, kterou dělají nadšenci
+20 let a která je úplnější než cokoli oficiálního. Všechny mají GPS.
+
+| Motiv | Databáze | Rozsah | Status |
+|---|---|---|---|
+| **Mlýn** ⭐⭐⭐ | `vodnimlyny.cz` | **12 000+ objektů, ~190 000 fotek**, od 2012, stav objektu | `OVĚŘENO` (rozsah) |
+| **Hrad / zámek / zřícenina** | `hrady.cz` | největší CZ databáze hradů, zámků, tvrzí, kostelů; GPS, fotky, historie | `ODVOZENO` |
+| **Kostel / kaple / synagoga** ⭐ | `znicenekostely.cz` | poškozené a zničené sakrální stavby; kategorie „nejohroženější", „zbořené 1945–89" | `OVĚŘENO` |
+| **Industriál** ⭐ | `industrialnitopografie.cz` | VCPD FA ČVUT, **~7 000 objektů**, metodické záznamy s fotkami | `OVĚŘENO` |
+| **Zaniklá vesnice** | `zanikleobce.cz` | zaniklé obce a objekty, dobové i současné fotky | `ODVOZENO` |
+| **Prázdný dům** | `prazdnedomy.cz` | viz Tier 5 | `ODVOZENO` |
+| **Drobná památka** (kříž, boží muka, kaplička) | `drobnepamatky.cz` | pro krajinný detail v záběru | `NEOVĚŘENO` |
+| **Opevnění / bunkr** | `ropiky.net`, `bunkry.cz` | řopíky, pevnosti, linie 1938 | `NEOVĚŘENO` |
+
+Pro tvůj master prompt je **vodnimlyny.cz zásadní** — motiv *Mlýn* tam má
+8 povinných variant a databáze v `lokace_database.md` jich zná ~15. Tady jich
+je dvanáct tisíc.
+
+#### Doporučení č. 4 — dveře k hradům a zámkům
+
+| Vlastník | Kolik | Dveře |
+|---|---|---|
+| **NPÚ** (státní) | ~100 hradů a zámků | **oficiálně pronajímá pro filmování** — `npu.cz/cs/hrady-a-zamky`, jeden proces, jeden ceník (`OVĚŘENO`) |
+| **Soukromí majitelé** | stovky | Asociace majitelů hradů a zámků — jeden kontakt na sdružení (`NEOVĚŘENO` — dvě hledání, nic; **nestavět na tom, dokud neuvidím web**) |
+| **Obce / kraje** | desítky | přes obec, obvykle vstřícné |
+| **Církev** (kláštery) | desítky | přes řád / diecézi; Broumov, Plasy, Kladruby, Osek mají film track record |
+| **Skanzeny** ⭐ | ~15 | *hotová dobová vesnice* + instituce za ní: Rožnov, Přerov n. L., Kouřim, Veselý Kopec, Zubrnice, Strážnice |
+
+#### Doporučení č. 5 — najít, co zmizelo: historické mapové vrstvy
+
+Kombinace tří vrstev najde mlýn, cestu nebo rybník, který dnes není na žádné
+mapě — ale na místě ještě může stát:
+
+1. **Císařské otisky stabilního katastru (1826–43)** — archiv ČÚZK; každý
+   mlýn, každá stodola, každá cesta. Georeferencované.
+2. **Vojenské mapování (mapire.eu / Arcanum)** — 1., 2., 3. mapování
+   habsburské monarchie, georeferencované, překryv s dnešní mapou.
+3. **Archivní ortofoto ČÚZK** (Tier 2) — kontrola, co z toho ještě stojí.
+
+Postup: stabilní katastr ukáže mlýn u potoka → archivní ortofoto 1950s ukáže,
+že tam ještě byl → dnešní ortofoto ukáže ruinu v lese → vodnimlyny.cz potvrdí
+stav → jedeš. To je způsob, jak najít *neokoukaný* mlýn.
+
+**Dobové fotky:** `fotohistorie.cz`, **eSbírky.cz** (portál sbírek českých
+muzeí, včetně fotografií — `NEOVĚŘENO`), Wikimedia Commons (historické
+kategorie).
+
+### Tier 8 — PŘÍRODA: les, potok, skály, krajina (doplněno 2026-09-18)
+
+#### Doporučení č. 6 — pár dveří pokrývá většinu krajiny
+
+Na rozdíl od domů má příroda **málo vlastníků**. Pět protistran = většina
+české krajiny, a každá má zavedený proces pro natáčení:
+
+| Vlastník / správce | Co spravuje | Proč je to důležité |
+|---|---|---|
+| **Lesy ČR** | ~45 % lesů | jeden proces pro natáčení v lese |
+| **Vojenské lesy a statky (VLS)** ⭐⭐ | Brdy, Libavá, Boletice, Hradiště, Březina | **obrovské prázdné krajiny bez jediné stavby** — nic podobného v ČR jinde není. Jeden kontakt. |
+| **AOPK ČR** — správy CHKO | 26 CHKO | vydávají výjimky pro natáčení; vědět dopředu = ušetřený týden |
+| **Správy národních parků** | Šumava, Krkonoše, Podyjí, České Švýcarsko | vlastní pravidla natáčení, přísnější |
+| **Povodí** (Vltavy, Labe, Ohře, Moravy, Odry) | řeky, jezy, přehrady | motiv *Potok / most / brod* |
+| **Správa jeskyní ČR** | 14 zpřístupněných jeskyní | jeden kontakt |
+
+#### Doporučení č. 7 — ÚSOP: najít i zjistit povolovací režim najednou
+
+**Ústřední seznam ochrany přírody (AOPK, `drusop.aopk.gov.cz` — `OVĚŘENO`)** je
+zákonný registr (z. 114/1992 Sb.) **všech** zvláště chráněných území, ptačích
+oblastí, evropsky významných lokalit a památných stromů — s **prostorovým
+vymezením (hranice)**, veřejně, s mapovým projektem nad různými podklady.
+
+Dvojí hodnota: (a) *najde* skály, rašeliniště, prales, meandry; (b) *řekne
+hned*, v jakém ochranném režimu jsou → jestli potřebuješ výjimku, a od koho.
+Pro produkci je (b) cennější než (a).
+
+#### Doporučení č. 8 — geotagované fotky z tras
+
+Pro přírodu nejlepší zdroj *reálného světla a sezóny s přesným GPS*:
+**Mapy.com trasy** a **Wikiloc** — turistické stopy s fotkami připnutými na
+bod trasy. Víš přesně, kde fotograf stál a kterým směrem se díval. Přesnější
+než fotka „u místa", protože není u POI, ale kdekoli na cestě — tedy i uprostřed
+lesa, kde žádný POI není.
+
+#### Doporučení č. 9 — geologie, lomy, jeskyně, stromy
+
+- **Česká geologická služba** — databáze významných geologických lokalit
+  (skalní města, lomy, pískovce) s GPS (`ODVOZENO`)
+- **Lomy** — aktivní i opuštěné; obří industriální krajiny. Registr ČGS +
+  ortofoto ČÚZK (lom je shora nepřehlédnutelný)
+- **Památné stromy** (AOPK) — konkrétní staleté stromy s GPS; motiv „ten jeden
+  strom na kopci"
+- **Rozhledny a vyhlídky** — `rozhledny.cz`, Mapy.com vrstva; pro *establishing
+  shots* krajiny (`NEOVĚŘENO`)
 
 ### Tier 6 — architektura
 
