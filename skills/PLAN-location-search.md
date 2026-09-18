@@ -159,6 +159,79 @@ je. Kritická cesta tedy blokovaná není.
 Tvůj seznam beru celý. Doplňuji o to, co mi v něm chybělo — a tam je podle mě
 největší okamžitý zisk (řádky označené ⭐).
 
+### 5.0 Třídicí klíč: „VÍME, KDE TO JE?" (doplněno 2026-09-18)
+
+Pavel: *„musíme vědět, kde to je — to je důležité."* Souhlas, a je to klíč,
+kterým se má třídit **každý** zdroj, ne jen urbex. Fotka bez polohy je pro
+produkci nula: nejde tam jet, nejde zjistit majitele, nejde spočítat dojezd.
+
+Druhá osa hned za ní: **je tam někdo, kdo nás chce pustit dovnitř?**
+
+| Zdroj | Kde to je | Dveře dovnitř | Verdikt |
+|---|---|---|---|
+| **Dražby** (exdrazby, portaldrazeb, okdrazby…) | **přesně** — ze zákona LV + parcela | dražebník, prohlídky vypsané | ⭐⭐⭐ nejlepší poměr |
+| **Reality** (Sreality, Bezrealitky, iDNES, S&W, Luxent…) | **přesný pin** (č. p. skryté; inzerent může rozmazat na ulici/čtvrť) | makléř — *chce* být kontaktován | ⭐⭐⭐ |
+| **Airbnb / Booking správci** | přibližně (kruh) → přesně po kontaktu | správce 20–200 jednotek = jeden telefonát, mnoho interiérů | ⭐⭐⭐ |
+| **prazdnedomy.cz** | adresa + GPS | majitel často neznámý → přes obec / katastr | ⭐⭐ |
+| **CzechInvest brownfieldy** | adresa | vlastník uvedený v záznamu | ⭐⭐ |
+| **NPÚ Památkový katalog** | přesně, vazba na katastr | vlastník v záznamu (stát / obec / soukromý) | ⭐⭐ |
+| **filmovamista.cz** | GPS na mapě | žádné — ale už se tam točilo = víme, že to jde | ⭐⭐ |
+| **Archiweb / earch / ČCA** | **adresa/lokalita v záznamu** (ověřeno) — dohledatelné | majitel nechtěl být nalezen → **jít přes architekta** (viz níže) | ⭐⭐ |
+| **Mapy.com / Google fotky u míst** | GPS — fotka je *připnutá* k místu | žádné, ale je to veřejné místo | ⭐⭐ |
+| **Wikimedia geosearch** | GPS (když otagováno) | žádné | ⭐ |
+| **Regionální film offices** | lokalita (`NEOVĚŘENO`) | kancelář zprostředkuje | ⭐⭐ pokud se ověří |
+| **FB urbex Stránky** | **záměrně skryto** | žádné | ⭐ jen s křížením přes prazdnedomy (§Tier 5) |
+| **Instagram** | většinou nic / obecný tag | žádné | ⭐ |
+| **Pinterest** | **nic, ani původ** | žádné | ✗ **vyřadit** — mood bez stopy |
+
+#### Dvě rodiny zdrojů
+
+**DVEŘE** — je tam protistrana, která *chce* být nalezena a má adresu i klíče:
+reality, dražby, správci pronájmů, brownfieldy. Tohle je produkční kvalita:
+fotka + adresa + kontakt + motivace. **Tady má být těžiště objemu.**
+
+**VÝLOHY** — krása bez cesty dovnitř: Instagram, FB urbex, Pinterest. Nikdy
+nejsou zdroj shortlistu; nanejvýš mood, a Pinterest ani to (nulová provenance).
+
+**Mezi tím: JMENOVANÉ STAVBY** — Archiweb, NPÚ, filmovamista. Poloha se
+dohledá, ale dovnitř se musí vyjednat za studena.
+
+#### Archiweb — rada, na kterou ses ptal
+
+Archiweb je nejlepší zdroj **současné** architektury v ČR a poloha v něm je
+(adresa/lokalita u záznamu). Problém není *kde*, ale *jak dovnitř*: jsou to
+většinou soukromé rodinné domy, jejichž majitel nikdy neřekl „natáčejte u mě".
+
+**Dveře = architekt.** Každý záznam má autora. Ateliér (a) svou realizaci rád
+uvidí ve filmu, (b) má na majitele kontakt a důvěru, (c) zná další své domy,
+které na webu nejsou. Jeden e-mail ateliéru otevře tři domy. Archiweb tedy
+používat jako **index ateliérů podle typu stavby**, ne jako sklad fotek.
+
+Totéž pro `earch.cz`, Českou cenu za architekturu, Grand Prix architektů,
+**Slavné vily** (mají adresy). Pro *starou* architekturu je ale silnější NPÚ —
+úplnost místo kurátorského výběru.
+
+#### Reality — rada, na kterou ses ptal
+
+Realitní server je **nejlepší DVEŘE v celém seznamu** a tvůj instinkt byl
+správný. Tři poznámky navíc:
+
+1. **Dražby > běžné inzeráty.** Dražba má ze zákona LV a parcelu → poloha
+   je jistá na metr, prohlídky jsou vypsané veřejně, a objekty jsou typicky ty,
+   které jinde nejsou: prázdné zámky, areály, fabriky, statky po exekuci.
+2. **Segment určuje kvalitu fotek** — luxus (S&W, Luxent, Lexxus, E&V) má
+   profesionálního fotografa a prázdný prostor; objem (Sreality, Bazoš) má
+   mobil a nábytek. Ale objem má *počet*. Obojí.
+3. **Rozmazaná poloha není překážka.** Když inzerent rozmaže na ulici, makléř ti
+   adresu řekne během minuty — chce prodat. Pro shortlist stačí pin na ulici,
+   přesná adresa se dotáhne jedním hovorem.
+
+Harvester pro reality **sdílet s `reality-kladno`** — už na Sreality/Bezrealitky
+umí; liší se jen filtr (industriál → cokoliv) a výstup (výnos → karta lokace).
+
+**Pravidlo do rubriky (§6, §7):** kandidát bez polohy alespoň na úrovni ulice
+**nejde do decku.** Bucket „poloha neznámá" = mood, ne shortlist.
+
 ### Tier 0 — filmové databáze (lokační agentury viz korekce níže)
 
 Tohle je kategorie, kterou jsem v první verzi plánu podcenil. Jsou to weby
