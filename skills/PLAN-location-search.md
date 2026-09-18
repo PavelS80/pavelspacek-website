@@ -384,13 +384,73 @@ oficiálního API u Sreality. Vše se ověří v F3/F4 přímým procházením.
 
 ## 11. Otevřená otázka — blokuje F1
 
-Abych postavil fotografický standard na tvém vkusu a ne na svých domněnkách,
+Zodpovězeno — viz §12. Zbývá potvrdit, jestli HTML decky existují lokálně na Macu,
+nebo jestli jedeme ze seed setu nalezeného na Drivu.
 potřebuji **seed set**. Ptám se na jednu věc: *co z toho máš po ruce?*
 
 Varianty: hotové decky (LONGLIST/SHORTLIST HTML) · složka fotek, které prošly ·
 odmítnuté návrhy (ty jsou cennější než schválené) · konkrétní lokace jako
 referenční příklad · nemám nic → postavím standard z první verze a doladíme za
 běhu.
+
+---
+
+## 12. Seed set — co je reálně k dispozici (ověřeno 2026-09-18)
+
+Odpověď zněla "hotové decky (HTML)". **Na Google Drivu žádné HTML decky nejsou** —
+`LONGLIST_*.html` ani `SHORTLIST_*.html` neexistují ani na Drivu, ani v tomto
+kontejneru. Buď jsou lokálně na Macu, nebo zatím nevznikly. Co ale na Drivu je,
+je pro seed **vhodnější**:
+
+### A. Schválené výběry — pozitivní exempláře (nejvyšší hodnota)
+
+Dokumenty, kde už proběhl výběr a šly ven klientovi:
+
+| Soubor | Velikost | Proč je cenný |
+|---|---|---|
+| `Vraždy v kraji 2_vyber lokaci.pdf` | 67 MB | doslova "výběr lokací" — prošlo sítem |
+| `Brothers Location summary 2205.pdf` | 41 MB | location summary pro produkci |
+| `FAVORITE LOCATIONS - ALLEGRO CZ.pdf` | 33 MB | "favorite" = explicitní schválení |
+| `004_VVK2_LOCATION_REŽIJNÍ_OBHLÍDKY 13.2.2026` | složka | režijní obhlídky = co prošlo až k režisérovi |
+
+### B. Vlastní recce fotky — baseline (~25 složek)
+
+Pod jedním rodičem je ~25 složek `location scout DDMMYYYY`, uvnitř podsložky
+pojmenované po lokaci. Příklad z `location scout 22022026`:
+`Radovka_pod_Vinici_Litomerice` · `Dum_Smetanova_Litomerice` ·
+`Byt_Palackeho_13_Litomerice`
+
+Tohle je **ground truth toho, jak vypadá tvoje vlastní fotka z obhlídky** — jak
+rámuješ prostor, co považuješ za hodné zdokumentování. Ideální kalibrace osy
+**Z (Záběr)** a **P (Čitelnost prostoru)**.
+
+⚠️ Rozlišit: recce fotka je *dokumentace*, ne *výběr*. Říká "takhle se fotí
+prostor", neříká "tahle lokace je dobrá". Pozitivní exempláře proto z A, kalibrace
+rámování z B.
+
+### C. Negativní exempláře — chybí
+
+To, co jsi zamítl, nikde uložené není. Vznikne až z první ostré dávky
+z internetu: každé tvoje NE = negativní exemplář. Prvních ~30 zamítnutí bude mít
+největší kalibrační hodnotu.
+
+### Důsledek pro plán: dvě korekce
+
+**1. Skill je přeperiodizovaný.** Master prompt i `lokace_database.md` jedou na
+15 motivů, které jsou skoro výhradně hrad / mlýn / les / podhradí — dobový
+a pohádkový film. Ale tvoje reálné čerstvé obhlídky jsou **byty, domy a měšťanská
+zástavba v Litoměřicích**. `location-web` proto **nesmí zdědit dobovou
+zaujatost** — motivová osa musí být otevřená: současný interiér, panelák,
+kancelář, industriál, byt, ulice. Jinak bude systém hledat hrady, když
+potřebuješ byt.
+
+**2. Web skill je chybějící polovina tvého vlastního master promptu.**
+V `MASTER_PROMPT_location_research_CZ_SK_v2.md`, bod 5, sis napsal:
+*"žádný LLM ti nedá 200 živých URL referenčních fotek bez halucinací"* — a vyřešil
+jsi to placeholdery `<!-- DOPLNIT FOTO -->`. To byl správný závěr pro model bez
+internetu. **`location-web` ty placeholdery zaplní** — reálnými, ověřenými
+fotkami s licenční stopou (§8). Tím se uzavírá smyčka, kterou jsi v v2 nechal
+otevřenou.
 
 ---
 
