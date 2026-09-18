@@ -159,39 +159,48 @@ je. Kritická cesta tedy blokovaná není.
 Tvůj seznam beru celý. Doplňuji o to, co mi v něm chybělo — a tam je podle mě
 největší okamžitý zisk (řádky označené ⭐).
 
-### Tier 0 — location libraries a filmové databáze ⭐ (doplněno 2026-09-18)
+### Tier 0 — filmové databáze (lokační agentury viz korekce níže)
 
 Tohle je kategorie, kterou jsem v první verzi plánu podcenil. Jsou to weby
 postavené přímo pro natáčení — ne realitní inzeráty, ne turistické fotky.
 
-**A. Location agentury / libraries** — majitel už *souhlasil s natáčením*.
-Fotky jsou dělané záměrně jako lokační: široké, čtou prostor, s praktickými údaji
-(výška stropu, proud, parkování). Přesně to, co rubrika v §6 chce.
+**A. Lokační agentury — ZAVŘENO.**
 
-**České lokační agentury** (ověřeno 2026-09-18). Jsou to tvoji konkurenti — ale
-jejich **veřejné galerie** jsou legitimní reference: ukazují, co v ČR existuje
-a co se dá zakontraktovat.
+**KOREKCE 2026-09-18.** V předchozí verzi jsem napsal, že veřejné galerie
+lokačních agentur jsou použitelná reference. **To bylo špatně** — a napsal jsem
+to, aniž bych jediný ten web viděl. Pavel to reklamoval, ověřeno:
 
-| Web | Poznámka |
-|---|---|
-| `lokacni.cz` | DíkyČau s.r.o., Táboritská 14, Praha 3; 10+ let; **archiv 100 000+ lokací**; člen Location Managers Guild International |
-| `locationservice.cz` | Location service s.r.o., kompletní lokační služby, veřejná sekce lokací |
-| `nwlocation.cz` | NW Location, lokační agentura |
-| `locaters.cz` | LOCATERS |
-| `66location.com` | lokační firma Praha |
-| Czech Film Locations | ~70 000 fotek, přes Czech Film Commission |
-| Finders | databáze lokací + eventové prostory |
+> **lokacni.cz:** *"Upon request they will send you location archive selection."*
 
-**Wikipedie: „Seznam českých filmových lokací"** — kurátorovaný seznam, dobrý
-výchozí bod a zadarmo licenčně čistý.
+Archiv se **neprochází — vyžádá se.** Stránka `lokacni.cz/registruj-lokaci.html`
+je pro majitele, kteří svou lokaci nabízejí, ne pro prohlížení. Žádná galerie.
 
-⚠️ UK agentury (Locationworks, 1st Option, Shootfactory, Lavish Locations)
-a marketplace (Giggster, Peerspace) **vyřazeny** — mimo rozsah ČR. Ponechávám je
-jen jako *vzor UX a datového modelu*, ne jako zdroj.
+**A je to strukturální, ne mezera k obejití.** Archiv **je** ten obchodní
+majetek. Lokační agentura, která svůj archiv zveřejní, rozdá produkt. Platí to
+pro všechny — lokacni.cz, locationservice.cz, nwlocation.cz, locaters.cz,
+66location.com. Nemá smysl u nich hledat cestu dovnitř.
 
-**Proč je to lepší než reality:** u realitního inzerátu musíš majitele teprve
-přesvědčit. Tady už řekl ano. A fotí se tam na prostor, ne na prodej —
-odpadá ultra-wide zkreslení a staging z §6.3.
+**Důsledek — padá i moje "největší přidaná hodnota".** Lokacni.cz (100 000+
+lokací) a Czech Film Locations (~70 000 fotek) jsem v Tier 1 označil jako
+nejcennější nález. Obojí jsou **komerční archivy pro klienty.** Ta čísla navíc
+pocházejí z vlastní prezentace firem v adresáři Czech Film Commission — nejsou
+ověřená, jsou to marketingová tvrzení.
+
+**Co z kategorie zbývá:** jména a existence lokací (index "co v ČR je"), ne
+fotky. Nízká hodnota. **Přesouvám z Tier 0 na konec priorit.**
+
+**Co tím naopak posiluje:** tvůj původní instinkt. Reality, Airbnb, Mapy.com,
+filmové kanceláře — tedy **veřejné zdroje, které chtějí být viděny** — jsou
+správná páteř. Moje "profesionální" vrstva byla nejslabší část návrhu.
+
+Evidované, ale **bez fotek**: lokacni.cz · locationservice.cz · nwlocation.cz ·
+locaters.cz · 66location.com · Czech Film Locations · Finders.
+Použitelné nanejvýš jako index jmen, ne jako obrazový zdroj.
+
+**Zbývá jediné použitelné z této větve:** Wikipedie „Seznam českých filmových
+lokací" — kurátorovaný, veřejný, licenčně čistý.
+
+⚠️ UK agentury a marketplace (Giggster, Peerspace) **vyřazeny** — mimo rozsah ČR.
 
 **B. Databáze filmových míst** — kde se co natáčelo.
 
@@ -206,7 +215,39 @@ odpadá ultra-wide zkreslení a staging z §6.3.
 divácky spálená. Do rubriky proto přidat inverzní faktor — *jak moc je to
 okoukané*. Pro "hledáme nové varianty" je to přesně ten filtr, co chybí.
 
-### Tier 1 — profesionální lokační databáze ⭐ (největší přidaná hodnota)
+### ⚠️ Disciplína ověřování — poučení z této chyby
+
+Z tohoto prostředí **nenačtu ani jeden z těch webů** (§4.1). Každé tvrzení o tom,
+co je za URL, je proto odhad, dokud to někdo neotevře. Tuhle chybu jsem udělal
+u lokačních agentur a nesmí se opakovat.
+
+**Pravidlo:** každý zdroj v §5 nese status a do harvesteru nesmí nic, co není
+`OVĚŘENO`.
+
+| Status | Znamená |
+|---|---|
+| `OVĚŘENO` | někdo tu stránku otevřel a viděl fotky |
+| `ODVOZENO` | plyne z povahy zdroje (otevřená data, Wikimedia) — vysoká jistota, ale neviděno |
+| `NEOVĚŘENO` | domněnka. Nestavět na tom. |
+| `ZAVŘENO` | ověřeno, že fotky veřejné nejsou |
+
+**Aktuální stav:**
+
+- `ZAVŘENO` — lokacni.cz, locationservice.cz, nwlocation.cz, locaters.cz,
+  66location.com, Czech Film Locations, Finders
+- `ODVOZENO` — NPÚ otevřená data, Wikimedia Commons, Mapy.com API (mají
+  dokumentované veřejné API), filmovamista.cz, prazdnedomy.cz, reality portály
+  (veřejný inzerát je jejich obchodní model)
+- `NEOVĚŘENO` — **všech 11–12 regionálních filmových kanceláří.** Jsou
+  veřejnoprávní a jejich účelem je lákat produkce, takže veřejná databáze dává
+  smysl — ale je to přesně ten typ úvahy, kterou jsem si u agentur vyvrátil.
+  Ověřit první, než na nich cokoli postavím.
+
+**Nejlevnější způsob ověření:** otevřít je u sebe v Chrome a říct mi, co vidíš.
+Deset minut práce ušetří postavení harvesteru na prázdno.
+
+
+### Tier 1 — veřejné a veřejnoprávní zdroje (po korekci hlavní páteř)
 
 Tohle jsou databáze postavené přesně pro tvůj účel, s GPS, kontaktem na majitele
 a často i s informací o film-friendly historii. Veřejně dostupné.
