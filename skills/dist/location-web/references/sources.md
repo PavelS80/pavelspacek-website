@@ -3,7 +3,26 @@
 Sloupce: **Kde to je** (přesnost polohy) · **Dveře** (kdo nás pustí dovnitř) · **Status** (viz `source_policy.md`) · **Dráha** · **Tier** licence.
 Do harvesteru jen `OVĚŘENO` / `ODVOZENO`. `NEOVĚŘENO` = nejdřív otevřít u sebe a potvrdit.
 
-## 1. DVEŘE — protistrana chce být nalezena (těžiště objemu)
+## 0. SOUČASNÝ REŽIM — firemní adresáře a instituce (ověřeno 2026-09-18 na VVK2)
+
+Pro krimi/drama v reálném městě je tohle **primární** zdroj. Provozovna = adresa + telefon
++ fotky + otevírací doba + majitel, který zvedne telefon.
+
+| Zdroj | Kde to je | Dveře | Status | Dráha | Tier |
+|---|---|---|---|---|---|
+| **firmy.cz** — kategorie × obec (např. 59 autoservisů Litoměřice; detail: kontakt, telefon, e-mail, web, adresa, otevírací doba) | **přesně** | majitel provozovny | **OVĚŘENO** (detail provozovny vrací i WebSearch) | A-lite / B | T2 |
+| **Mapy.com firmy / POI** | přesně | telefon v záznamu | ODVOZENO | B | T2 |
+| **Google Maps POI** (+ uživatelské fotky interiéru!) | přesně | telefon v záznamu | ODVOZENO | B | T2 |
+| idatabaze.cz, portalridice.cz (autoservisy) | přesně | majitel | ODVOZENO | A-lite | T2 |
+| **Instituce** — soud, nemocnice, policie, ZŠ/školka, OÚ, sokolovna, kulturní dům | přesně | tiskový mluvčí / tajemník / ředitel | ODVOZENO | A-lite / B | T2 |
+| **JZD, statky, agroslužby** — obchodní rejstřík (NACE 01) + Mapy.com | přesně | jednatel | ODVOZENO | A-lite / B | T2 |
+| **Chatové osady** — vrstva Mapy.com, obecní web | obec / přesně | osadní výbor / obec | ODVOZENO | B | T2 |
+| **Sreality byt / dům v okrese základny** — bytovka s balkónem, řadovka, činžák, RD | pin | makléř | ODVOZENO | A-lite / B | T2 |
+
+**A-lite** = `WebSearch` (jde přes Anthropic, ne přes egress): u firmy.cz a specializovaných
+databází vrací **detail objektu**; u Sreality jen filtrovací URL → fronta pro dráhu B.
+
+## 1. DVEŘE — protistrana chce být nalezena
 
 | Zdroj | Kde to je | Dveře | Status | Dráha | Tier |
 |---|---|---|---|---|---|

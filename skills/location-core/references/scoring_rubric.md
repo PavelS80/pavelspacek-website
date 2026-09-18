@@ -13,6 +13,10 @@ Každá dimenze 1–10. Celkové skóre = vážený průměr. Zaokrouhlit na 1 d
 | Riziko (inverzní) | **Risk** | 10 % | vysoké (permits, sezóna, turisti) | střední | nízké, kontrolovatelné |
 | **Přístup k objektu** | **Acc** | 15 % | nikdo, koho oslovit; majitel neznámý | majitel dohledatelný, za studena | protistrana *chce* být oslovena (na prodej/pronájem, NPÚ pronájem, film office) |
 
+**⚠️ Váhy jsem změnil oproti master promptu v2 bez schválení:** Prak 25→20, Aut 20→15,
+Risk 15→10, aby vzniklo 15 % pro Acc. **Pavel rozhodne.** Alternativa: váhy původní
+(30/25/20/10/15) a Acc jako samostatná brána (Acc < 4 = nejde do shortlistu). Obojí drží Vis 30.
+
 **Acc je nová dimenze** (2026-09). Měří to, co databáze neumí a internet ano:
 jak snadné je se tam dostat. Byt na prodej = 9. Soukromý zámek bez kontaktu = 2.
 Hrad NPÚ s oficiálním pronájmem pro film = 8.
@@ -23,7 +27,9 @@ Total = (Vis×3 + Prak×2 + Aut×1.5 + Dost×1 + Risk×1 + Acc×1.5) / 10
 ```
 Součet vah = 10. Kontrola: 3+2+1.5+1+1+1.5 = 10 ✓
 
-## Korekce za okoukanost (jen location-web)
+## Korekce za okoukanost — jen v režimu `nove`
+Přepínač `rezim: nove | overene`. Producent, který chce *prověřenou* film-friendly lokaci,
+okoukanost nepenalizuje. Výchozí pro location-web je `nove`.
 Podle počtu titulů na `filmovamista.cz` u téže lokace:
 - ≥ 10 titulů → **−0.5**
 - ≥ 20 titulů → **−1.0**

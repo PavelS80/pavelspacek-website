@@ -5,8 +5,20 @@ description: Internetové vyhledávání NOVÝCH filmových lokací v České re
 
 # location-web — nové lokace z internetu (ČR)
 
-Cíl: z briefu (text nebo referenční obrázek) najít lokace v ČR, které **nejsou v naší
-databázi**, mají **známou polohu** a **dveře dovnitř**, a k nim fotky, které **čtou prostor**.
+Cíl: z briefu najít lokace v ČR, které **nejsou v naší databázi**, mají **známou polohu**
+a **dveře dovnitř**, a k nim fotky, které **čtou prostor**.
+
+## Dva režimy — výchozí je SOUČASNÝ
+Ověřeno na reálné práci (VVK2 = Vraždy v kraji 2, 2026): kadeřnictví, obecní úřad, bytovka
+s balkónem, řadovka, činžák, hospoda, JZD, autoservis, soud, nemocnice, sběrný dvůr, chatová
+osada, les u města — vše v jednom městě a do 30 km, vše s adresou a telefonem na majitele.
+
+| Režim | Kdy | Vstup | Výstup |
+|---|---|---|---|
+| **`soucasny`** (výchozí) | seriál / krimi / drama v reálném městě | **základna** (město) + **seznam scén** (díl → scéna → typ místa) + **rádius** (min dojezdu) | kandidáti **seskupení podle dojezdu** do denních plánů — formát tvých „Režijních obhlídek" |
+| `dobovy` | pohádka / historie | motivy (hrad, mlýn, podhradí…) | longlist po motivech (jako location-db) |
+
+Nezačínej hledat hrad, dokud brief neřekne hrad.
 
 ## 0. Načti jádro a zjisti dráhu
 Načti `scoring_rubric.md`, `photo_standard.md`, `karta_lokace.md`, `source_policy.md`, `html_template.md`.
@@ -23,7 +35,11 @@ Odečti vše z `location-db/references/lokace_database.md` → štítek `ZNÁMÁ
 
 ## 3. Fan-out podle rodin zdrojů (`references/sources.md`)
 Jen zdroje se statusem `OVĚŘENO` / `ODVOZENO`. Pořadí podle **kde-to-je + dveře**:
-1. **DVEŘE** — reality, správci krátkodobých pronájmů, NPÚ pronájem, film offices, stránky měst
+0. **SOUČASNÝ REŽIM NEJDŘÍV: firemní adresáře** — firmy.cz, Mapy.com firmy, Google Maps POI.
+   Každá hospoda, autoservis, kadeřnictví, veterina, večerka = adresa + telefon + fotky +
+   otevírací doba. Instituce (soud, nemocnice, škola, OÚ, policie) → tiskový mluvčí / tajemník.
+   JZD a statky → rejstřík + Mapy.com. Chatové osady → vrstva Mapy.com.
+1. **DVEŘE** — reality (byt/dům v okrese základny), správci krátkodobých pronájmů, NPÚ pronájem, film offices, stránky měst
 2. **STÁTEM PŘEDTŘÍDĚNÉ** — NPÚ kategorie (VPR/VPZ/MPR/KPZ), ÚSOP, Wikidata
 3. **MOTIV → DATABÁZE** — vodnimlyny, znicenekostely, industrialnitopografie, prazdnedomy, zanikleobce
 4. **MAPY** — ČÚZK ortofoto (dispozice) → Mapy.com Static Panorama (úroveň očí) → uživatelské fotky
@@ -42,13 +58,17 @@ Tvrdé filtry → pHash dedup → Q na 5 osách → typ fotky. **Z ≤ 3 = pryč
 6 dimenzí včetně **Acc**. Okoukanost z `filmovamista.cz` (−0.5 / −1.0).
 
 ## 7. Výstup
+- **Režim `soucasny`:** navíc **návrh denního plánu obhlídek** — kandidáti seřazení do dnů podle
+  dojezdu ze základny, s časy a přejezdy (vzor: `Režijní obhlídky DD.M.`), aby producent viděl
+  rovnou počet company moves.
 - HTML deck podle `html_template.md` — u každé fotky **licenční tier** a **zdroj**, u lokace **GPS + přesnost + dveře**.
 - `sources.json` podle schématu v `karta_lokace.md`.
 - Ulož `WEBSEARCH_lokaci_{projekt}_v{N}.html` + `.json`. Doručení podle prostředí (SendUserFile / artifact / present_files).
 - Samostatná sekce **"Fronta pro dráhu B"** — co má uživatel otevřít u sebe a proč.
 
 ## 8. Zpětná vazba
-Každé ANO/NE uživatele k fotce → `feedback.jsonl` (viz `photo_standard.md` §6). Neptej se na to zvlášť;
+Každé ANO/NE uživatele k fotce → `skills/data/feedback.jsonl` v repu (ne do synced složky —
+ta se při syncu přepíše). Viz `photo_standard.md` §6. Neptej se na to zvlášť;
 zapiš, když to řekne.
 
 ## Nikdy

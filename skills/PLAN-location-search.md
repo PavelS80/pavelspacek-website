@@ -905,6 +905,59 @@ i architektovi; konkrétní jména doplní Pavel).
 **Co blokuje další krok:** (1) síťová politika prostředí, nebo dráha B z Macu; (2) seed
 fotografického standardu z pěti PDF na Drivu — Drive je dostupný, jde spustit hned na „ano".
 
+## 14. „Ultrathink" — co se změnilo, když jsem se podíval na reálnou práci (2026-09-18)
+
+### 14.1 Nález, který mění projekt
+Režijní obhlídky VVK2 (= *Vraždy v kraji 2*), šest textových PDF, 23.2.–13.3.2026, všechny přečteny.
+Motivy: kadeřnictví · železářství · obecní úřad · železniční přejezd · les (houby / dodávka) · silnice ·
+ulice (dealer) · cesta podél řeky · chatová osada · rodinný dům · dům u trati · byt (bytovka s balkónem,
+činžák, školníkův byt) · řadovka · restaurace (se zahrádkou, sklep) · hospoda · kavárna · bistro · večerka ·
+soukromý klub · parkoviště za městem · dispečink / ředitelství (banka) · krajský soud · policejní stanice ·
+věznice (sokolovna) · sportovní hala / tělocvična / kulturní dům · školka · ZŠ · nemocnice (revmatologie) ·
+veterina · JZD / statek / agroslužby · autoservis / autodílna · kovošrot / sběrný dvůr · opuštěná budova · tunel.
+**Vše Litoměřice + do 30 km. Vše s adresou; často telefon na majitele.**
+
+→ Skill přestavěn: **výchozí režim `soucasny`**, vstup = *základna + seznam scén + rádius*, výstup
+seskupený podle dojezdu **do denního plánu obhlídek** (formát tvých PDF). Zdroj č. 0 = **firemní
+adresáře** (firmy.cz ověřeno: 59 autoservisů Litoměřice s telefonem a otevírací dobou). Dobový režim na vyžádání.
+
+### 14.2 Seed na úrovni lokací — scout složky × režijní obhlídky
+
+| Scout složka (datum) | Režisér viděl | Verdikt | Jistota |
+|---|---|---|---|
+| Řadovky Raisová 18/20/22 (4.3.) | 6.3. ✓ | **SCHVÁLENA** | high |
+| Činžovní dům B. Němcové 925/6 (4.3.) | 6.3. ✓ | **SCHVÁLENA** | high |
+| Chatová oblast Kotlík (10.2.) | 13.3. ✓ | **SCHVÁLENA** | high |
+| Nemocnice Litoměřice (25.2.) | 4.3. ✓ Revmatologie | **SCHVÁLENA** | high |
+| Sběrný dvůr Kovošrot (25.2.) | 4.3. ✓ | **SCHVÁLENA** | high |
+| Řadovka Pod Vinicí 332 (22.2.) | řadovky = Raisová | **ZAMÍTNUTA** | high |
+| Byt Palackého 13 (22.2.) | byty = Alšova 17, Pražská 12/89, Novobradská, Rooseveltova | **ZAMÍTNUTA** | high |
+| Dům Langa Jasanova 2258 (4.3.) | Langa = Kard. Trochty 530/11, Kozinova 10 | **ZAMÍTNUTA** | high |
+| Autoservisy Litoměřice (18.2.) | autoservis = Polepy 210 („nejlepší varianta"), Polepy 35 | **ZAMÍTNUTA** | high |
+| Dům Smetanova (22.2.) · Vila Neumannova (25.2.) | nikde | ZAMÍTNUTA | medium |
+| Hospoda Koliba · U dědka Sulejovice (25.2.) | restaurace = Kamýk 45, Polepy 185, zámecký sklep | ZAMÍTNUTA | medium |
+| Kavárny Káva s párou, Kafe doma · Bistro Habaňeros (10.2.) | nikde | ZAMÍTNUTA | medium |
+| Okresní soud (18.2.) ↔ „Krajský soud Žižkova 800/6" · Dispečink nádraží ↔ „Ředitelství ČS" · RD Podsedice 105 · Byt Litoměřice (10.2.) | nejasné | ? | — |
+
+### 14.3 Co jsem viděl na fotkách (5 ks, 2 lokace) — v `photo_standard.md` §5
+- Máš pevnou **recce gramatiku** (ze dveří/rohu, wide, podlaha→strop, k oknu; exteriér s kontextem).
+- **Brána Q byla špatně** — recce fotka se hodnotí jen na Z + P. Opraveno per typ.
+- Kvalita fotek zamítnuté a schválené lokace je **stejná** → rozdíl je v lokaci:
+  **autenticita a charakter > úklid** (hypotéza, medium; jeden pár).
+
+### 14.4 Technika — co jde a co ne
+- PDF „výběr lokací" (67 MB) je čistě obrazové, `read_file_content` vrátí prázdno; base64 přes MCP
+  neprojde. **Mrtvá cesta.**
+- **JPEGy ze scout složek jdou stáhnout po jednom** (0,2–1 MB → soubor na disku → dekódovat → vidět).
+  **To je cesta k seedu.** 5 hotových, cíl 12 + 12.
+- `WebSearch` = **dráha A-lite**: vrací detail objektu u firmy.cz a specializovaných databází
+  (vodnimlyny detail/303), u Sreality jen filtrovací URL. Není to harvester, ale staví frontu pro B.
+- Fotky se do repa **nedávají** (soukromé interiéry, dětský pokoj). Jen Drive ID.
+
+### 14.5 Věc, kterou jsem udělal bez schválení — rozhodni
+Změnil jsem **váhy rubriky** (Prak 25→20, Aut 20→15, Risk 15→10), aby vzniklo 15 % pro Acc.
+Alternativa: původní váhy + Acc jako brána. Viz `scoring_rubric.md`.
+
 ## Zdroje ověřené k 2026-09-18
 
 - Mapy.com REST API — https://developer.mapy.com/rest-api-mapy-cz/
