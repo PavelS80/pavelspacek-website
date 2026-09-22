@@ -6,11 +6,40 @@ synchronizaci přepisuje ze serveru — proto je kanonická kopie tady v repu.
 
 ## Obsah
 
-| Soubor | Kam patří ve skillu |
-|---|---|
-| `foto_zdroje.md` | `references/foto_zdroje.md` |
-| `fetch_commons_photos.py` | `scripts/fetch_commons_photos.py` |
-| `test_fetch_commons_photos.py` | zůstává tady, do skillu se nekopíruje |
+| Soubor | Kam patří ve skillu | Kde běží |
+|---|---|---|
+| `foto_zdroje.md` | `references/foto_zdroje.md` | — |
+| `fetch_commons_photos.py` | `scripts/fetch_commons_photos.py` | kdekoli se sítí |
+| `chrome_scout.py` | `scripts/chrome_scout.py` | **jen u tebe na počítači** |
+| `console_harvest.js` | `scripts/console_harvest.js` | konzole Chrome |
+| `test_*.py` | zůstávají tady, do skillu se nekopírují | — |
+
+`fetch_commons_photos.py` je vrstva 1 (Wikidata + Commons, volné licence).
+`chrome_scout.py` + `console_harvest.js` jsou vrstva 3 (přihlášený Chrome —
+Instagram, Facebook, Rajče, Google Maps, Mapy.cz). Rozdělení a pravidla
+popisuje `foto_zdroje.md`.
+
+## Vrstva 3 — co je potřeba
+
+Cloudová session ani chat to spustit nemůžou: nemají tvůj Chrome profil a
+egress policy jim IG/FB/Rajče/Mapy stejně blokuje. Spouštěj v Coworku
+s připojeným počítačem, nebo přímo v terminálu u sebe.
+
+```bash
+# bez instalace: console_harvest.js v konzoli → urls.json → sem
+python3 chrome_scout.py --urls urls.json --slug bouzov --out ./fotky/bouzov --confidence high
+
+# živě v tvém Chrome (asistovaně — ty klikáš, Enter sbírá)
+pip install playwright
+python3 chrome_scout.py --live --slug bouzov --out ./fotky/bouzov
+
+# Mapy.cz, plně automaticky, bez přihlášení
+playwright install chromium
+python3 chrome_scout.py --mapy 49.70417,16.89111 --slug bouzov --out ./fotky/bouzov
+```
+
+Pro `--live` musí být **všechen Chrome zavřený** — jinak je profil zamčený.
+Pokud se nespustí, zkus `--profile` s cestou ke kopii profilu.
 
 ## Instalace do skillu
 
@@ -36,14 +65,24 @@ Do decku dávej jen fotky z Commons, s uvedením autora.
 ## Test
 
 ```bash
-python3 test_fetch_commons_photos.py
+python3 test_fetch_commons_photos.py   # 11 testů
+python3 test_chrome_scout.py           # 20 testů
 ```
 
-11 testů, bez sítě — API se nahradí fixturami. Ověřuje parsování odpovědí,
-filtry, pořadí podle rozlišení, pojmenování, `photos.csv` a `chrome_tier.md`.
+Oboje bez sítě — API i prohlížeč se nahradí. Ověřuje parsování odpovědí,
+výběr největší varianty ze `srcset`, dedupe podepsaných CDN URL, filtry,
+pojmenování, `photos.csv` a `chrome_tier.md`.
 
-**Co testy neověřují:** že živé Wikimedia API vrací přesně tvar z fixtur.
-Fixtury jsou psané podle dokumentace MediaWiki API, ne zachycené z ostrého
-volání — egress policy session, ve které skript vznikl, blokovala
-`www.wikidata.org` i `commons.wikimedia.org` (403 na CONNECT). První ostré
-spuštění v Coworku je tedy zároveň první skutečný integrační test.
+**Co testy neověřují:**
+
+- Že živé Wikimedia API vrací přesně tvar z fixtur. Fixtury jsou psané podle
+  dokumentace MediaWiki API, ne zachycené z ostrého volání — egress policy
+  session, ve které skripty vznikly, blokovala `www.wikidata.org`,
+  `commons.wikimedia.org`, `instagram.com`, `facebook.com`,
+  `rajce.idnes.cz` i `mapy.cz`.
+- Že DOM Instagramu a Facebooku vypadá tak, jak sběr předpokládá. Proto se
+  nikde nespoléhá na class names (ty jsou obfuskované a mění se), ale jen na
+  `document.images`, `srcset` a `naturalWidth`. I tak platí, že první běh
+  u tebe je první skutečný test.
+- Že se Playwright připojí na tvůj Chrome profil napoprvé. Zámek profilu je
+  nejčastější důvod, proč `--live` selže.

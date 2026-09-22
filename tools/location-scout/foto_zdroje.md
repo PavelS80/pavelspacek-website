@@ -58,10 +58,40 @@ Levné doplnění tam, kde Commons nemá "odkud to fotit".
 
 Místo v titulku článku = `confidence_mista: medium`, ne high.
 
-## Vrstva 3 — Chrome (ručně)
+## Vrstva 3 — Chrome (přihlášený, na vlastním počítači)
 
-Skript vygeneruje `chrome_tier.md` s předvyplněnými odkazy z GPS lokace.
-Pořadí podle výtěžnosti:
+**Nejde spustit v cloudu ani v chatu.** Vyžaduje tvůj Chrome s tvým
+přihlášením — tedy Cowork s připojeným počítačem, nebo terminál u tebe.
+
+Tři cesty, od nejjednodušší:
+
+```bash
+# A) Konzole prohlížeče — nic se neinstaluje
+#    Otevři stránku, proscrolluj, F12 → Console → "allow pasting" →
+#    vlož console_harvest.js → scoutSave()  → stáhne urls.json
+python3 chrome_scout.py --urls urls.json --out ./fotky/bouzov \
+    --slug bouzov --confidence high
+
+# B) Živě v Chrome s tvým profilem (pip install playwright)
+#    Ty klikáš a scrolluješ, Enter v terminálu sebere, co je na stránce
+python3 chrome_scout.py --live --slug bouzov --out ./fotky/bouzov \
+    --start-url "https://www.instagram.com/explore/locations/..."
+
+# C) Mapy.cz — bez přihlášení, plně automatické
+python3 chrome_scout.py --mapy 49.70417,16.89111 --slug bouzov --out ./fotky/bouzov
+```
+
+**Asistovaný sběr, ne crawler.** Skript nikdy sám nescrolluje, neklikne ani
+se nepřihlašuje — sbírá jen to, co máš právě načtené na obrazovce. Je to
+vědomé: automatizovaný průchod IG/FB je proti podmínkám služby a vede
+k dočasnému omezení účtu. Heslo se skriptu nikdy nedostane do ruky,
+protože se používá už přihlášený profil.
+
+**URL z IG/FB CDN jsou podepsané a vyprší** (řádově hodiny) — stahuj hned.
+403 nebo 410 při stahování znamená vypršelý podpis, ne chybu skriptu:
+seber URL znovu.
+
+Pořadí zdrojů podle výtěžnosti:
 
 1. **Mapy.cz → Panorama** — příjezdovka, podhradí, parkování, šířka cesty.
    Nenahraditelné pro produkční posouzení přístupu. Vrstva Letecká + historická
