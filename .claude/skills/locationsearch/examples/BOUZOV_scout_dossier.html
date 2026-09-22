@@ -1,0 +1,520 @@
+<title>Bouzov Scout Dossier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root{
+    color-scheme: dark;
+    --bg:#0a0e14; --bg-card:#131820; --bg-card-2:#1a2029;
+    --text:#e8e0d0; --text-dim:#a39880; --text-faint:#6f6857;
+    --accent:#c9a55a; --accent-bright:#e0b870;
+    --border:#2a323e;
+    --top:#d4a857; --backup:#6b8eb5; --wildcard:#b566a8;
+    --risk:#c95757; --ok:#6fa37d;
+    --display:"Fraunces",Georgia,"Times New Roman",serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:var(--sans); font-size:15px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding-inline:16px; padding-block:0 72px}
+  a{color:var(--accent-bright); text-decoration:none; border-bottom:1px solid rgba(201,165,90,.32)}
+  a:hover{border-bottom-color:var(--accent-bright)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent-bright); outline-offset:3px; border-radius:2px}
+
+  /* ---- hero ---- */
+  .hero{padding-block:56px 32px; border-bottom:1px solid var(--border)}
+  .eyebrow{
+    font-family:var(--mono); font-size:11px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--text-faint); margin:0 0 18px
+  }
+  h1{
+    font-family:var(--display); font-weight:600; font-size:clamp(40px,9vw,76px);
+    line-height:.98; margin:0; text-wrap:balance; letter-spacing:-.015em;
+  }
+  .sub{color:var(--text-dim); max-width:60ch; margin:16px 0 0; font-size:16px}
+  .slate{
+    display:flex; flex-wrap:wrap; gap:0 28px; margin-top:26px;
+    font-family:var(--mono); font-size:12.5px; color:var(--text-dim);
+  }
+  .slate b{color:var(--text); font-weight:500}
+
+  /* ---- generic section ---- */
+  section{padding-block:48px; border-bottom:1px solid var(--border)}
+  section:last-of-type{border-bottom:0}
+  h2{
+    font-family:var(--display); font-weight:600; font-size:28px;
+    margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .lede{color:var(--text-dim); margin:0 0 28px; max-width:64ch}
+
+  /* ---- note ---- */
+  .note{
+    background:var(--bg-card); border:1px solid var(--border);
+    border-left:3px solid var(--accent); border-radius:3px;
+    padding:18px 20px; margin-top:28px;
+  }
+  .note p{margin:0; color:var(--text-dim); font-size:14.5px}
+  .note p + p{margin-top:10px}
+  .note strong{color:var(--text)}
+
+  /* ---- location card ---- */
+  .card{background:var(--bg-card); border:1px solid var(--border); border-radius:4px; padding:26px}
+  .card-head{display:flex; flex-wrap:wrap; gap:14px; align-items:baseline; justify-content:space-between}
+  .card-title{font-family:var(--display); font-size:30px; font-weight:600; line-height:1.1}
+  .card-region{font-family:var(--mono); font-size:12px; color:var(--text-dim); margin-top:6px}
+  .tag{
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    padding:5px 11px; border-radius:2px; white-space:nowrap;
+  }
+  .tag-backup{background:rgba(107,142,181,.14); color:var(--backup); border:1px solid rgba(107,142,181,.4)}
+  .card p.char{margin:18px 0 0; max-width:66ch}
+
+  .pros-cons{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:24px}
+  .pros-cons ul{margin:8px 0 0; padding-left:18px}
+  .pros-cons li{margin-bottom:7px; font-size:14.5px; color:var(--text-dim)}
+  .pros-cons li::marker{color:var(--text-faint)}
+  .label{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--text-faint);
+  }
+  .pros .label{color:var(--ok)} .cons .label{color:var(--risk)}
+
+  .scores{margin-top:28px; padding-top:22px; border-top:1px solid var(--border)}
+  .score-row{display:grid; grid-template-columns:44px 1fr 38px; gap:12px; align-items:center; margin-bottom:9px}
+  .score-label{font-family:var(--mono); font-size:11px; color:var(--text-dim); letter-spacing:.06em}
+  .score-bar{height:5px; background:var(--bg-card-2); border-radius:3px; overflow:hidden}
+  .score-fill{height:100%; background:var(--accent); border-radius:3px}
+  .score-value{font-family:var(--mono); font-size:12.5px; text-align:right; font-variant-numeric:tabular-nums}
+  .total{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-top:18px; padding-top:16px; border-top:1px solid var(--border);
+  }
+  .total .l{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-faint)}
+  .total .v{font-family:var(--display); font-size:34px; font-weight:600; color:var(--accent-bright); font-variant-numeric:tabular-nums}
+  .formula{font-family:var(--mono); font-size:11.5px; color:var(--text-faint); margin-top:10px; overflow-x:auto}
+
+  /* ---- contact sheet ---- */
+  .sheet{display:grid; grid-template-columns:repeat(auto-fill,minmax(168px,1fr)); gap:12px}
+  .frame{
+    aspect-ratio:3/2; max-width:100%;
+    border:1px dashed var(--border); border-radius:3px; background:var(--bg-card);
+    display:flex; flex-direction:column; justify-content:flex-end; padding:10px;
+  }
+  .frame span{font-family:var(--mono); font-size:10.5px; color:var(--text-faint); word-break:break-all; line-height:1.4}
+  .frame em{font-style:normal; color:var(--text-dim); display:block; margin-bottom:3px}
+
+  /* ---- tiers ---- */
+  .tier{margin-bottom:14px; background:var(--bg-card); border:1px solid var(--border); border-radius:4px; overflow:hidden}
+  .tier-head{display:flex; gap:16px; align-items:baseline; padding:18px 20px; background:var(--bg-card-2)}
+  .tier-num{font-family:var(--display); font-size:26px; font-weight:600; color:var(--accent); line-height:1}
+  .tier-name{font-weight:600; font-size:16px}
+  .tier-meta{font-family:var(--mono); font-size:11.5px; color:var(--text-dim); margin-top:3px}
+  .tier-body{padding:6px 20px 18px}
+  .src{padding:15px 0; border-bottom:1px solid var(--border)}
+  .src:last-child{border-bottom:0}
+  .src-top{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:baseline}
+  .src-name{font-weight:600}
+  .src p{margin:7px 0 0; color:var(--text-dim); font-size:14.5px; max-width:70ch}
+  .chip{
+    font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+    padding:3px 8px; border-radius:2px; border:1px solid var(--border); color:var(--text-faint);
+  }
+  .chip-free{color:var(--ok); border-color:rgba(111,163,125,.45)}
+  .chip-ref{color:var(--backup); border-color:rgba(107,142,181,.42)}
+  .chip-high{color:var(--top); border-color:rgba(212,168,87,.45)}
+  .chip-med{color:var(--text-dim)}
+  .chip-verify{color:var(--wildcard); border-color:rgba(181,102,168,.45)}
+
+  /* ---- shots ---- */
+  ol.shots{margin:0; padding-left:0; list-style:none; counter-reset:s}
+  ol.shots li{
+    counter-increment:s; display:grid; grid-template-columns:34px 1fr; gap:14px;
+    padding:15px 0; border-bottom:1px solid var(--border);
+  }
+  ol.shots li:last-child{border-bottom:0}
+  ol.shots li::before{
+    content:counter(s,decimal-leading-zero);
+    font-family:var(--mono); font-size:12px; color:var(--accent); padding-top:2px;
+  }
+  .shot-t{font-weight:600}
+  .shot-d{color:var(--text-dim); font-size:14.5px; margin-top:3px}
+
+  /* ---- commands ---- */
+  .cmd{background:var(--bg-card); border:1px solid var(--border); border-radius:4px; margin-bottom:12px}
+  .cmd-head{
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    padding:11px 16px; border-bottom:1px solid var(--border);
+  }
+  .cmd-head span{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-faint)}
+  .cmd pre{
+    margin:0; padding:16px; overflow-x:auto;
+    font-family:var(--mono); font-size:12.5px; line-height:1.7; color:var(--text);
+  }
+  button.copy{
+    font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+    background:transparent; color:var(--text-dim); border:1px solid var(--border);
+    border-radius:2px; padding:5px 11px; cursor:pointer;
+  }
+  button.copy:hover{color:var(--accent-bright); border-color:var(--accent)}
+
+  footer{padding-block:40px; color:var(--text-faint); font-size:13px}
+  footer .row{display:flex; flex-wrap:wrap; gap:8px 18px; font-family:var(--mono); font-size:11.5px; margin-bottom:14px}
+
+  @media (max-width:640px){
+    .pros-cons{grid-template-columns:1fr; gap:18px}
+    .tier-head{padding:16px}
+    .tier-body{padding:4px 16px 14px}
+    .card{padding:20px}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">Scout dossier · ukázka výstupu /locationsearch</p>
+    <h1>Hrad Bouzov</h1>
+    <p class="sub">Jedna lokace projetá celým postupem skillu: identifikace, rubrikové
+      skóre, záběry a kompletní seznam zdrojů, ze kterých se dají sehnat fotky.</p>
+    <div class="slate">
+      <span>WIKIDATA <b>Q940492</b></span>
+      <span>GPS <b>49.7042 N · 16.8911 E</b></span>
+      <span>KRAJ <b>Olomoucký</b></span>
+      <span>MOTIVY <b>Hrad ext · nádvoří · int · podhradí</b></span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Fotky v tomhle decku nejsou</h2>
+    <div class="note">
+      <p><strong>A je to záměr, ne chyba.</strong> Deck vznikl v cloudové session, které
+        egress policy blokuje <span class="chip chip-med">wikidata.org</span>
+        <span class="chip chip-med">commons.wikimedia.org</span>
+        <span class="chip chip-med">instagram.com</span>
+        <span class="chip chip-med">facebook.com</span>
+        <span class="chip chip-med">rajce.idnes.cz</span>
+        <span class="chip chip-med">mapy.cz</span> — ani jeden zdroj není odsud dosažitelný.</p>
+      <p>Místo vymyšlených odkazů na fotky, které jsem neviděl, ukazuje deck
+        <strong>kontaktní list s cílovými názvy souborů</strong> a příkazy, které je
+        doplní. Po spuštění skriptu u tebe se rámečky naplní reálnými fotkami.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Karta lokace</h2>
+    <p class="lede">Formát podle <span class="chip">references/karta_lokace.md</span>,
+      skóre podle vážené rubriky ze skillu.</p>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Hrad Bouzov</div>
+          <div class="card-region">CZ · Olomoucký kraj · ~30 km od Olomouce · ~240 km od Prahy · ~250 km od Bratislavy</div>
+        </div>
+        <span class="tag tag-backup">Backup</span>
+      </div>
+
+      <p class="char">Romantická novogotická silueta na zalesněném ostrohu — věž, padací
+        most, souvislý obvod hradeb. Vizuálně jeden z nejfilmovějších objektů v ČR,
+        s pohádkovým, ne drsným charakterem. Nádvoří i interiéry jsou přístupné
+        a v jednom celku, takže tři motivy padnou na jednu company move.</p>
+
+      <div class="pros-cons">
+        <div class="pros">
+          <span class="label">Výhody</span>
+          <ul>
+            <li>Tři motivy na jedné adrese — exteriér, nádvoří, interiér</li>
+            <li>Doložená filmová historie, správce zvyklý na štáby</li>
+            <li>Commons kategorie s vlastní podkategorií interiérů</li>
+            <li>Silueta čitelná z dálky i z dronu, bez moderní zástavby v pozadí</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <span class="label">Rizika</span>
+          <ul>
+            <li>Dnešní podoba je přestavba z přelomu 19./20. století — pro ranější
+              period drama nesedí, pro pohádku ano</li>
+            <li>Přes 2 h od Prahy → base v Olomouci, ne dojezd</li>
+            <li>Prohlídkový provoz a turisté v sezóně</li>
+            <li>NPÚ povolení, provozní hodiny, cena za natáčecí den — ověřit</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="scores">
+        <div class="score-row"><span class="score-label">Vis</span><div class="score-bar"><div class="score-fill" style="width:90%"></div></div><span class="score-value">9.0</span></div>
+        <div class="score-row"><span class="score-label">Prak</span><div class="score-bar"><div class="score-fill" style="width:75%"></div></div><span class="score-value">7.5</span></div>
+        <div class="score-row"><span class="score-label">Aut</span><div class="score-bar"><div class="score-fill" style="width:70%"></div></div><span class="score-value">7.0</span></div>
+        <div class="score-row"><span class="score-label">Dost</span><div class="score-bar"><div class="score-fill" style="width:55%"></div></div><span class="score-value">5.5</span></div>
+        <div class="score-row"><span class="score-label">Risk</span><div class="score-bar"><div class="score-fill" style="width:65%"></div></div><span class="score-value">6.5</span></div>
+        <div class="total"><span class="l">Celkové skóre</span><span class="v">7.5</span></div>
+        <p class="formula">(9.0×3 + 7.5×2.5 + 7.0×2 + 5.5×1 + 6.5×1.5) / 10 = 7.5 → BACKUP</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <p><strong>Co skóre říká a co ne.</strong> Bouzov sráží jediná dimenze — dostupnost
+        z Prahy. Při základně v Olomouci jde Dost na 9.0 a celkové skóre na <b>7.9</b>,
+        tedy horní hranice BACKUPu. Jinými slovy: <strong>Bouzov není pražská lokace.</strong>
+        V moravském bloku je to TOP kandidát, v pražském plánu je to výlet na dva dny.</p>
+      <p>Druhá věc, kterou skóre schovává: <b>Aut 7.0</b> je průměr dvou velmi různých
+        čísel. Pro pohádku nebo fantasy je autenticita ~9, pro středověké period drama
+        ~5,5 — dnešní podoba je romantická přestavba, ne dochovaná gotika.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Kontaktní list</h2>
+    <p class="lede">Co vznikne ve složce <span class="chip">fotky/bouzov/</span> po
+      spuštění příkazů níž. Rámečky jsou prázdné záměrně — viz výš.</p>
+    <div class="sheet">
+      <div class="frame"><span><em>vrstva 1 · volná licence</em>bouzov_commons_01.jpg</span></div>
+      <div class="frame"><span><em>vrstva 1 · volná licence</em>bouzov_commons_02.jpg</span></div>
+      <div class="frame"><span><em>vrstva 1 · volná licence</em>bouzov_commons_03.jpg</span></div>
+      <div class="frame"><span><em>vrstva 3 · screenshot</em>bouzov_mapy_pano.png</span></div>
+      <div class="frame"><span><em>vrstva 3 · screenshot</em>bouzov_mapy_letecka.png</span></div>
+      <div class="frame"><span><em>vrstva 3 · jen reference</em>bouzov_instagram_01.jpg</span></div>
+      <div class="frame"><span><em>metadata</em>photos.csv</span></div>
+      <div class="frame"><span><em>checklist</em>chrome_tier.md</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Zdroje</h2>
+    <p class="lede">Tři vrstvy seřazené podle poměru výtěžnost ku námaze. Pořadí je
+      skutečná posloupnost — vrstva 1 je levná a automatická, vrstva 3 stojí čas
+      u prohlížeče. Vždy začni jedničkou.</p>
+
+    <div class="tier">
+      <div class="tier-head">
+        <span class="tier-num">1</span>
+        <div>
+          <div class="tier-name">API — strojově, volné licence</div>
+          <div class="tier-meta">scripts/fetch_commons_photos.py · běží kdekoli se sítí</div>
+        </div>
+      </div>
+      <div class="tier-body">
+        <div class="src">
+          <div class="src-top">
+            <span class="src-name"><a href="https://www.wikidata.org/wiki/Q940492">Wikidata</a></span>
+            <span class="chip chip-free">volná</span><span class="chip chip-high">GPS high</span>
+          </div>
+          <p>Páteř celého postupu. Dá GPS (P625), odkaz na Commons kategorii (P373)
+            a hlavní foto (P18). Bez GPS nezačínej — váže se na ni Mapy.cz, Google Maps
+            i výpočet vzdáleností.</p>
+        </div>
+        <div class="src">
+          <div class="src-top">
+            <span class="src-name"><a href="https://commons.wikimedia.org/wiki/Category:Bouzov_Castle">Wikimedia Commons</a></span>
+            <span class="chip chip-free">volná</span><span class="chip chip-high">high / medium</span>
+          </div>
+          <p>Jediný zdroj, který dává <strong>volnou licenci i scoutovací rozlišení</strong>
+            zároveň — a jediný, jehož fotky smí do klientského decku. U hradů a zámků
+            pokrývá skoro všechno včetně samostatné podkategorie interiérů. U lesů,
+            potoků a cest je slabý, u opuštěných objektů bez jména prakticky nulový.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head">
+        <span class="tier-num">2</span>
+        <div>
+          <div class="tier-name">Český a slovenský web</div>
+          <div class="tier-meta">WebFetch / WebSearch · doplňuje to, co Commons nemá</div>
+        </div>
+      </div>
+      <div class="tier-body">
+        <div class="src">
+          <div class="src-top"><span class="src-name"><a href="https://www.hrady.cz">hrady.cz</a></span>
+            <span class="chip chip-ref">reference</span><span class="chip chip-verify">ověřit</span></div>
+          <p>Databáze hradů, zámků a zřícenin s uživatelskými galeriemi a popisem přístupu.
+            Silná na zříceniny a méně známé objekty, které na Commons nejsou.</p>
+        </div>
+        <div class="src">
+          <div class="src-top"><span class="src-name"><a href="https://www.turistika.cz">turistika.cz</a></span>
+            <span class="chip chip-ref">reference</span><span class="chip chip-med">medium</span></div>
+          <p>Články s galeriemi, často letecké záběry a <strong>tip na vyhlídkový bod</strong>
+            nad lokací. Přesně ta informace „odkud to fotit", kterou Commons nikdy nedá.</p>
+        </div>
+        <div class="src">
+          <div class="src-top"><span class="src-name"><a href="https://www.denik.cz">denik.cz</a></span>
+            <span class="chip chip-ref">reference</span><span class="chip chip-med">medium</span></div>
+          <p>Regionální deníky. Nečekaně dobrý <strong>stahovatelný</strong> zdroj — stránky
+            vypisují přímé URL obrázků, takže jdou vzít i bez prohlížeče. Silné na akce,
+            rekonstrukce a aktuální stav.</p>
+        </div>
+        <div class="src">
+          <div class="src-top"><span class="src-name"><a href="https://www.npu.cz">NPÚ</a> · Pamiatkový úrad SR · obecní weby</span>
+            <span class="chip chip-ref">reference</span><span class="chip chip-high">high</span></div>
+          <p>Nejcennější ne kvůli fotkám, ale kvůli <strong>kontaktu na toho, kdo povoluje
+            natáčení</strong>. U Bouzova jde o NPÚ. Interiéry a otevírací doba taky odsud.</p>
+        </div>
+        <div class="src">
+          <div class="src-top"><span class="src-name">zanikleobce.cz</span>
+            <span class="chip chip-ref">reference</span><span class="chip chip-verify">ověřit</span></div>
+          <p>Zaniklé obce a opuštěné objekty. Jediný systematický zdroj pro motiv
+            „prázdný dům", kde Commons i Instagram selhávají.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head">
+        <span class="tier-num">3</span>
+        <div>
+          <div class="tier-name">Chrome s přihlášením</div>
+          <div class="tier-meta">scripts/chrome_scout.py + console_harvest.js · jen na vlastním počítači</div>
+        </div>
+      </div>
+      <div class="tier-body">
+        <div class="src">
+          <div class="src-top">
+            <span class="src-name"><a href="https://mapy.cz/zakladni?pano=1&amp;x=16.8911&amp;y=49.7042&amp;z=17">Mapy.cz — Panorama</a></span>
+            <span class="chip chip-ref">reference</span><span class="chip chip-high">high</span>
+          </div>
+          <p>Nenahraditelné pro produkci: <strong>příjezdová cesta, šířka silnice,
+            parkování, podhradí z úrovně očí</strong>. Bez přihlášení, plně automatizovatelné.
+            <a href="https://mapy.cz/zakladni?base=ophoto&amp;x=16.8911&amp;y=49.7042&amp;z=17">Letecká vrstva</a>;
+            historickou z 50. let přepni ručně ve vrstvách.</p>
+        </div>
+        <div class="src">
+          <div class="src-top"><span class="src-name">Instagram — místo, ne hashtag</span>
+            <span class="chip chip-ref">reference</span><span class="chip chip-high">high</span></div>
+          <p>Zvolit <strong>místo (geotag)</strong>, ne hashtag, a řadit podle nejnovějších.
+            Dá to, co žádný jiný zdroj: aktuální stav, sezónu, davy, lešení. Hashtag
+            míchá lokace dohromady, geotag ne.</p>
+        </div>
+        <div class="src">
+          <div class="src-top"><span class="src-name">Facebook</span>
+            <span class="chip chip-ref">reference</span><span class="chip chip-high">high</span></div>
+          <p>Oficiální stránka správce plus <strong>místní obecní skupina</strong>, filtr Fotky.
+            Obecní skupiny mají záběry, které nejsou nikde jinde — a jediné fotky
+            z probíhajících rekonstrukcí.</p>
+        </div>
+        <div class="src">
+          <div class="src-top"><span class="src-name"><a href="https://www.rajce.idnes.cz">Rajče</a></span>
+            <span class="chip chip-ref">reference</span><span class="chip chip-med">medium</span></div>
+          <p>Alba <strong>nejsou v Google</strong> — hledat přímo na webu. Silné na interiéry
+            z prohlídkových tras, které na Commons chybí. Preferuj alba s rokem v názvu.</p>
+        </div>
+        <div class="src">
+          <div class="src-top">
+            <span class="src-name"><a href="https://www.google.com/maps/search/?api=1&amp;query=49.7042,16.8911">Google Maps — fotky návštěvníků</a></span>
+            <span class="chip chip-ref">reference</span><span class="chip chip-high">high</span>
+          </div>
+          <p>Řadit podle nejnovějších. Dobré na parkování, přístup a zázemí — produkční
+            věci, které nikdo nefotí hezky, a proto je nenajdeš nikde jinde.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <p><strong>Licence není detail.</strong> Do klientského decku smí jen vrstva 1.
+        Instagram, Facebook, Rajče a Google Maps jsou interní scoutovací reference —
+        bez svolení autora se do decku nedávají. <span class="chip">photos.csv</span>
+        to u každého řádku značí automaticky.</p>
+      <p><strong>Podepsané URL z IG a FB vyprší</strong> řádově v hodinách. 403 při
+        stahování není chyba skriptu — znamená vypršelý podpis. Stahuj hned.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Doporučené záběry</h2>
+    <ol class="shots">
+      <li><div><div class="shot-t">Silueta z jihozápadu, zlatá hodina</div>
+        <div class="shot-d">Dlouhá ohnisková vzdálenost přes údolí. Věž proti obloze, les jako spodní rám.
+          Vyhlídkový bod dohledat přes turistika.cz, ne odhadem z mapy.</div></div></li>
+      <li><div><div class="shot-t">Příjezd k padacímu mostu</div>
+        <div class="shot-d">Ruka / steadicam v ose cesty. Ověřit na Mapy.cz panoramatu, kam se
+          vejde technika a kde končí zpevněný povrch.</div></div></li>
+      <li><div><div class="shot-t">Nádvoří — totál shora z ochozu</div>
+        <div class="shot-d">Uzavřený obvod bez moderních prvků v záběru. Ověřit, kudy vede
+          návštěvnická trasa, aby šlo nádvoří vyklidit.</div></div></li>
+      <li><div><div class="shot-t">Interiér — sál s krbem, protisvětlo z okna</div>
+        <div class="shot-d">Commons podkategorie interiérů plus Rajče alba z prohlídek.
+          Ověřit, jestli NPÚ povolí vlastní svícení.</div></div></li>
+      <li><div><div class="shot-t">Podhradí — obec pod hradem, hrad v pozadí</div>
+        <div class="shot-d">Pokrývá motiv „podhradí" bez company move. Ověřit moderní
+          zástavbu a elektrické vedení v ose záběru — na to je historická letecká.</div></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Spusť to u sebe</h2>
+    <p class="lede">Tři příkazy, které z tohohle decku udělají deck s fotkami.
+      První jde spustit kdekoli, druhé dva potřebují tvůj přihlášený Chrome.</p>
+
+    <div class="cmd">
+      <div class="cmd-head"><span>Vrstva 1 — Commons, volná licence</span>
+        <button class="copy" type="button" data-cmd="c1">Kopírovat</button></div>
+      <pre id="c1">python3 scripts/fetch_commons_photos.py "Hrad Bouzov" \
+    --out ./fotky/bouzov --limit 30 --width 2560</pre>
+    </div>
+
+    <div class="cmd">
+      <div class="cmd-head"><span>Vrstva 3 — Mapy.cz, bez přihlášení</span>
+        <button class="copy" type="button" data-cmd="c2">Kopírovat</button></div>
+      <pre id="c2">python3 scripts/chrome_scout.py --mapy 49.70417,16.89111 \
+    --slug bouzov --out ./fotky/bouzov</pre>
+    </div>
+
+    <div class="cmd">
+      <div class="cmd-head"><span>Vrstva 3 — Instagram / Facebook přes konzoli</span>
+        <button class="copy" type="button" data-cmd="c3">Kopírovat</button></div>
+      <pre id="c3"># 1. otevři geotag lokace v Chrome a proscrolluj
+# 2. F12 → Console → napiš: allow pasting
+# 3. vlož scripts/console_harvest.js → scoutSave()
+python3 scripts/chrome_scout.py --urls urls.json \
+    --slug bouzov --out ./fotky/bouzov --confidence high</pre>
+    </div>
+  </section>
+
+  <footer>
+    <div class="row">
+      <span>GPS · high</span>
+      <span>Skóre · odhad scouta, ne měření</span>
+      <span>Vzdálenosti · orientační, ověřit</span>
+      <span>Filmová historie · ověřit u NPÚ</span>
+      <span>Commons pokrytí · medium</span>
+    </div>
+    <p style="margin:0; max-width:70ch">Ukázka výstupu skillu <b>/locationsearch</b>.
+      Žádný z uvedených zdrojů nebyl v této session dosažitelný — odkazy jsou vzory
+      URL, ne ověřené cíle. Než se na kterýkoli odvoláš v klientském materiálu,
+      otevři ho.</p>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll("button.copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var pre = document.getElementById(btn.dataset.cmd);
+      if (!pre) return;
+      var done = function () {
+        var old = btn.textContent;
+        btn.textContent = "Zkopírováno";
+        setTimeout(function () { btn.textContent = old; }, 1600);
+      };
+      var fallback = function () {
+        var r = document.createRange();
+        r.selectNodeContents(pre);
+        var s = window.getSelection();
+        s.removeAllRanges();
+        s.addRange(r);
+        btn.textContent = "Označeno — Cmd/Ctrl+C";
+      };
+      try {
+        navigator.clipboard.writeText(pre.textContent).then(done, fallback);
+      } catch (e) {
+        fallback();
+      }
+    });
+  });
+</script>
