@@ -23,11 +23,38 @@ seznam scén. Výstupem je vizuální HTML location deck.
    Speciální motivy
 
 3. **Pro každý motiv najdi 10–20 reálných lokací** — startovní pool
-   v `references/lokace_database.md`.
+   v `references/lokace_database.md` (jména), data v `references/lokace_db.csv`
+   (GPS, QID, dojezdy, Commons kategorie).
+
+   Když `lokace_db.csv` neexistuje nebo v něm lokace chybí, **nejdřív ho dopočítej**:
+   ```bash
+   python3 scripts/build_location_db.py --bases praha,brno,bratislava,olomouc
+   ```
+   Běh je přerušitelný, co je hotové se přeskakuje. Bez sítě to nejde — pak
+   viz zákaz vymýšlení vzdáleností níž.
 
 4. **Pro každou lokaci vyplň kartu** podle `references/karta_lokace.md`.
 
-5. **Skóruj** podle `references/scoring_rubric.md` (5 dimenzí × váhy).
+5. **Skóruj skriptem, ne od oka** — `references/scoring_rubric.md` popisuje
+   pravidla, `scripts/score.py` je aplikuje:
+   ```bash
+   python3 scripts/score.py --vis 9 --prak 7.5 --aut 7 --risk 6.5 \
+       --db references/lokace_db.csv --name Bouzov --base praha
+   ```
+   Dávkově: CSV se sloupci `vis,prak,aut,risk` + `dost` nebo `minutes`
+   → `score.py --csv skore.csv` doplní `total` a `stitek`.
+
+### Skripty — přehled
+
+| Skript | K čemu | Síť |
+|---|---|---|
+| `build_location_db.py` | jména → GPS, QID, dojezdy od základen | ano |
+| `score.py` | rubrikové skóre a štítek | ne |
+| `fetch_commons_photos.py` | fotky s volnou licencí z Commons | ano |
+| `chrome_scout.py` + `console_harvest.js` | fotky z přihlášeného Chrome | jen u uživatele |
+
+Žádný z nich nemá závislosti mimo standardní knihovnu, kromě `chrome_scout.py
+--live` a `--mapy`, které potřebují Playwright.
 
 ### Krok 1b: Fotky k lokacím
 
@@ -71,12 +98,43 @@ záběrů + zdroje k dohledání fotek.
 4. Karty lokací podle motivů · 5. TOP 20 tabulka · 6. Multi-motiv tabulka ·
 7. 5 scoutovacích tras · 8. Finální doporučení · 9. Footer s confidence labels
 
-## Pravidla
+## Tvrdá pravidla proti vymýšlení
+
+Tohle jsou jediná pravidla, u kterých je porušení vada výstupu, ne vkusová
+otázka. Producent podle těch čísel plánuje rozpočet a company moves.
+
+1. **Vzdálenost nebo dojezd smíš uvést jen tehdy, když je v `lokace_db.csv`
+   nebo jsi ji právě spočítal.** Nikdy z paměti — u 100 lokací je to sto
+   příležitostí se splést a scout to pozná až v autě. Chybí-li údaj, napiš
+   „vzdálenost nedopočítána" a proč.
+2. **Skóre i štítek počítá `score.py`.** Vážený průměr od oka je tichá chyba
+   a štítky pak nesedí na čísla.
+3. **U každého skóre uveď základnu**, ke které se vztahuje. Bez ní je Dost
+   bezvýznamný a štítek zavádějící (Bouzov: BACKUP z Prahy, TOP z Olomouce).
+4. **Žádné vymyšlené URL fotek.** Buď odkaz, který jsi opravdu otevřel, nebo
+   jméno zdroje a postup, jak se tam hledá.
+5. **Neexistující lokaci raději vynech.** Když si nejsi jistý existencí nebo
+   aktuálním stavem: „ověřit aktuálním scoutingem" + konkrétní krok.
+
+## Kontrola před odevzdáním
+
+Projdi než pošleš deck. Cokoli nesedí → oprav, nebo to v decku přiznej.
+
+- [ ] Každá lokace v decku je v `lokace_db.csv` s QID a GPS — nebo je u ní
+      napsáno, že GPS chybí
+- [ ] Žádná vzdálenost ani dojezd, které nepocházejí z CSV
+- [ ] Skóre sedí na `score.py` (namátkou přepočítej tři karty)
+- [ ] U každého skóre je uvedená základna
+- [ ] Každý motiv ze scénáře má aspoň 3 lokace (2 backupy)
+- [ ] Lokace s `confidence: medium` z Wikidat jsou označené — jméno bylo
+      nejednoznačné a mohla se trefit jiná entita
+- [ ] Žádná fotka z vrstvy 3 (IG/FB/Rajče/Maps) v klientské verzi decku
+- [ ] Žádná generická fráze typu „krásná lokace" — vždy konkrétně
+
+## Ostatní pravidla
 
 - **Confidence labels** (high/medium/low) u klíčových tvrzení. Velké hrady =
   high, mlýny = medium/low, "film-friendly track record" = ověřit přímým dotazem.
-- **Žádné fabrikování.** Když si nejsem jistý existencí lokace nebo jejím
-  aktuálním stavem: "ověřit aktuálním scoutingem" + konkrétní krok.
 - **Žádné vymyšlené URL fotek.** Buď odkaz, který jsi opravdu ověřil, nebo
   jméno zdroje a jak se tam hledá. Nikdy odhadnutý link.
 - **Rozlišuj vizuálně krásnou × produkčně použitelnou** lokaci.

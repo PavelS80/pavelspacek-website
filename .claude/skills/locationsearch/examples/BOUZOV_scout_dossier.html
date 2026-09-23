@@ -251,18 +251,20 @@
         <div class="score-row"><span class="score-label">Vis</span><div class="score-bar"><div class="score-fill" style="width:90%"></div></div><span class="score-value">9.0</span></div>
         <div class="score-row"><span class="score-label">Prak</span><div class="score-bar"><div class="score-fill" style="width:75%"></div></div><span class="score-value">7.5</span></div>
         <div class="score-row"><span class="score-label">Aut</span><div class="score-bar"><div class="score-fill" style="width:70%"></div></div><span class="score-value">7.0</span></div>
-        <div class="score-row"><span class="score-label">Dost</span><div class="score-bar"><div class="score-fill" style="width:55%"></div></div><span class="score-value">5.5</span></div>
+        <div class="score-row"><span class="score-label">Dost</span><div class="score-bar"><div class="score-fill" style="width:15%"></div></div><span class="score-value">1.5</span></div>
         <div class="score-row"><span class="score-label">Risk</span><div class="score-bar"><div class="score-fill" style="width:65%"></div></div><span class="score-value">6.5</span></div>
-        <div class="total"><span class="l">Celkové skóre</span><span class="v">7.5</span></div>
-        <p class="formula">(9.0×3 + 7.5×2.5 + 7.0×2 + 5.5×1 + 6.5×1.5) / 10 = 7.5 → BACKUP</p>
+        <div class="total"><span class="l">Celkové skóre · základna Praha</span><span class="v">7.1</span></div>
+        <p class="formula">(9.0×3 + 7.5×2.5 + 7.0×2 + 1.5×1 + 6.5×1.5) / 10 = 7.1 → BACKUP
+          &nbsp;·&nbsp; Dost 1.5 odvozeno z ~210 min dojezdu</p>
       </div>
     </div>
 
     <div class="note">
-      <p><strong>Co skóre říká a co ne.</strong> Bouzov sráží jediná dimenze — dostupnost
-        z Prahy. Při základně v Olomouci jde Dost na 9.0 a celkové skóre na <b>7.9</b>,
-        tedy horní hranice BACKUPu. Jinými slovy: <strong>Bouzov není pražská lokace.</strong>
-        V moravském bloku je to TOP kandidát, v pražském plánu je to výlet na dva dny.</p>
+      <p><strong>Štítek je vždy vázaný na základnu.</strong> Bouzov sráží jediná
+        dimenze — dojezd. Z Prahy ~210 min → Dost 1.5 → celkem <b>7.1, BACKUP</b>.
+        Z Olomouce ~30 min → Dost 10 → celkem <b>8.0, TOP</b>. Stejná lokace, jiný
+        štítek. Jinými slovy: <strong>Bouzov není pražská lokace</strong> — v moravském
+        bloku je to TOP kandidát, v pražském plánu výlet na dva dny.</p>
       <p>Druhá věc, kterou skóre schovává: <b>Aut 7.0</b> je průměr dvou velmi různých
         čísel. Pro pohádku nebo fantasy je autenticita ~9, pro středověké period drama
         ~5,5 — dnešní podoba je romantická přestavba, ne dochovaná gotika.</p>
@@ -450,6 +452,14 @@
     <h2>Spusť to u sebe</h2>
     <p class="lede">Tři příkazy, které z tohohle decku udělají deck s fotkami.
       První jde spustit kdekoli, druhé dva potřebují tvůj přihlášený Chrome.</p>
+
+    <div class="cmd">
+      <div class="cmd-head"><span>Data — GPS a dojezdy pro celou databázi</span>
+        <button class="copy" type="button" data-cmd="c0">Kopírovat</button></div>
+      <pre id="c0">python3 scripts/build_location_db.py --bases praha,brno,bratislava,olomouc
+python3 scripts/score.py --vis 9 --prak 7.5 --aut 7 --risk 6.5 \
+    --db references/lokace_db.csv --name Bouzov --base praha</pre>
+    </div>
 
     <div class="cmd">
       <div class="cmd-head"><span>Vrstva 1 — Commons, volná licence</span>
