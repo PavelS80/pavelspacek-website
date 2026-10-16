@@ -10,8 +10,8 @@ const yt = id => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
    Roles exactly as credited on IMDb. One row per title,
    series shown with year range. Sorted by most recent year. */
 const credits = [
-  // — 2026 · pending: title is on IMDb, Pavel's credit not filed yet
-  { t: 'Kluci to vidí jinak než holky', o: "Don't You Know It's Different for Girls (working title)", y: 2026, studio: 'Lucky Man Films', role: 'locations', type: 'feature', img: A+'kluci-holky.jpg', yt: 'ubqQPxmJcJQ', tt: 'tt43663737', pending: true },
+  // — 2026 · pending: title is on IMDb, credit not filed there yet
+  { t: 'Kluci to vidí jinak než holky', y: 2026, studio: 'Lucky Man Films', role: 'locations', type: 'feature', img: A+'kluci-holky.jpg', yt: 'ubqQPxmJcJQ', tt: 'tt43663737', pending: true },
   // — 2025
   { t: 'FUBAR', y: 2023, ey: 2025, studio: 'Netflix', role: 'location manager · Prague unit', type: 'tv', img: A+'fubar.jpg', yt: 'vJlfAp7ZCAY', tt: 'tt13064902' },
   { t: 'FBI: International', y: 2021, ey: 2025, studio: 'CBS · Universal Television', role: 'location manager', type: 'tv', img: A+'fbi-international.jpg', yt: 'Ss717FniM9I', tt: 'tt14449470' },
@@ -85,10 +85,10 @@ const credits = [
   { t: 'Želary', y: 2003, studio: 'Barrandov · ALEF Film', role: 'location manager', type: 'feature', img: A+'zelary.jpg', yt: 'z9MYQlU2V1s', tt: 'tt0288330' },
 ];
 
-/* ---- Featured — priority files (wide cards use trailer stills) ---- */
+/* ---- Selected work — poster wall ---- */
 const featured = [
-  { t: 'Nosferatu', y: '2024', studio: 'Focus Features', dir: 'Robert Eggers', yt: 'nulvWqYUM8k', img: yt('nulvWqYUM8k'), fb: A+'nosferatu.jpg' },
-  { t: 'Mission: Impossible — Ghost Protocol', y: '2011', studio: 'Paramount', dir: 'Brad Bird', yt: 'HPB7fV7f_f8', img: yt('HPB7fV7f_f8'), fb: A+'mission-impossible.jpg' },
+  { t: 'Nosferatu', y: '2024', studio: 'Focus Features', dir: 'Robert Eggers', yt: 'nulvWqYUM8k', img: A+'nosferatu.jpg', fb: yt('nulvWqYUM8k') },
+  { t: 'Mission: Impossible — Ghost Protocol', y: '2011', studio: 'Paramount', dir: 'Brad Bird', yt: 'HPB7fV7f_f8', img: A+'mission-impossible.jpg', fb: yt('HPB7fV7f_f8') },
   { t: '12 Monkeys', y: '2015–2018', studio: 'Syfy', dir: 'series', yt: 'AQEN9V8r6TM', img: A+'12-monkeys.jpg', fb: yt('AQEN9V8r6TM') },
   { t: 'Jack Ryan', y: '2018–2023', studio: 'Amazon Prime Video', dir: 'series', yt: '1KsyZF590NM', img: A+'jack-ryan.jpg', fb: yt('1KsyZF590NM') },
   { t: 'Das Boot', y: '2018–2023 · S1–S4', studio: 'Sky', dir: 'series', yt: '6FlNemUn78U', img: A+'das-boot-3.jpg', fb: yt('6FlNemUn78U') },
@@ -101,6 +101,7 @@ const featured = [
   { t: 'Bod obnovy', y: '2023', studio: 'Film Kolektiv', dir: 'Robert Hloz', yt: 'JewqVAvzJnA', img: A+'restore-point.jpg', fb: yt('JewqVAvzJnA') },
   { t: 'Iveta', y: '2022', studio: 'Voyo · TV Nova', dir: 'series', yt: 'fCWr9mpZvB8', img: A+'iveta.jpg', fb: yt('fCWr9mpZvB8') },
   { t: 'The Rookie', y: '2018', studio: 'ABC', dir: 'series', yt: '8BPlx6eK1vc', img: A+'the-rookie.jpg', fb: yt('8BPlx6eK1vc') },
+  { t: 'Kluci to vidí jinak než holky', y: '2026', studio: 'Lucky Man Films', dir: 'David Ondříček', yt: 'ubqQPxmJcJQ', img: A+'kluci-holky.jpg', fb: yt('ubqQPxmJcJQ') },
   { t: 'Franz', y: '2025', studio: 'X-Filme · Bioscop', dir: 'Agnieszka Holland', yt: 'f78r0tpG5fg', img: A+'franz.jpg', fb: yt('f78r0tpG5fg') },
   { t: 'Bratři', y: '2023', studio: 'FilmBrigade · Česká televize', dir: 'Tomáš Mašín', yt: '_ycEQ65wAbY', img: A+'bratri.jpg', fb: yt('_ycEQ65wAbY') },
   { t: 'Zrádci', y: '2024', studio: 'Prima', dir: 'series', yt: 'vZv7nVQiF8E', img: A+'zradci-prima.jpg', fb: yt('vZv7nVQiF8E') },
@@ -109,17 +110,9 @@ const featured = [
   { t: 'Želary', y: '2003', studio: 'Barrandov · ALEF Film', dir: 'Ondřej Trojan', yt: 'z9MYQlU2V1s', img: A+'zelary.jpg', fb: yt('z9MYQlU2V1s') },
 ];
 
-/* ---- Latest files — new releases shown above the priority grid ---- */
-const latest = [
-  { t: 'Kluci to vidí jinak než holky', o: "Don't You Know It's Different for Girls (working title)", dir: 'David Ondříček', studio: 'Lucky Man Films',
-    cast: 'Jaroslav Plesl · Martha Issová · Václav Neužil · Denisa Barešová', role: 'Locations — FILM HUNTERS',
-    release: '2026-10-22', shot: '36 shooting days · Prague', yt: 'ubqQPxmJcJQ', img: A+'kluci-holky.jpg', tt: 'tt43663737',
-    line: 'A tragicomedy of seven Prague lives at midlife — the city as backdrop and catalyst. Bridges, embankments, galleries, a forest at the city line.' },
-];
-
 /* ---- Hero contact sheet ---- */
 const sheetFrames = [
-  { yt: 'nulvWqYUM8k', t: 'Nosferatu', circled: true },
+  { yt: 'nulvWqYUM8k', t: 'Nosferatu' },
   { yt: 'HPB7fV7f_f8', t: 'Mission: Impossible' },
   { yt: 'Uia6y9SRsj4', t: 'Child 44' },
   { yt: '1KsyZF590NM', t: 'Jack Ryan' },
@@ -161,65 +154,18 @@ function makePlayable(el, label, fn) {
 const sheetEl = document.getElementById('contactSheet');
 sheetFrames.forEach((f, i) => {
   const d = document.createElement('div');
-  d.className = 'sheet__frame' + (f.circled ? ' sheet__frame--circled' : '');
+  d.className = 'sheet__frame';
   d.innerHTML = `
     <img src="${yt(f.yt)}" alt="${esc(f.t)}" loading="eager"
-         onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${f.yt}/hqdefault.jpg'" />
-    <span class="sheet__num">FR·${String((i + 1) * 12).padStart(3, '0')}</span>`;
+         onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${f.yt}/hqdefault.jpg'" />`;
   makePlayable(d, `Play trailer: ${f.t}`, () => openModal(f.yt, f.t, ''));
   sheetEl.appendChild(d);
 });
-
-/* Edge-print on the contact sheet rail */
-const edge = document.createElement('span');
-edge.className = 'sheet__edgeprint mono';
-edge.setAttribute('aria-hidden', 'true');
-edge.textContent = 'PŠ ARCH 35 · 0042+07';
-sheetEl.appendChild(edge);
 
 /* --- Ticker --- */
 const tick = document.getElementById('tickerTrack');
 tick.innerHTML = [...studios, ...studios]
   .map(s => `<span>${s}</span><span class="tick-dot">●</span>`).join('');
-
-/* --- Latest files --- */
-const latestEl = document.getElementById('latest');
-const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-latest.forEach(f => {
-  const d = new Date(f.release + 'T00:00:00');
-  const date = `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
-  const status = new Date() < d ? `IN CINEMAS ${date}` : `RELEASED ${date}`;
-  const card = document.createElement('article');
-  card.className = 'lfile reveal';
-  card.innerHTML = `
-    <div class="lfile__poster">
-      <img src="${f.img}" alt="${esc(f.t)} — poster" loading="lazy" decoding="async" />
-      <span class="lfile__play" aria-hidden="true">
-        <svg width="15" height="15" viewBox="0 0 14 14"><polygon points="2,1 2,13 13,7" fill="currentColor"/></svg>
-      </span>
-    </div>
-    <div class="lfile__body">
-      <div class="lfile__head mono"><span>LATEST FILE</span><span class="stamp stamp--red">${status}</span></div>
-      <h3 class="lfile__title">${esc(f.t)}</h3>
-      <p class="lfile__orig">${esc(f.o)}</p>
-      <p class="lfile__line">${esc(f.line)}</p>
-      <dl class="lfile__meta mono">
-        <div><dt>DIR.</dt><dd>${esc(f.dir)}</dd></div>
-        <div><dt>STUDIO</dt><dd>${esc(f.studio)}</dd></div>
-        <div><dt>CAST</dt><dd>${esc(f.cast)}</dd></div>
-        <div><dt>SHOOT</dt><dd>${esc(f.shot)}</dd></div>
-        <div><dt>ROLE</dt><dd class="lfile__role">${esc(f.role)}</dd></div>
-      </dl>
-      <div class="lfile__actions mono">
-        <button class="lfile__btn" type="button">▶ PLAY TRAILER</button>
-        <a class="lfile__btn lfile__btn--ghost" href="https://www.imdb.com/title/${f.tt}/" target="_blank" rel="noopener">IMDb ↗</a>
-      </div>
-    </div>`;
-  const play = () => openModal(f.yt, f.t, `${f.studio} · dir. ${f.dir}`);
-  card.querySelector('.lfile__btn').addEventListener('click', play);
-  makePlayable(card.querySelector('.lfile__poster'), `Play trailer: ${f.t}`, play);
-  latestEl.appendChild(card);
-});
 
 /* --- Featured --- */
 const featuredGrid = document.getElementById('featuredGrid');
@@ -227,19 +173,19 @@ featured.forEach((f, i) => {
   const card = document.createElement('article');
   card.className = `pfile reveal reveal-d${(i % 6) + 1}`;
   card.innerHTML = `
-    <img src="${f.img}" alt="${esc(f.t)}" loading="lazy" onerror="this.onerror=null;this.src='${f.fb}'" />
-    <div class="pfile__shade"></div>
-    <span class="pfile__tag">PRIORITY · ${String(i + 1).padStart(2, '0')}</span>
-    <span class="pfile__play" aria-hidden="true">
-      <svg width="13" height="13" viewBox="0 0 14 14"><polygon points="2,1 2,13 13,7" fill="currentColor"/></svg>
-    </span>
-    <div class="pfile__body">
-      <h3 class="pfile__title">${esc(f.t)}</h3>
-      <div class="pfile__meta"><b>${esc(f.studio)}</b>${f.dir !== 'series' ? `<span>dir. ${esc(f.dir)}</span>` : '<span>TV series</span>'}</div>
-    </div>`;
+    <div class="pfile__poster">
+      <img src="${f.img}" alt="${esc(f.t)}" loading="lazy" onerror="this.onerror=null;this.src='${f.fb}'" />
+      <span class="pfile__play" aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 14 14"><polygon points="2,1 2,13 13,7" fill="currentColor"/></svg>
+      </span>
+    </div>
+    <h3 class="pfile__title">${esc(f.t)}</h3>
+    <div class="pfile__meta">${esc(f.studio)}</div>`;
   makePlayable(card, `Play trailer: ${f.t}`, () => openModal(f.yt, f.t, f.studio));
   featuredGrid.appendChild(card);
 });
+const featuredCountEl = document.getElementById('featuredCount');
+if (featuredCountEl) featuredCountEl.textContent = featured.length;
 
 /* --- Archive index --- */
 const tableEl = document.getElementById('indexTable');
@@ -265,9 +211,9 @@ function renderIndex(filter = 'all') {
     row.className = 'irow';
     const no = credits.length - credits.indexOf(c);
     row.innerHTML = `
-      <span class="irow__no">FILE ${String(no).padStart(3, '0')}</span>
+      <span class="irow__no">${String(no).padStart(3, '0')}</span>
       <span class="irow__thumb">${c.img ? `<img src="${c.img}" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'" />` : ''}</span>
-      <span class="irow__title">${esc(c.t)}${c.o ? `<em>${esc(c.o)}</em>` : ''}${c.pending ? '<span class="irow__flag mono">NEW · CREDIT PENDING ON IMDb</span>' : ''}</span>
+      <span class="irow__title">${esc(c.t)}${c.o ? `<em>${esc(c.o)}</em>` : ''}${c.pending ? '<span class="irow__flag mono">IMDb pending</span>' : ''}</span>
       <span class="irow__studio">${esc(c.studio)}</span>
       <span class="irow__role">${esc(c.role)}</span>
       <span class="irow__type">${typeLabel(c)}</span>
