@@ -14,6 +14,7 @@
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   const ytHq = id => still(id) || `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
   const isPoster = src => typeof src === 'string' && src.startsWith(A);
+  const onImdb = c => /^tt\d+$/.test(c.tt || '');   // a title not on IMDb yet keeps a local key in tt (Spálená hora, 16 Oct)
   const imdbTitle = tt => `https://www.imdb.com/title/${encodeURIComponent(tt)}/`;
   const imdbName = `https://www.imdb.com/name/${profile.imdbId}/`;
   const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
@@ -335,7 +336,7 @@
   function pcard({ c, poster, isNew }, i, tag) {
     const stampEl = isNew ? '<span class="stamp stamp--red pcard__stamp pcard__stamp--new">NEW</span>'
       : c.pending ? '<span class="stamp stamp--red pcard__stamp">CREDIT PENDING</span>' : '';
-    const cue = c.yt ? '<span class="pcard__cue">▶ PLAY TRAILER</span>' : '<span class="pcard__cue pcard__cue--imdb">IMDb ↗</span>';
+    const cue = c.yt ? '<span class="pcard__cue">▶ PLAY TRAILER</span>' : onImdb(c) ? '<span class="pcard__cue pcard__cue--imdb">IMDb ↗</span>' : '<span class="pcard__cue pcard__cue--imdb">IN POST</span>';
     const inner = `
       <span class="pcard__poster">
         ${imgTag(poster || c.img, c.yt ? [ytHq(c.yt)] : [], '', i < 7)}
@@ -350,10 +351,11 @@
       </span>
       <span class="pcard__title">${esc(c.t)}</span>
       <span class="pcard__sub mono">${esc(c.role)}</span>`;
-    const label = `${c.t} — ${c.role}, ${c.studio}${c.pending ? ', IMDb credit pending' : ''}. ${c.yt ? 'Play trailer' : 'Open on IMDb'}`;
+    const label = `${c.t} — ${c.role}, ${c.studio}${c.pending ? ', IMDb credit pending' : ''}. ${c.yt ? 'Play trailer' : onImdb(c) ? 'Open on IMDb' : 'In post-production'}`;
     return c.yt
       ? `<li><button class="pcard${isNew ? ' pcard--new' : ''}" type="button" data-tt="${esc(c.tt)}" aria-label="${esc(label)}">${inner}</button></li>`
-      : `<li><a class="pcard" href="${imdbTitle(c.tt)}" target="_blank" rel="noopener" aria-label="${esc(label)}">${inner}</a></li>`;
+      : onImdb(c) ? `<li><a class="pcard" href="${imdbTitle(c.tt)}" target="_blank" rel="noopener" aria-label="${esc(label)}">${inner}</a></li>`
+      : `<li><span class="pcard" aria-label="${esc(label)}">${inner}</span></li>`;
   }
 
   $('rowSelected').innerHTML = selected.map((x, i) => pcard(x, i, `PRIORITY · ${pad(i + 1)}`)).join('');
@@ -410,11 +412,11 @@
             <div><dt>STUDIO</dt><dd>${esc(c.studio)}</dd></div>
             <div><dt>ROLE</dt><dd class="ifile__role">${esc(c.role)}</dd></div>
             <div><dt>FORMAT</dt><dd>${typeLong(c)}</dd></div>
-            ${c.pending ? '<div><dt>NOTE</dt><dd>Title is on IMDb; the credit under this name is not filed yet.</dd></div>' : ''}
+            ${c.pending ? `<div><dt>NOTE</dt><dd>${onImdb(c) ? 'Title is on IMDb; the credit under this name is not filed yet.' : 'Wrapped in 2026, not on IMDb yet; the credit follows the title.'}</dd></div>` : ''}
           </dl>
           <div class="ifile__actions mono">
             ${c.yt ? '<button class="ibtn ibtn--solid" type="button" data-play>▶ PLAY TRAILER</button>' : '<span class="ibtn ibtn--off">NO TRAILER ON FILE</span>'}
-            <a class="ibtn" href="${imdbTitle(c.tt)}" target="_blank" rel="noopener">IMDb ↗</a>
+            ${onImdb(c) ? `<a class="ibtn" href="${imdbTitle(c.tt)}" target="_blank" rel="noopener">IMDb ↗</a>` : ''}
           </div>
         </div>
       </div>`;

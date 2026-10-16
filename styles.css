@@ -355,7 +355,7 @@ section { padding: clamp(64px, 10vh, 112px) 0; }
 
 /* ---------- About ---------- */
 .about__grid {
-  display: grid; grid-template-columns: minmax(260px, 380px) 1fr;
+  display: grid; grid-template-columns: minmax(300px, 460px) 1fr;   /* a landscape portrait since 16 Oct */
   gap: clamp(32px, 6vw, 90px);
   align-items: start;
   margin-top: clamp(28px, 5vh, 56px);
@@ -852,7 +852,7 @@ section { padding: clamp(64px, 10vh, 112px) 0; }
   .sec-head__meta { margin-left: 0; width: 100%; text-align: left; }
 
   .about__grid { grid-template-columns: 1fr; }
-  .about__photo { max-width: 280px; }
+  .about__photo { max-width: 400px; }
   .about__stats { grid-template-columns: 1fr 1fr; }
   .stat:nth-child(2n) { border-right: none; }
   .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }

@@ -1,5 +1,5 @@
 /* Site data (16 Oct 2026, from the V6 Archive Showreel variant).
-   credits: 53 titles (52 on IMDb + Kluci, pending: true = Pavel's IMDb credit not filed yet).
+   credits: 54 titles (52 on IMDb + Kluci + Spálená hora, pending: true = Pavel's IMDb credit not filed yet).
    featured: the 20 hand-picked titles + Kluci (isNew). Fields: t title, o alt title, y/ey years,
    studio, role (exact IMDb credit), type feature|tv|short, img poster, yt YouTube trailer id, tt IMDb id. */
 const A = 'assets/';
@@ -15,12 +15,14 @@ const yt = id => still(id) || `https://img.youtube.com/vi/${id}/maxresdefault.jp
 const credits = [
   // — 2026 · pending: title is on IMDb, Pavel's credit not filed yet
   { t: 'Kluci to vidí jinak než holky', o: "Don't You Know It's Different for Girls (working title)", y: 2026, studio: 'Lucky Man Films', role: 'locations', type: 'feature', img: A+'kluci-holky.jpg', yt: 'ubqQPxmJcJQ', tt: 'tt43663737', pending: true },
+  // — 2026 · series wrapped in 2026 (FILM HUNTERS for FilmBrigade), not on IMDb yet: tt is a local key, no IMDb link until the title exists there
+  { t: 'Spálená hora', y: 2026, studio: 'FilmBrigade', role: 'locations', type: 'tv', img: A+'spalena-hora.jpg', tt: 'sh-2026', pending: true },
   // — 2025
   { t: 'FUBAR', y: 2023, ey: 2025, studio: 'Netflix', role: 'location manager · Prague unit', type: 'tv', img: A+'fubar.jpg', yt: 'vJlfAp7ZCAY', tt: 'tt13064902' },
   { t: 'FBI: International', y: 2021, ey: 2025, studio: 'CBS · Universal Television', role: 'location manager', type: 'tv', img: A+'fbi-international.jpg', yt: 'Ss717FniM9I', tt: 'tt14449470' },
   { t: 'Štěstíčku naproti', y: 2025, studio: 'Oneplay · Voyo', role: 'supervising location manager', type: 'tv', img: A+'stesticku-naproti.jpg', yt: 'LoEC0Xc8-S0', tt: 'tt39300922' },
   { t: 'Franz', y: 2025, studio: 'X-Filme · Bioscop', role: 'locations', type: 'feature', img: A+'franz.jpg', yt: 'f78r0tpG5fg', tt: 'tt17070412' },
-  { t: 'Live a Little', o: 'Leva lite', y: 2025, studio: 'Film i Väst · Amarcord', role: 'location manager: Czech Republic', type: 'feature', img: A+'live-a-little.jpg', yt: '8y1DHBLoMQw', tt: 'tt32357858' },
+  { t: 'Live a Little', o: 'Leva lite · Trochu života (CZ, in cinemas 16 Jul 2026)', y: 2025, studio: 'Film i Väst · Amarcord', role: 'location manager: Czech Republic', type: 'feature', img: A+'live-a-little.jpg', yt: '8y1DHBLoMQw', tt: 'tt32357858' },
   { t: 'Die Frau ohne Gesicht', y: 2025, studio: 'ARTE · Lailaps Films', role: 'location manager', type: 'tv', img: A+'die-frau-ohne-gesicht.jpg', tt: 'tt38585456' },
   // — 2024
   { t: 'Nosferatu', y: 2024, studio: 'Focus Features', role: 'location manager', type: 'feature', img: A+'nosferatu.jpg', yt: 'nulvWqYUM8k', tt: 'tt5040012' },
@@ -105,6 +107,8 @@ const featured = [
   { t: 'Iveta', y: '2022', studio: 'Voyo · TV Nova', dir: 'series', yt: 'fCWr9mpZvB8', img: A+'iveta.jpg', fb: yt('fCWr9mpZvB8') },
   { t: 'The Rookie', y: '2018', studio: 'ABC', dir: 'series', yt: '8BPlx6eK1vc', img: A+'the-rookie.jpg', fb: yt('8BPlx6eK1vc') },
   { t: 'Kluci to vidí jinak než holky', y: '2026', studio: 'Lucky Man Films', dir: 'David Ondříček', yt: 'ubqQPxmJcJQ', img: A+'kluci-holky.jpg', fb: yt('ubqQPxmJcJQ'), isNew: true },
+  { t: 'Spálená hora', y: '2026', studio: 'FilmBrigade', dir: 'series', img: A+'spalena-hora.jpg', isNew: true },
+  { t: 'Live a Little', y: '2025', studio: 'Film i Väst · Amarcord', dir: 'Fanny Ovesen', yt: '8y1DHBLoMQw', img: A+'live-a-little.jpg', fb: yt('8y1DHBLoMQw'), isNew: true },
   { t: 'Franz', y: '2025', studio: 'X-Filme · Bioscop', dir: 'Agnieszka Holland', yt: 'f78r0tpG5fg', img: A+'franz.jpg', fb: yt('f78r0tpG5fg') },
   { t: 'Bratři', y: '2023', studio: 'FilmBrigade · Česká televize', dir: 'Tomáš Mašín', yt: '_ycEQ65wAbY', img: A+'bratri.jpg', fb: yt('_ycEQ65wAbY') },
   { t: 'Zrádci', y: '2024', studio: 'Prima', dir: 'series', yt: 'vZv7nVQiF8E', img: A+'zradci-prima.jpg', fb: yt('vZv7nVQiF8E') },
