@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pavel Špaček — Location Manager, Prague</title>
+  <title>Pavel Špaček — Location Manager · The Location Archive</title>
   <meta name="description" content="Pavel Špaček — Location Manager, Prague. 25 years, 52 IMDb credits: Nosferatu, Mission: Impossible, 12 Monkeys, Jack Ryan, Das Boot, FBI: International." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Pavel Špaček — Location Manager" />
-  <meta property="og:description" content="25 years of location work across the Czech Republic and Slovakia. 52 IMDb credits." />
+  <meta property="og:description" content="The Location Archive — 25 years of location work across Czech Republic and Slovakia. 52 IMDb credits." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.pavelspacek.com/" />
   <meta property="og:image" content="https://www.pavelspacek.com/assets/og-image.jpg" />
@@ -18,7 +18,7 @@
   <link rel="canonical" href="https://www.pavelspacek.com/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Pavel Špaček — Location Manager" />
-  <meta name="twitter:description" content="Location Manager, Prague. 25 years, 52 IMDb credits." />
+  <meta name="twitter:description" content="The Location Archive — 25 years, 52 IMDb credits. Prague, Czech Republic." />
   <meta name="twitter:image" content="https://www.pavelspacek.com/assets/og-image.jpg" />
 
   <!-- Favicon: PŠ stamp -->
@@ -26,7 +26,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
 
@@ -53,23 +53,26 @@
 </head>
 <body>
 
+  <div class="topo" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
 
   <!-- NAVIGATION -->
   <nav class="nav" id="nav">
     <a href="#hero" class="nav__brand" aria-label="Pavel Špaček — top">
+      <span class="nav__stampbox">PŠ</span>
       <span class="nav__brandtext">
         <span class="nav__brandname">PAVEL ŠPAČEK</span>
-        <span class="nav__brandsub">LOCATION MANAGER · PRAGUE</span>
+        <span class="nav__brandsub">LOCATION ARCHIVE · PRAGUE</span>
       </span>
     </a>
     <div class="nav__links">
-      <a href="#about"   >About</a>
-      <a href="#featured">Selected work</a>
-      <a href="#index"   >Filmography</a>
-      <a href="#services">Services</a>
+      <a href="#about"   >Subject</a>
+      <a href="#featured">Priority Files</a>
+      <a href="#index"   >Index</a>
+      <a href="#services">Operations</a>
     </div>
     <div class="nav__right">
-      <a href="#contact" class="nav__cta">Contact</a>
+      <a href="#contact" class="nav__cta">Open a file</a>
       <button class="nav__burger" aria-label="Menu" id="burger" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span>
       </button>
@@ -79,23 +82,31 @@
   <!-- HERO — file header -->
   <header class="hero" id="hero">
     <div class="hero__meta mono">
-      <span>PRAGUE · CZECH REPUBLIC</span>
-      <span class="hero__meta-mid">CZ · SK</span>
-      <span>SINCE 2001</span>
+      <span>50.0755°N&nbsp;14.4378°E</span>
+      <span class="hero__meta-mid">PERSONNEL FILE — LOCATION DEPARTMENT</span>
+      <span>EST. 2001 — <span id="yearNow">2026</span></span>
     </div>
 
     <div class="hero__name-wrap">
-      <h1 class="hero__name">Pavel Špaček</h1>
+      <h1 class="hero__name">PAVEL<br>ŠPAČEK</h1>
+      <div class="hero__stamps" aria-hidden="true">
+        <span class="stamp stamp--red">ACTIVE — ACCEPTING PROJECTS</span>
+        <span class="stamp stamp--gold">CZ · SK CLEARANCE</span>
+        <span class="stamp stamp--gold stamp--lmgi">LMGI MEMBER</span>
+      </div>
     </div>
 
     <div class="hero__row">
-      <p class="hero__role mono">LOCATION MANAGER · <span data-imdb-count>52</span> IMDb CREDITS · LMGI MEMBER</p>
+      <p class="hero__role mono">LOCATION MANAGER — FILE Nº 500+ PRODUCTIONS · <span data-imdb-count>52</span> IMDb CREDITS</p>
       <p class="hero__tag">I find the places where films happen.</p>
     </div>
 
     <!-- Contact sheet -->
     <div class="sheet" id="contactSheet" aria-label="Selected stills">
       <!-- frames injected by JS -->
+    </div>
+    <div class="hero__sheetnote">
+      <span class="caveat">shot these ↑</span>
     </div>
 
     <div class="hero__foot">
@@ -104,13 +115,13 @@
         <a href="https://www.imdb.com/name/nm1623179/" target="_blank" rel="noopener">IMDB ↗</a>
         <a href="https://filmhunters.cz" target="_blank" rel="noopener">FILM HUNTERS ↗</a>
       </div>
-      <a href="#index" class="hero__scroll mono"><span>FILMOGRAPHY</span> ↓</a>
+      <a href="#index" class="hero__scroll mono"><span>BROWSE THE ARCHIVE</span> ↓</a>
     </div>
   </header>
 
   <!-- STUDIO TICKER -->
   <div class="ticker" aria-hidden="true">
-    <div class="ticker__label mono">WORKED&nbsp;FOR</div>
+    <div class="ticker__label mono">SCOUTED&nbsp;FOR</div>
     <div class="ticker__viewport"><div class="ticker__track mono" id="tickerTrack"></div></div>
   </div>
 
@@ -119,20 +130,26 @@
     <div class="container">
       <div class="sec-head">
         <span class="sec-head__no mono">01</span>
-        <h2 class="sec-head__title">About</h2>
-        <span class="sec-head__meta mono">MgA. PAVEL ŠPAČEK · PRAGUE</span>
+        <h2 class="sec-head__title">SUBJECT FILE</h2>
+        <span class="sec-head__meta mono">ŠPAČEK, PAVEL, MgA. · PRAGUE, CZ</span>
       </div>
 
       <div class="about__grid">
         <figure class="about__photo">
-          <img class="about__img" src="assets/pavel-portrait.jpg" alt="Pavel Špaček" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/pavel-avatar.png'" />
+          <div class="polaroid">
+            <img src="assets/pavel-portrait.jpg" alt="Pavel Špaček" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/pavel-avatar.png'" />
+            <figcaption class="mono">SUBJ. Nº 1623179 — OFFICIAL PORTRAIT</figcaption>
+            <span class="polaroid__tape polaroid__tape--tl" aria-hidden="true"></span>
+            <span class="polaroid__tape polaroid__tape--br" aria-hidden="true"></span>
+          </div>
+          <span class="caveat about__scribble">between two scouts</span>
         </figure>
 
         <div class="about__text">
           <h3 class="about__title">Twenty-five years. Hundreds of films. One location at a time.</h3>
           <p>Since 2001 — Czech and Slovak features, Hollywood studio pictures, Bollywood musicals, German, Turkish and Japanese productions.</p>
           <p>Need locations in Czech Republic or Slovakia? We can start with a conversation.</p>
-          <a href="#contact" class="link-arrow mono">GET IN TOUCH →</a>
+          <a href="#contact" class="link-arrow mono">OPEN A FILE →</a>
           <p class="about__edu mono">EDUCATION — MgA., FAMU PRAGUE · MEMBER — LMGI</p>
         </div>
       </div>
@@ -163,10 +180,11 @@
     <div class="container">
       <div class="sec-head">
         <span class="sec-head__no mono">02</span>
-        <h2 class="sec-head__title">Selected work</h2>
-        <span class="sec-head__meta mono"><span id="featuredCount">21</span> TITLES</span>
+        <h2 class="sec-head__title">PRIORITY FILES</h2>
+        <span class="sec-head__meta mono">20 SELECTED — TRAILERS ATTACHED</span>
       </div>
-      <p class="sec-lede">Click a poster to play the trailer.</p>
+      <p class="sec-lede">Click any file to play the trailer.</p>
+      <div class="latest" id="latest"><!-- JS --></div>
       <div class="featured__grid" id="featuredGrid"><!-- JS --></div>
     </div>
   </section>
@@ -176,13 +194,13 @@
     <div class="container">
       <div class="sec-head">
         <span class="sec-head__no mono">03</span>
-        <h2 class="sec-head__title">Filmography</h2>
-        <span class="sec-head__meta mono"><span id="indexCount">52</span> <span>TITLES</span></span>
+        <h2 class="sec-head__title">INDEX OF PRODUCTIONS</h2>
+        <span class="sec-head__meta mono"><span id="indexCount">52</span> <span>FILES</span></span>
       </div>
-      <p class="sec-lede">The complete record, every role exactly as credited on IMDb. Titles marked <span class="mono lede-flag">IMDb pending</span> are not yet listed there.</p>
+      <p class="sec-lede">The complete record as filed on IMDb — every role exactly as credited. Files stamped <span class="mono lede-flag">NEW</span> are not yet listed under my name on IMDb.</p>
 
       <div class="index__filters mono">
-        <button class="ifilter active" data-filter="all"    >ALL</button>
+        <button class="ifilter active" data-filter="all"    >ALL FILES</button>
         <button class="ifilter"        data-filter="feature">FILMS</button>
         <button class="ifilter"        data-filter="tv"     >TV / STREAMING</button>
       </div>
@@ -196,28 +214,28 @@
     <div class="container">
       <div class="sec-head">
         <span class="sec-head__no mono">04</span>
-        <h2 class="sec-head__title">Services</h2>
-        <span class="sec-head__meta mono">FROM SCRIPT TO WRAP</span>
+        <h2 class="sec-head__title">FIELD OPERATIONS</h2>
+        <span class="sec-head__meta mono">STANDARD PROCEDURE — 4 PHASES</span>
       </div>
 
       <div class="services__grid">
         <div class="op">
-          <div class="op__head mono"><span class="op__phase">01</span></div>
+          <div class="op__head mono"><span class="op__phase">PHASE 01</span><span class="op__code">SCT</span></div>
           <h3>Location scouting</h3>
           <p>Script breakdown, creative consultation, location selection.</p>
         </div>
         <div class="op">
-          <div class="op__head mono"><span class="op__phase">02</span></div>
+          <div class="op__head mono"><span class="op__phase">PHASE 02</span><span class="op__code">PRM</span></div>
           <h3>Permits &amp; authority liaison</h3>
           <p>Permits, contracts, municipalities, police, monument care.</p>
         </div>
         <div class="op">
-          <div class="op__head mono"><span class="op__phase">03</span></div>
+          <div class="op__head mono"><span class="op__phase">PHASE 03</span><span class="op__code">MGT</span></div>
           <h3>On-set location management</h3>
           <p>Base camp, set protection, logistics, restoration.</p>
         </div>
         <div class="op">
-          <div class="op__head mono"><span class="op__phase">04</span></div>
+          <div class="op__head mono"><span class="op__phase">PHASE 04</span><span class="op__code">ARC</span></div>
           <h3>The archive — CZ &amp; SK</h3>
           <p>25 years of scouting, catalogued. A curated selection for any brief within days.</p>
         </div>
@@ -230,8 +248,8 @@
     <div class="container">
       <div class="sec-head">
         <span class="sec-head__no mono">05</span>
-        <h2 class="sec-head__title">Contact</h2>
-        <span class="sec-head__meta mono">NEW PROJECTS · CZ &amp; SK</span>
+        <h2 class="sec-head__title">OPEN A FILE</h2>
+        <span class="sec-head__meta mono">NEW PROJECT — INTAKE FORM</span>
       </div>
 
       <div class="contact__grid">
@@ -248,7 +266,7 @@
             <span>PROJECT / BRIEF</span>
             <textarea name="message" rows="5" required></textarea>
           </label>
-          <button type="submit" class="btn-stamp">SEND INQUIRY →</button>
+          <button type="submit" class="btn-stamp">FILE THE REQUEST →</button>
           <p class="form__note mono">Opens your mail app with the message pre-filled.</p>
         </form>
 
@@ -273,6 +291,9 @@
             <span class="contact__label mono">RECORD</span>
             <a href="https://www.imdb.com/name/nm1623179/" target="_blank" rel="noopener">IMDb nm1623179 ↗</a>
           </div>
+          <div class="contact__stampwrap" aria-hidden="true">
+            <span class="stamp stamp--red stamp--big">REPLIES PERSONALLY</span>
+          </div>
         </aside>
       </div>
     </div>
@@ -282,7 +303,7 @@
   <footer class="footer">
     <div class="container footer__inner mono">
       <span>© <span id="yearNow3">2026</span> PAVEL ŠPAČEK — <span>ALL RIGHTS RESERVED</span></span>
-      <span class="footer__mid">LOCATION MANAGEMENT · PRAGUE · LMGI</span>
+      <span class="footer__mid">FILED UNDER: LOCATION MANAGEMENT — PRAGUE</span>
       <div class="footer__links">
         <a href="https://www.imdb.com/name/nm1623179/" target="_blank" rel="noopener">IMDB</a>
         <a href="https://filmhunters.cz" target="_blank" rel="noopener">FILM HUNTERS</a>
@@ -294,11 +315,11 @@
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <nav class="mobile-menu__nav">
-      <a href="#about"    class="mobile-menu__link" data-close><span class="mono">01</span><span>About</span></a>
-      <a href="#featured" class="mobile-menu__link" data-close><span class="mono">02</span><span>Selected work</span></a>
-      <a href="#index"    class="mobile-menu__link" data-close><span class="mono">03</span><span>Filmography</span></a>
-      <a href="#services" class="mobile-menu__link" data-close><span class="mono">04</span><span>Services</span></a>
-      <a href="#contact"  class="mobile-menu__link" data-close><span class="mono">05</span><span>Contact</span></a>
+      <a href="#about"    class="mobile-menu__link" data-close><span class="mono">01</span><span>Subject</span></a>
+      <a href="#featured" class="mobile-menu__link" data-close><span class="mono">02</span><span>Priority Files</span></a>
+      <a href="#index"    class="mobile-menu__link" data-close><span class="mono">03</span><span>Index</span></a>
+      <a href="#services" class="mobile-menu__link" data-close><span class="mono">04</span><span>Operations</span></a>
+      <a href="#contact"  class="mobile-menu__link" data-close><span class="mono">05</span><span>Open a file</span></a>
     </nav>
     <div class="mobile-menu__foot mono">
       <a href="https://www.imdb.com/name/nm1623179/" target="_blank" rel="noopener">IMDB ↗</a>
