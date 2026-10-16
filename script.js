@@ -1,434 +1,592 @@
 /* ============================================================
-   PAVEL ŠPAČEK — THE LOCATION ARCHIVE
-   Data + rendering · v3
+   PAVEL ŠPAČEK — THE LOCATION ARCHIVE · Archive Showreel (V6)
+   Rendering only. All data comes from the data.js globals:
+   credits, featured, studios, profile, A, still, yt.
+   Each block below is self-contained so it can be lifted into
+   a single-file build without touching the data layer.
    ============================================================ */
+(() => {
+  'use strict';
 
-const A = 'assets/';
-const yt = id => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+  /* ---------- helpers ---------- */
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  const ytHq = id => still(id) || `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+  const isPoster = src => typeof src === 'string' && src.startsWith(A);
+  const imdbTitle = tt => `https://www.imdb.com/title/${encodeURIComponent(tt)}/`;
+  const imdbName = `https://www.imdb.com/name/${profile.imdbId}/`;
+  const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const pad = (n, l = 2) => String(n).padStart(l, '0');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const byTT = Object.fromEntries(credits.map(c => [c.tt, c]));
+  const metaLine = c => `${c.studio} · ${c.role}${c.pending ? ' · IMDb credit pending' : ''}`;
 
-/* ---- Complete IMDb record — 52 credits (nm1623179) ----
-   Roles exactly as credited on IMDb. One row per title,
-   series shown with year range. Sorted by most recent year. */
-const credits = [
-  // — 2026 · pending: title is on IMDb, Pavel's credit not filed yet
-  { t: 'Kluci to vidí jinak než holky', o: "Don't You Know It's Different for Girls (working title)", y: 2026, studio: 'Lucky Man Films', role: 'locations', type: 'feature', img: A+'kluci-holky.jpg', yt: 'ubqQPxmJcJQ', tt: 'tt43663737', pending: true },
-  // — 2025
-  { t: 'FUBAR', y: 2023, ey: 2025, studio: 'Netflix', role: 'location manager · Prague unit', type: 'tv', img: A+'fubar.jpg', yt: 'vJlfAp7ZCAY', tt: 'tt13064902' },
-  { t: 'FBI: International', y: 2021, ey: 2025, studio: 'CBS · Universal Television', role: 'location manager', type: 'tv', img: A+'fbi-international.jpg', yt: 'Ss717FniM9I', tt: 'tt14449470' },
-  { t: 'Štěstíčku naproti', y: 2025, studio: 'Oneplay · Voyo', role: 'supervising location manager', type: 'tv', img: A+'stesticku-naproti.jpg', yt: 'LoEC0Xc8-S0', tt: 'tt39300922' },
-  { t: 'Franz', y: 2025, studio: 'X-Filme · Bioscop', role: 'locations', type: 'feature', img: A+'franz.jpg', yt: 'f78r0tpG5fg', tt: 'tt17070412' },
-  { t: 'Live a Little', o: 'Leva lite', y: 2025, studio: 'Film i Väst · Amarcord', role: 'location manager: Czech Republic', type: 'feature', img: A+'live-a-little.jpg', yt: '8y1DHBLoMQw', tt: 'tt32357858' },
-  { t: 'Die Frau ohne Gesicht', y: 2025, studio: 'ARTE · Lailaps Films', role: 'location manager', type: 'tv', img: A+'die-frau-ohne-gesicht.jpg', tt: 'tt38585456' },
-  // — 2024
-  { t: 'Nosferatu', y: 2024, studio: 'Focus Features', role: 'location manager', type: 'feature', img: A+'nosferatu.jpg', yt: 'nulvWqYUM8k', tt: 'tt5040012' },
-  { t: 'Hořký svět', y: 2022, ey: 2024, studio: 'Prima', role: 'supervising location manager', type: 'tv', img: A+'horky-svet.jpg', yt: 'ihgZS8vc7cM', tt: 'tt21848944' },
-  { t: 'Zrádci', y: 2024, studio: 'Prima', role: 'supervising location manager', type: 'tv', img: A+'zradci-prima.jpg', yt: 'vZv7nVQiF8E', tt: 'tt33321873' },
-  { t: 'Hrdina', y: 2024, studio: 'Prima · Oneplay', role: 'supervising location manager', type: 'tv', img: A+'hrdina.jpg', yt: 'K9iny-JqPL8', tt: 'tt33101555' },
-  { t: 'Amerikánka', y: 2024, studio: 'Bioscop · PFX', role: 'location scout', type: 'feature', img: A+'amerikanka.jpg', yt: 'GmMzuwOtczQ', tt: 'tt33499451' },
-  // — 2023
-  { t: 'Wonka', y: 2023, studio: 'Warner Bros.', role: 'location manager: sfx still shoot', type: 'feature', img: A+'wonka.jpg', yt: 'otNh9bTjXWg', tt: 'tt6166392' },
-  { t: 'Das Boot', y: 2018, ey: 2023, studio: 'Sky · Bavaria Fiction', role: 'supervising location manager · all seasons S1–S4', type: 'tv', img: A+'das-boot-3.jpg', yt: '6FlNemUn78U', tt: 'tt5830254' },
-  { t: 'Jack Ryan', y: 2018, ey: 2023, studio: 'Amazon Prime Video', role: 'location manager', type: 'tv', img: A+'jack-ryan.jpg', yt: '1KsyZF590NM', tt: 'tt5057054' },
-  { t: 'Hunters', y: 2020, ey: 2023, studio: 'Amazon Prime Video', role: 'supervising location manager', type: 'tv', img: A+'hunters.jpg', yt: 'vHE3HViq8r8', tt: 'tt7456722' },
-  { t: 'Los Farad', y: 2023, studio: 'Amazon Prime Video', role: 'supervising location manager', type: 'tv', img: A+'los-farad.jpg', yt: '1Lb333Lmaqs', tt: 'tt21278506' },
-  { t: 'Die Saat — Tödliche Macht', y: 2023, studio: 'Sky · ARD', role: 'supervising location manager', type: 'tv', img: A+'die-saat.jpg', yt: 'TAd93upmJIs', tt: 'tt20220254' },
-  { t: 'Bod obnovy', o: 'Restore Point', y: 2023, studio: 'Film Kolektiv', role: 'locations', type: 'feature', img: A+'restore-point.jpg', yt: 'JewqVAvzJnA', tt: 'tt9362492' },
-  { t: 'Bratři', o: 'Brothers', y: 2023, studio: 'FilmBrigade · Česká televize', role: 'supervising location manager', type: 'feature', img: A+'bratri.jpg', yt: '_ycEQ65wAbY', tt: 'tt14232442' },
-  { t: "John Carpenter's Suburban Screams", y: 2023, studio: 'Peacock', role: 'location scout', type: 'tv', img: A+'suburban-screams.jpg', yt: 'a9cRV4_Qgew', tt: 'tt29120536' },
-  // — 2022
-  { t: 'Iveta', y: 2022, studio: 'Voyo · TV Nova', role: 'supervising location manager', type: 'tv', img: A+'iveta.jpg', yt: 'fCWr9mpZvB8', tt: 'tt17053832' },
-  { t: 'Sedm schodů k moci', y: 2022, studio: 'Prima · Unit Sofa', role: 'supervising location manager', type: 'tv', img: A+'sedm-schodu-k-moci.jpg', yt: 'ZyAneVp7G_U', tt: 'tt20880752' },
-  { t: 'Grand Prix', y: 2022, studio: 'Offside MEN · Česká televize', role: 'supervising location manager', type: 'feature', img: A+'grand-prix.jpg', yt: 'NdToBcJhFyg', tt: 'tt14401508' },
-  { t: 'Spolu', y: 2022, studio: 'Bontonfilm', role: 'supervising location manager', type: 'feature', img: A+'spolu.jpg', yt: 'Hof4Ji9XwpI', tt: 'tt22037196' },
-  { t: 'Běžná selhání', o: 'Ordinary Failures', y: 2022, studio: 'Xova Film · HBO Europe', role: 'supervising location manager', type: 'feature', img: A+'bezna-selhani.jpg', yt: 'ALo8__vC3X0', tt: 'tt13844844' },
-  { t: 'Pánský klub', y: 2022, studio: 'Punk Film · Bontonfilm', role: 'supervising location manager', type: 'feature', img: A+'pansky-klub.jpg', yt: 'kXe0Yi82JH8', tt: 'tt13678280' },
-  { t: 'Vyšehrad: Fylm', y: 2022, studio: 'Obbod', role: 'supervising location manager', type: 'feature', img: A+'vysehrad.jpg', yt: '_2URNiAouqE', tt: 'tt13086670' },
-  { t: 'Poslední závod', y: 2022, studio: 'Punk Film', role: 'location coordinator', type: 'feature', img: A+'posledni-zavod.jpg', yt: 'qlOO0yljKso', tt: 'tt13275560' },
-  // — 2021
-  { t: "If I Can't Have Love, I Want Power", y: 2021, studio: 'IMAX · HBO Max', role: 'location manager', type: 'feature', img: A+'if-i-cant-have-love.jpg', yt: 'eM7luZ-00RI', tt: 'tt15141288' },
-  { t: 'Večírek', y: 2021, studio: 'Falcon', role: 'location coordinator', type: 'feature', img: A+'vecirek.jpg', yt: 'inOmWd0R-vE', tt: 'tt12883212' },
-  // — 2020
-  { t: 'Zrádci', o: 'The Traitors', y: 2019, ey: 2020, studio: 'Česká televize', role: 'supervising location manager', type: 'tv', img: A+'zradci.jpg', tt: 'tt10720694' },
-  { t: 'Erotica 2022', y: 2020, studio: 'Netflix', role: '2nd production manager: locations', type: 'feature', img: A+'erotica-2022.jpg', yt: 'llthIvsbP8Q', tt: 'tt10399674' },
-  { t: 'Chlap na střídačku', y: 2020, studio: 'Bohemia Motion Pictures', role: 'key assistant location manager', type: 'feature', img: A+'chlap-na-stridacku.jpg', yt: 'dEcgilolTxI', tt: 'tt10681656' },
-  // — 2019
-  { t: 'Bride of Istanbul', o: 'İstanbullu Gelin', y: 2017, ey: 2019, studio: 'Star TV', role: 'location coordinator', type: 'tv', img: A+'bride-of-istanbul.jpg', yt: 'QOBHCfrQJtc', tt: 'tt6462806' },
-  // — 2018
-  { t: '12 Monkeys', y: 2015, ey: 2018, studio: 'Syfy · Atlas Entertainment', role: 'location manager', type: 'tv', img: A+'12-monkeys.jpg', yt: 'AQEN9V8r6TM', tt: 'tt3148266' },
-  { t: 'The Rookie', y: 2018, studio: 'ABC', role: 'locations', type: 'tv', img: A+'the-rookie.jpg', yt: '8BPlx6eK1vc', tt: 'tt7587890' },
-  { t: 'Toman', y: 2018, studio: 'Total HelpArt · Česká televize', role: 'location coordinator', type: 'feature', img: A+'toman.jpg', yt: 'LF6ANdT4Iro', tt: 'tt6283474' },
-  { t: 'Čertí brko', o: 'The Magic Quill', y: 2018, studio: 'Česká televize · Punk Film', role: 'location coordinator', type: 'feature', img: A+'certi-brko.jpg', yt: 'Zoamf7DPxVw', tt: 'tt7028140' },
-  // — 2017
-  { t: 'Interlude in Prague', y: 2017, studio: 'Stillking Films', role: 'supervising location manager', type: 'feature', img: A+'interlude-prague.jpg', yt: 'uQR4nan5neM', tt: 'tt5540194' },
-  { t: 'Jab Harry Met Sejal', y: 2017, studio: 'Red Chillies Entertainment', role: 'location manager', type: 'feature', img: A+'jab-harry-met-sejal.jpg', yt: 'Ej2IYqyMzA4', tt: 'tt5997666' },
-  // — 2016
-  { t: 'Polda', y: 2016, studio: 'Prima', role: 'supervising location manager', type: 'tv', img: A+'polda.jpg', yt: 'aFSRE9DG5nE', tt: 'tt6315016' },
-  // — 2015
-  { t: 'Child 44', y: 2015, studio: 'Lionsgate · Summit', role: 'location manager', type: 'feature', img: A+'child-44.jpg', yt: 'Uia6y9SRsj4', tt: 'tt1014763' },
-  { t: 'Sedmero krkavců', o: 'The Seven Ravens', y: 2015, studio: 'Attack Film', role: 'locations scout', type: 'feature', img: A+'sedmero-krkavcu.jpg', yt: 'QsbFDXz6dk8', tt: 'tt3037336' },
-  // — 2013
-  { t: 'Strach', o: 'Little Secret', y: 2013, studio: 'Stillking Films', role: 'location manager', type: 'short', img: A+'little-secret.jpg', tt: 'tt2979030' },
-  // — 2012
-  { t: 'Manipulations', y: 2012, studio: 'Sirena Film · AB Productions', role: 'location manager', type: 'tv', img: A+'manipulations.jpg', tt: 'tt2294727' },
-  // — 2011
-  { t: 'Mission: Impossible — Ghost Protocol', y: 2011, studio: 'Paramount Pictures', role: 'assistant location manager: Prague', type: 'feature', img: A+'mission-impossible.jpg', yt: 'HPB7fV7f_f8', tt: 'tt1229238' },
-  { t: 'Rockstar', y: 2011, studio: 'Eros International', role: 'location manager', type: 'feature', img: A+'rockstar.jpg', yt: 'bD5FShPZdpw', tt: 'tt1839596' },
-  // — 2010
-  { t: 'Nodame Cantabile: The Movie II', y: 2010, studio: 'Fuji TV', role: 'location manager', type: 'feature', img: A+'nodame-cantabile.jpg', yt: 'SQTCm37Vkso', tt: 'tt1337673' },
-  // — 2006
-  { t: 'The Illusionist', y: 2006, studio: 'Yari Film Group', role: 'locations scout', type: 'feature', img: A+'illusionist.jpg', yt: 'zuFGKcOSUfM', tt: 'tt0443543' },
-  // — 2005
-  { t: 'Příběhy obyčejného šílenství', y: 2005, studio: 'Negativ', role: 'production manager', type: 'feature', img: A+'pribehy-silenstvi.jpg', yt: 'haR12FFoOOM', tt: 'tt0408120' },
-  // — 2004
-  { t: 'Mistři', y: 2004, studio: 'Negativ · Česká televize', role: 'production manager', type: 'feature', img: A+'mistri.jpg', tt: 'tt0403310' },
-  // — 2003
-  { t: 'Želary', y: 2003, studio: 'Barrandov · ALEF Film', role: 'location manager', type: 'feature', img: A+'zelary.jpg', yt: 'z9MYQlU2V1s', tt: 'tt0288330' },
-];
-
-/* ---- Featured — priority files (wide cards use trailer stills) ---- */
-const featured = [
-  { t: 'Nosferatu', y: '2024', studio: 'Focus Features', dir: 'Robert Eggers', yt: 'nulvWqYUM8k', img: yt('nulvWqYUM8k'), fb: A+'nosferatu.jpg' },
-  { t: 'Mission: Impossible — Ghost Protocol', y: '2011', studio: 'Paramount', dir: 'Brad Bird', yt: 'HPB7fV7f_f8', img: yt('HPB7fV7f_f8'), fb: A+'mission-impossible.jpg' },
-  { t: '12 Monkeys', y: '2015–2018', studio: 'Syfy', dir: 'series', yt: 'AQEN9V8r6TM', img: A+'12-monkeys.jpg', fb: yt('AQEN9V8r6TM') },
-  { t: 'Jack Ryan', y: '2018–2023', studio: 'Amazon Prime Video', dir: 'series', yt: '1KsyZF590NM', img: A+'jack-ryan.jpg', fb: yt('1KsyZF590NM') },
-  { t: 'Das Boot', y: '2018–2023 · S1–S4', studio: 'Sky', dir: 'series', yt: '6FlNemUn78U', img: A+'das-boot-3.jpg', fb: yt('6FlNemUn78U') },
-  { t: 'Child 44', y: '2015', studio: 'Lionsgate', dir: 'Daniel Espinosa', yt: 'Uia6y9SRsj4', img: A+'child-44.jpg', fb: yt('Uia6y9SRsj4') },
-  { t: 'FUBAR', y: '2023–2025', studio: 'Netflix', dir: 'series', yt: 'vJlfAp7ZCAY', img: A+'fubar.jpg', fb: yt('vJlfAp7ZCAY') },
-  { t: 'Hunters', y: '2020–2023', studio: 'Amazon Prime Video', dir: 'series', yt: 'vHE3HViq8r8', img: A+'hunters.jpg', fb: yt('vHE3HViq8r8') },
-  { t: 'FBI: International', y: '2021–2025', studio: 'CBS', dir: 'series', yt: 'Ss717FniM9I', img: A+'fbi-international.jpg', fb: yt('Ss717FniM9I') },
-  { t: "If I Can't Have Love, I Want Power", y: '2021', studio: 'IMAX · HBO Max', dir: 'Colin Tilley', yt: 'eM7luZ-00RI', img: A+'if-i-cant-have-love.jpg', fb: yt('eM7luZ-00RI') },
-  { t: 'Jab Harry Met Sejal', y: '2017', studio: 'Red Chillies', dir: 'Imtiaz Ali', yt: 'Ej2IYqyMzA4', img: A+'jab-harry-met-sejal.jpg', fb: yt('Ej2IYqyMzA4') },
-  { t: 'Bod obnovy', y: '2023', studio: 'Film Kolektiv', dir: 'Robert Hloz', yt: 'JewqVAvzJnA', img: A+'restore-point.jpg', fb: yt('JewqVAvzJnA') },
-  { t: 'Iveta', y: '2022', studio: 'Voyo · TV Nova', dir: 'series', yt: 'fCWr9mpZvB8', img: A+'iveta.jpg', fb: yt('fCWr9mpZvB8') },
-  { t: 'The Rookie', y: '2018', studio: 'ABC', dir: 'series', yt: '8BPlx6eK1vc', img: A+'the-rookie.jpg', fb: yt('8BPlx6eK1vc') },
-  { t: 'Franz', y: '2025', studio: 'X-Filme · Bioscop', dir: 'Agnieszka Holland', yt: 'f78r0tpG5fg', img: A+'franz.jpg', fb: yt('f78r0tpG5fg') },
-  { t: 'Bratři', y: '2023', studio: 'FilmBrigade · Česká televize', dir: 'Tomáš Mašín', yt: '_ycEQ65wAbY', img: A+'bratri.jpg', fb: yt('_ycEQ65wAbY') },
-  { t: 'Zrádci', y: '2024', studio: 'Prima', dir: 'series', yt: 'vZv7nVQiF8E', img: A+'zradci-prima.jpg', fb: yt('vZv7nVQiF8E') },
-  { t: 'Vyšehrad: Fylm', y: '2022', studio: 'Obbod', dir: 'Martin Kopp', yt: '_2URNiAouqE', img: A+'vysehrad.jpg', fb: yt('_2URNiAouqE') },
-  { t: 'Los Farad', y: '2023', studio: 'Amazon Prime Video', dir: 'series', yt: '1Lb333Lmaqs', img: A+'los-farad.jpg', fb: yt('1Lb333Lmaqs') },
-  { t: 'Želary', y: '2003', studio: 'Barrandov · ALEF Film', dir: 'Ondřej Trojan', yt: 'z9MYQlU2V1s', img: A+'zelary.jpg', fb: yt('z9MYQlU2V1s') },
-];
-
-/* ---- Latest files — new releases shown above the priority grid ---- */
-const latest = [
-  { t: 'Kluci to vidí jinak než holky', o: "Don't You Know It's Different for Girls (working title)", dir: 'David Ondříček', studio: 'Lucky Man Films',
-    cast: 'Jaroslav Plesl · Martha Issová · Václav Neužil · Denisa Barešová', role: 'Locations — FILM HUNTERS',
-    release: '2026-10-22', shot: '36 shooting days · Prague', yt: 'ubqQPxmJcJQ', img: A+'kluci-holky.jpg', tt: 'tt43663737',
-    line: 'A tragicomedy of seven Prague lives at midlife — the city as backdrop and catalyst. Bridges, embankments, galleries, a forest at the city line.' },
-];
-
-/* ---- Hero contact sheet ---- */
-const sheetFrames = [
-  { yt: 'nulvWqYUM8k', t: 'Nosferatu', circled: true },
-  { yt: 'HPB7fV7f_f8', t: 'Mission: Impossible' },
-  { yt: 'Uia6y9SRsj4', t: 'Child 44' },
-  { yt: '1KsyZF590NM', t: 'Jack Ryan' },
-  { yt: '6FlNemUn78U', t: 'Das Boot' },
-];
-
-/* ---- Studio ticker ---- */
-const studios = [
-  'FOCUS FEATURES', 'WARNER BROS.', 'PARAMOUNT', 'NETFLIX', 'AMAZON PRIME VIDEO',
-  'HBO MAX', 'SKY', 'LIONSGATE', 'CBS', 'ABC', 'SYFY', 'PEACOCK', 'IMAX',
-  'RED CHILLIES', 'EROS INTERNATIONAL', 'ARTE', 'FUJI TV', 'STAR TV',
-  'ČESKÁ TELEVIZE', 'PRIMA', 'VOYO', 'LUCKY MAN FILMS',
-];
-
-/* ============================================================
-   RENDERING
-   ============================================================ */
-const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
-
-/* Current year in header/footer */
-const NOW = new Date().getFullYear();
-['yearNow', 'yearNow2', 'yearNow3'].forEach(id => {
-  const el = document.getElementById(id);
-  if (el) el.textContent = NOW;
-});
-
-/* Make a non-button element keyboard-operable */
-function makePlayable(el, label, fn) {
-  el.tabIndex = 0;
-  el.setAttribute('role', 'button');
-  el.setAttribute('aria-label', label);
-  el.addEventListener('click', fn);
-  el.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); }
-  });
-}
-
-/* --- Contact sheet --- */
-const sheetEl = document.getElementById('contactSheet');
-sheetFrames.forEach((f, i) => {
-  const d = document.createElement('div');
-  d.className = 'sheet__frame' + (f.circled ? ' sheet__frame--circled' : '');
-  d.innerHTML = `
-    <img src="${yt(f.yt)}" alt="${esc(f.t)}" loading="eager"
-         onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${f.yt}/hqdefault.jpg'" />
-    <span class="sheet__num">FR·${String((i + 1) * 12).padStart(3, '0')}</span>`;
-  makePlayable(d, `Play trailer: ${f.t}`, () => openModal(f.yt, f.t, ''));
-  sheetEl.appendChild(d);
-});
-
-/* Edge-print on the contact sheet rail */
-const edge = document.createElement('span');
-edge.className = 'sheet__edgeprint mono';
-edge.setAttribute('aria-hidden', 'true');
-edge.textContent = 'PŠ ARCH 35 · 0042+07';
-sheetEl.appendChild(edge);
-
-/* --- Ticker --- */
-const tick = document.getElementById('tickerTrack');
-tick.innerHTML = [...studios, ...studios]
-  .map(s => `<span>${s}</span><span class="tick-dot">●</span>`).join('');
-
-/* --- Latest files --- */
-const latestEl = document.getElementById('latest');
-const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-latest.forEach(f => {
-  const d = new Date(f.release + 'T00:00:00');
-  const date = `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
-  const status = new Date() < d ? `IN CINEMAS ${date}` : `RELEASED ${date}`;
-  const card = document.createElement('article');
-  card.className = 'lfile reveal';
-  card.innerHTML = `
-    <div class="lfile__poster">
-      <img src="${f.img}" alt="${esc(f.t)} — poster" loading="lazy" decoding="async" />
-      <span class="lfile__play" aria-hidden="true">
-        <svg width="15" height="15" viewBox="0 0 14 14"><polygon points="2,1 2,13 13,7" fill="currentColor"/></svg>
-      </span>
-    </div>
-    <div class="lfile__body">
-      <div class="lfile__head mono"><span>LATEST FILE</span><span class="stamp stamp--red">${status}</span></div>
-      <h3 class="lfile__title">${esc(f.t)}</h3>
-      <p class="lfile__orig">${esc(f.o)}</p>
-      <p class="lfile__line">${esc(f.line)}</p>
-      <dl class="lfile__meta mono">
-        <div><dt>DIR.</dt><dd>${esc(f.dir)}</dd></div>
-        <div><dt>STUDIO</dt><dd>${esc(f.studio)}</dd></div>
-        <div><dt>CAST</dt><dd>${esc(f.cast)}</dd></div>
-        <div><dt>SHOOT</dt><dd>${esc(f.shot)}</dd></div>
-        <div><dt>ROLE</dt><dd class="lfile__role">${esc(f.role)}</dd></div>
-      </dl>
-      <div class="lfile__actions mono">
-        <button class="lfile__btn" type="button">▶ PLAY TRAILER</button>
-        <a class="lfile__btn lfile__btn--ghost" href="https://www.imdb.com/title/${f.tt}/" target="_blank" rel="noopener">IMDb ↗</a>
-      </div>
-    </div>`;
-  const play = () => openModal(f.yt, f.t, `${f.studio} · dir. ${f.dir}`);
-  card.querySelector('.lfile__btn').addEventListener('click', play);
-  makePlayable(card.querySelector('.lfile__poster'), `Play trailer: ${f.t}`, play);
-  latestEl.appendChild(card);
-});
-
-/* --- Featured --- */
-const featuredGrid = document.getElementById('featuredGrid');
-featured.forEach((f, i) => {
-  const card = document.createElement('article');
-  card.className = `pfile reveal reveal-d${(i % 6) + 1}`;
-  card.innerHTML = `
-    <img src="${f.img}" alt="${esc(f.t)}" loading="lazy" onerror="this.onerror=null;this.src='${f.fb}'" />
-    <div class="pfile__shade"></div>
-    <span class="pfile__tag">PRIORITY · ${String(i + 1).padStart(2, '0')}</span>
-    <span class="pfile__play" aria-hidden="true">
-      <svg width="13" height="13" viewBox="0 0 14 14"><polygon points="2,1 2,13 13,7" fill="currentColor"/></svg>
-    </span>
-    <div class="pfile__body">
-      <h3 class="pfile__title">${esc(f.t)}</h3>
-      <div class="pfile__meta"><b>${esc(f.studio)}</b>${f.dir !== 'series' ? `<span>dir. ${esc(f.dir)}</span>` : '<span>TV series</span>'}</div>
-    </div>`;
-  makePlayable(card, `Play trailer: ${f.t}`, () => openModal(f.yt, f.t, f.studio));
-  featuredGrid.appendChild(card);
-});
-
-/* --- Archive index --- */
-const tableEl = document.getElementById('indexTable');
-const peek = document.getElementById('peek');
-const peekImg = document.getElementById('peekImg');
-const finePointer = window.matchMedia('(pointer: fine)').matches;
-
-const typeLabel = c => c.type === 'tv' ? 'TV' : c.type === 'short' ? 'SHORT' : 'FILM';
-
-/* Header count derived from the data itself */
-const countEl = document.getElementById('indexCount');
-if (countEl) countEl.textContent = credits.length;
-const imdbCount = credits.filter(c => !c.pending).length;
-document.querySelectorAll('[data-imdb-count]').forEach(el => { el.textContent = imdbCount; });
-
-function renderIndex(filter = 'all') {
-  peek.classList.remove('on');
-  tableEl.innerHTML = '';
-  const list = credits.filter(c => filter === 'all' || (filter === 'tv' ? c.type === 'tv' : c.type !== 'tv'));
-
-  list.forEach(c => {
-    const row = document.createElement('div');
-    row.className = 'irow';
-    const no = credits.length - credits.indexOf(c);
-    row.innerHTML = `
-      <span class="irow__no">FILE ${String(no).padStart(3, '0')}</span>
-      <span class="irow__thumb">${c.img ? `<img src="${c.img}" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'" />` : ''}</span>
-      <span class="irow__title">${esc(c.t)}${c.o ? `<em>${esc(c.o)}</em>` : ''}${c.pending ? '<span class="irow__flag mono">NEW · CREDIT PENDING ON IMDb</span>' : ''}</span>
-      <span class="irow__studio">${esc(c.studio)}</span>
-      <span class="irow__role">${esc(c.role)}</span>
-      <span class="irow__type">${typeLabel(c)}</span>
-      <span class="irow__actions">
-        ${c.yt ? '<button class="irow__btn irow__btn--play" aria-label="Play trailer">▶ PLAY</button>' : ''}
-        <a class="irow__btn" href="https://www.imdb.com/title/${c.tt}/" target="_blank" rel="noopener">IMDb</a>
-      </span>`;
-
-    if (c.yt) {
-      row.addEventListener('click', e => {
-        if (!e.target.closest('a')) openModal(c.yt, c.t, `${c.studio} · ${c.role}`);
-      });
-    } else {
-      row.style.cursor = 'default';
-    }
-
-    if (finePointer && c.img) {
-      row.addEventListener('mouseenter', () => { peekImg.src = c.img; peek.classList.add('on'); });
-      row.addEventListener('mouseleave', () => peek.classList.remove('on'));
-      row.addEventListener('mousemove', e => {
-        const w = 168, h = 252, m = 22;
-        let x = e.clientX + m, yPos = e.clientY - h / 2;
-        if (x + w > window.innerWidth - 12) x = e.clientX - w - m;
-        yPos = Math.max(12, Math.min(yPos, window.innerHeight - h - 12));
-        peek.style.left = x + 'px';
-        peek.style.top = yPos + 'px';
-      });
-    }
-
-    tableEl.appendChild(row);
-  });
-}
-renderIndex();
-
-document.querySelectorAll('.ifilter').forEach(btn => {
-  btn.setAttribute('aria-pressed', String(btn.classList.contains('active')));
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.ifilter').forEach(b => {
-      b.classList.remove('active');
-      b.setAttribute('aria-pressed', 'false');
-    });
-    btn.classList.add('active');
-    btn.setAttribute('aria-pressed', 'true');
-    renderIndex(btn.dataset.filter);
-  });
-});
-
-/* ============================================================
-   MODAL
-   ============================================================ */
-const modal = document.getElementById('videoModal');
-const modalPlayer = document.getElementById('modalPlayer');
-const modalCaption = document.getElementById('modalCaption');
-const modalCloseBtn = document.getElementById('modalClose');
-let lastFocused = null;
-
-function openModal(videoId, title, meta) {
-  lastFocused = document.activeElement;
-  modalPlayer.innerHTML = `
-    <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1"
-            title="${esc(title)} — trailer"
-            allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-  modalCaption.innerHTML = `
-    <span class="modal__caption-title">${esc(title)}</span>
-    <span>${esc(meta)}</span>`;
-  modal.classList.add('is-open');
-  modal.removeAttribute('aria-hidden');
-  document.body.style.overflow = 'hidden';
-  modalCloseBtn.focus();
-}
-
-function closeModal() {
-  modal.classList.remove('is-open');
-  modal.setAttribute('aria-hidden', 'true');
-  modalPlayer.innerHTML = '';
-  document.body.style.overflow = '';
-  if (lastFocused && lastFocused.focus) lastFocused.focus();
-}
-
-modalCloseBtn.addEventListener('click', closeModal);
-document.getElementById('modalBackdrop').addEventListener('click', closeModal);
-document.addEventListener('keydown', e => {
-  if (!modal.classList.contains('is-open')) return;
-  if (e.key === 'Escape') closeModal();
-  if (e.key === 'Tab') {
-    const focusables = [modalCloseBtn, modalPlayer.querySelector('iframe')].filter(Boolean);
-    const first = focusables[0], last = focusables[focusables.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    else if (!modal.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+  /* Image with fallback chain */
+  function imgTag(src, fallbacks, alt, eager, cls) {
+    const chain = fallbacks.filter(Boolean);
+    const onerr = chain.length
+      ? `onerror="var f=JSON.parse(this.dataset.fb||'[]');if(f.length){this.src=f.shift();this.dataset.fb=JSON.stringify(f);}else{this.onerror=null;}"`
+      : '';
+    return `<img${cls ? ` class="${cls}"` : ''} src="${esc(src)}" alt="${esc(alt)}" ${eager ? 'loading="eager"' : 'loading="lazy"'} decoding="async" data-fb='${esc(JSON.stringify(chain))}' ${onerr} />`;
   }
-});
 
-/* ============================================================
-   NAV + MOBILE MENU
-   ============================================================ */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 50);
-}, { passive: true });
-
-const burger = document.getElementById('burger');
-const mobileMenu = document.getElementById('mobileMenu');
-
-mobileMenu.inert = true;
-
-function setMobileMenu(open) {
-  mobileMenu.classList.toggle('is-open', open);
-  mobileMenu.setAttribute('aria-hidden', String(!open));
-  mobileMenu.inert = !open;
-  document.body.style.overflow = open ? 'hidden' : '';
-  burger.setAttribute('aria-expanded', String(open));
-}
-burger.addEventListener('click', () => setMobileMenu(!mobileMenu.classList.contains('is-open')));
-document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => setMobileMenu(false)));
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) setMobileMenu(false);
-});
-
-/* ============================================================
-   CONTACT FORM — opens the visitor's mail client, no backend
-   ============================================================ */
-document.getElementById('contactForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const f = e.currentTarget;
-  const name = f.name.value.trim();
-  const email = f.email.value.trim();
-  const msg = f.message.value.trim();
-  const subject = encodeURIComponent(`Project inquiry — ${name}`);
-  const body = encodeURIComponent(`${msg}\n\n—\n${name}\n${email}`);
-  window.location.href = `mailto:pavel@filmhunters.cz?subject=${subject}&body=${body}`;
-});
-
-/* ============================================================
-   REVEAL ON SCROLL
-   ============================================================ */
-const sections = [
-  ['.sec-head', 'reveal'],
-  ['.sec-lede', 'reveal reveal-d1'],
-  ['.about__photo', 'reveal'],
-  ['.about__title', 'reveal'],
-  ['.about__text p', 'reveal'],
-  ['.stat', 'reveal'],
-  ['.op', 'reveal'],
-  ['.contact__form', 'reveal'],
-  ['.contact__info', 'reveal reveal-d2'],
-];
-sections.forEach(([sel, cls]) => {
-  document.querySelectorAll(sel).forEach((el, i) => {
-    cls.split(' ').forEach(c => el.classList.add(c));
-    if (!cls.includes('-d')) el.classList.add(`reveal-d${(i % 4) + 1}`);
+  /* ============================================================
+     PROFILE-DRIVEN TEXT
+     ============================================================ */
+  const NOW = new Date().getFullYear();
+  ['yearNow', 'yearNow3'].forEach(id => { const el = $(id); if (el) el.textContent = NOW; });
+  document.querySelectorAll('[data-p]').forEach(el => {
+    const v = profile[el.dataset.p];
+    if (v != null) el.textContent = v;
   });
-});
+  const imdbCount = credits.filter(c => !c.pending).length;
+  document.querySelectorAll('[data-imdb-count]').forEach(el => { el.textContent = imdbCount; });
+  $('indexCount').textContent = credits.length;
+  $('aboutText').innerHTML = profile.about.map(p => `<p>${esc(p)}</p>`).join('');
+  $('heroMail').href = `mailto:${profile.email}`;
+  $('heroImdb').href = imdbName;
+  $('heroCompany').href = profile.companyUrl;
+  $('cEmail').href = `mailto:${profile.email}`;
+  $('cEmail').textContent = profile.email;
+  $('cPhone').href = `tel:${profile.phone.replace(/\s/g, '')}`;
+  $('cPhone').textContent = profile.phone;
 
-if ('IntersectionObserver' in window) {
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if (en.isIntersecting) { en.target.classList.add('in-view'); obs.unobserve(en.target); }
+  /* ============================================================
+     TRAILER MODAL (shared by reel, poster rows and index)
+     ============================================================ */
+  const modal = $('videoModal');
+  const modalPlayer = $('modalPlayer');
+  const modalCaption = $('modalCaption');
+  const modalCloseBtn = $('modalClose');
+  let lastFocused = null;
+  let onModalChange = () => {};
+
+  function openModal(videoId, title, meta, opener) {
+    if (!videoId) return;
+    lastFocused = opener || document.activeElement;
+    peek.classList.remove('on');
+    modalPlayer.innerHTML = `
+      <iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1&rel=0&modestbranding=1&playsinline=1"
+              title="${esc(title)} — trailer"
+              allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+    modalCaption.innerHTML = `<span class="modal__caption-title">${esc(title)}</span><span class="modal__caption-meta">${esc(meta)}</span>`;
+    modal.classList.add('is-open');
+    modal.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+    onModalChange(true);
+    modalCloseBtn.focus();
+  }
+  function closeModal() {
+    if (!modal.classList.contains('is-open')) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    modalPlayer.innerHTML = '';
+    document.body.style.overflow = '';
+    onModalChange(false);
+    if (lastFocused && document.contains(lastFocused) && lastFocused.focus) lastFocused.focus({ preventScroll: true });
+  }
+  const openCredit = (c, opener) => c && c.yt && openModal(c.yt, c.t, metaLine(c), opener);
+
+  modalCloseBtn.addEventListener('click', closeModal);
+  $('modalBackdrop').addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => {
+    if (!modal.classList.contains('is-open')) return;
+    if (e.key === 'Escape') { e.preventDefault(); closeModal(); return; }
+    if (e.key === 'Tab') {
+      const f = [modalCloseBtn, modalPlayer.querySelector('iframe')].filter(Boolean);
+      const first = f[0], last = f[f.length - 1];
+      if (!modal.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+      else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* ============================================================
+     HERO REEL — one background player, reused for every title.
+     Only titles credited exactly "location manager", so the
+     caption "{role} — {title}" is literally true.
+     ============================================================ */
+  const REEL_TITLES = ['Nosferatu', 'Jack Ryan', 'Child 44', '12 Monkeys', 'FBI: International'];
+  const reel = REEL_TITLES
+    .map(t => credits.find(c => c.t === t && c.role === 'location manager' && c.yt))
+    .filter(Boolean);
+  const DUR = 13000;
+  // Each trailer starts at the moment its clean still was taken, so still -> video is seamless
+  // and the reel skips rating cards and studio logos at the top of the trailers.
+  const START = { nulvWqYUM8k: 28, '1KsyZF590NM': 90, Uia6y9SRsj4: 102, AQEN9V8r6TM: 7, Ss717FniM9I: 66 };
+  const heroEl = $('hero');
+  const stage = $('heroStage');
+  const sheetEl = $('contactSheet');
+  const captionEl = $('reelCaption');
+  const posEl = $('reelPos');
+  const pauseBtn = $('reelPause');
+  const params = new URLSearchParams(location.search);
+  const saveData = navigator.connection && navigator.connection.saveData;
+  const headless = /HeadlessChrome/.test(navigator.userAgent) || navigator.webdriver;
+  const videoOK = () => window.matchMedia('(min-width: 900px)').matches && !reduced && !saveData && !headless && !params.has('still');
+
+  heroEl.style.setProperty('--dur', `${DUR / 1000}s`);
+  if (videoOK()) heroEl.classList.add('has-video');
+
+  // Stills underneath (clean frames from assets/stills via still(), YouTube thumb as fallback)
+  stage.innerHTML = reel.map((c, i) => `
+    <div class="slide" data-i="${i}">
+      ${imgTag(still(c.yt) || yt(c.yt), [ytHq(c.yt), `https://img.youtube.com/vi/${c.yt}/hqdefault.jpg`], '', i === 0, 'slide__img')}
+    </div>`).join('');
+  const slides = [...stage.children];
+
+  // Contact sheet = the reel controller
+  const CIRCLE = '<svg class="sheet__circle" viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M20 9 C 40 1, 82 2, 93 20 C 101 35, 84 54, 52 56 C 22 58, 3 47, 5 30 C 6 17, 22 7, 44 5 C 52 4.5, 60 5, 66 6.5"/></svg>';
+  sheetEl.innerHTML = '<div class="sheet__strip">' + reel.map((c, i) => `
+    <button class="sheet__frame" type="button" data-i="${i}" aria-pressed="false" aria-label="Show ${esc(c.t)} in the reel">
+      ${imgTag(still(c.yt) || yt(c.yt), [ytHq(c.yt)], '', true)}
+      <span class="sheet__num mono">FR·${pad((i + 1) * 12, 3)}</span>
+      <span class="sheet__title mono">${esc(c.t)}</span>
+      <span class="sheet__bar" aria-hidden="true"><span></span></span>
+      ${CIRCLE}
+    </button>`).join('') + '</div><span class="sheet__edgeprint mono" aria-hidden="true">PŠ ARCH 35 · 0042+07</span>';
+  const frames = [...sheetEl.querySelectorAll('.sheet__frame')];
+
+  let cur = -1;
+  let timer = null, remaining = DUR, startedAt = 0;
+  const holds = new Set();                 // reasons the reel is paused: user | modal | hidden | offscreen
+  const isHeld = () => holds.size > 0;
+
+  /* ---- single background player ---- */
+  const YT_ORIGIN = /^https:\/\/www\.youtube(-nocookie)?\.com$/;
+  let player = null, playerReady = false, loadedId = null, awaitingFresh = true, swapT = null, fbT = null, fbUsed = false;
+
+  function srcFor(id) {
+    const q = new URLSearchParams({
+      autoplay: 1, mute: 1, controls: 0, loop: 1, playlist: id, playsinline: 1, rel: 0, start: START[id] || 0,
+      modestbranding: 1, iv_load_policy: 3, disablekb: 1, fs: 0, enablejsapi: 1, origin: location.origin,
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-} else {
-  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
-}
+    return `https://www.youtube-nocookie.com/embed/${id}?${q}`;
+  }
+  function post(func, args = []) {
+    if (player && player.contentWindow) {
+      try { player.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args }), '*'); } catch (_) {}
+    }
+  }
+  function handshake() {
+    let n = 0;
+    const ping = setInterval(() => {
+      try { player.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 'reel', channel: 'widget' }), '*'); } catch (_) {}
+      if (++n > 12 || playerReady) clearInterval(ping);
+    }, 400);
+  }
+  function setSrc(id) {
+    playerReady = false;
+    awaitingFresh = true;
+    player.classList.remove('is-live');
+    player.src = srcFor(id);
+  }
+  function armFallback(i) {
+    clearTimeout(fbT);
+    if (fbUsed) return;
+    // If the API swap does not report "playing" in time, reload the one iframe with the new id.
+    fbT = setTimeout(() => {
+      if (cur === i && player && !player.classList.contains('is-live') && !isHeld()) { fbUsed = true; setSrc(reel[i].yt); }
+    }, 5000);
+  }
+  function cueVideo(i) {
+    if (!videoOK()) return;
+    const id = reel[i].yt;
+    clearTimeout(swapT);
+    if (!player) {
+      player = document.createElement('iframe');
+      player.className = 'slide__video';
+      player.title = 'Background trailer reel';
+      player.allow = 'autoplay; encrypted-media';
+      player.tabIndex = -1;
+      player.setAttribute('aria-hidden', 'true');
+      player.addEventListener('load', handshake);
+      stage.appendChild(player);
+      loadedId = id;
+      setSrc(id);
+      armFallback(i);
+      return;
+    }
+    if (loadedId === id && player.classList.contains('is-live')) return;
+    awaitingFresh = true;
+    player.classList.remove('is-live');      // video fades out to the incoming still
+    swapT = setTimeout(() => {
+      loadedId = id;
+      if (playerReady) { post('loadVideoById', [{ videoId: id, startSeconds: START[id] || 0 }]); post('mute'); }
+      else setSrc(id);
+      armFallback(i);
+    }, 700);
+  }
+
+  window.addEventListener('message', e => {
+    if (!player || e.source !== player.contentWindow || !YT_ORIGIN.test(e.origin)) return;
+    let d; try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (_) { return; }
+    if (!d) return;
+    if (d.event === 'onReady' || d.event === 'initialDelivery' || d.event === 'infoDelivery') playerReady = true;
+    if (d.event === 'onError') { player.classList.remove('is-live'); return; }
+    const info = d.info || {};
+    const vid = info.videoData && info.videoData.video_id;
+    if (vid && vid !== loadedId) return;
+    const state = d.event === 'onStateChange' ? d.info : info.playerState;
+    if (state == null) return;
+    if (state !== 1) awaitingFresh = false;
+    if (state === 1 && !awaitingFresh && !isHeld()) { player.classList.add('is-live'); clearTimeout(fbT); fbUsed = false; }
+    if (state === 1 && isHeld()) post('pauseVideo');
+    if (state === 0 && !isHeld()) go(cur + 1);
+  });
+
+  /* ---- timeline ---- */
+  function schedule() {
+    clearTimeout(timer);
+    if (isHeld() || reduced) return;
+    startedAt = performance.now();
+    timer = setTimeout(() => go(cur + 1), remaining);
+  }
+  function halt() {
+    clearTimeout(timer);
+    if (startedAt) { remaining = Math.max(400, remaining - (performance.now() - startedAt)); startedAt = 0; }
+  }
+  function go(i) {
+    cur = (i + reel.length) % reel.length;
+    const c = reel[cur];
+    slides.forEach((s, k) => s.classList.toggle('is-active', k === cur));
+    frames.forEach((f, k) => {
+      const on = k === cur;
+      f.classList.toggle('is-active', on);
+      f.classList.toggle('is-done', k < cur);
+      f.setAttribute('aria-pressed', String(on));
+      if (on) f.setAttribute('aria-current', 'true'); else f.removeAttribute('aria-current');
+      const bar = f.querySelector('.sheet__bar span');
+      bar.replaceWith(bar.cloneNode());   // restart the progress fill
+    });
+    // keep the active frame in view when the strip scrolls (narrow screens)
+    const strip = sheetEl.firstElementChild, fr = frames[cur];
+    if (strip.scrollWidth > strip.clientWidth + 2) {
+      strip.scrollTo({ left: fr.offsetLeft - (strip.clientWidth - fr.offsetWidth) / 2, behavior: reduced ? 'auto' : 'smooth' });
+    }
+    captionEl.innerHTML = `<span class="cap">${esc(c.role)}</span> — <b>${esc(c.t)}</b>`;
+    posEl.textContent = `${pad(cur + 1)} / ${pad(reel.length)}`;
+    remaining = DUR; startedAt = 0;
+    cueVideo(cur);
+    schedule();
+  }
+  function hold(reason) {
+    const was = isHeld();
+    holds.add(reason);
+    if (!was) { halt(); heroEl.classList.add('is-paused'); post('pauseVideo'); }
+  }
+  function release(reason) {
+    if (!holds.delete(reason) || isHeld()) return;
+    heroEl.classList.remove('is-paused');
+    post('playVideo');
+    schedule();
+  }
+  function setUserPause(on) {
+    on ? hold('user') : release('user');
+    pauseBtn.setAttribute('aria-pressed', String(on));
+    pauseBtn.textContent = on ? 'PLAY REEL' : 'PAUSE REEL';
+  }
+
+  sheetEl.addEventListener('click', e => {
+    const f = e.target.closest('.sheet__frame');
+    if (!f) return;
+    if (holds.has('user')) setUserPause(false);
+    go(Number(f.dataset.i));
+  });
+  sheetEl.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const k = frames.indexOf(document.activeElement);
+    if (k < 0) return;
+    e.preventDefault();
+    frames[(k + (e.key === 'ArrowRight' ? 1 : -1) + frames.length) % frames.length].focus();
+  });
+  $('reelSound').addEventListener('click', e => openCredit(reel[cur], e.currentTarget));
+  pauseBtn.addEventListener('click', () => setUserPause(!holds.has('user')));
+  if (reduced) { pauseBtn.hidden = true; }
+
+  onModalChange = open => (open ? hold('modal') : release('modal'));
+  document.addEventListener('visibilitychange', () => (document.hidden ? hold('hidden') : release('hidden')));
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([en]) => (en.isIntersecting ? release('offscreen') : hold('offscreen')), { threshold: 0.12 }).observe(heroEl);
+  }
+  if (reel.length) go(0);
+
+  /* ============================================================
+     STUDIO TICKER
+     ============================================================ */
+  $('tickerTrack').innerHTML = [...studios, ...studios]
+    .map(s => `<span>${esc(s)}</span><span class="tick-dot">●</span>`).join('');
+
+  /* ============================================================
+     PRIORITY FILES — three drawers of posters
+     ============================================================ */
+  const fileNo = c => pad(credits.length - credits.indexOf(c), 3);
+  // featured -> matching credit (title + start year) for the exact role, studio and type
+  const creditFor = f => credits.find(c => c.t === f.t && c.y === parseInt(f.y, 10));
+  const selected = featured.map(f => {
+    const c = creditFor(f);
+    if (!c) return null;
+    return { c, poster: isPoster(f.img) ? f.img : (isPoster(f.fb) ? f.fb : c.img), isNew: !!f.isNew };
+  }).filter(Boolean);
+  const features = credits.filter(c => c.type === 'feature' || c.type === 'short');
+  const series = credits.filter(c => c.type === 'tv');
+
+  function pcard({ c, poster, isNew }, i, tag) {
+    const stampEl = isNew ? '<span class="stamp stamp--red pcard__stamp pcard__stamp--new">NEW</span>'
+      : c.pending ? '<span class="stamp stamp--red pcard__stamp">CREDIT PENDING</span>' : '';
+    const cue = c.yt ? '<span class="pcard__cue">▶ PLAY TRAILER</span>' : '<span class="pcard__cue pcard__cue--imdb">IMDb ↗</span>';
+    const inner = `
+      <span class="pcard__poster">
+        ${imgTag(poster || c.img, c.yt ? [ytHq(c.yt)] : [], '', i < 7)}
+        <span class="pcard__tag mono">${tag}</span>
+        ${stampEl}
+        <span class="pcard__over">
+          <span class="pcard__studio mono">${esc(c.studio)}</span>
+          <span class="pcard__role mono">${esc(c.role)}</span>
+          ${c.pending ? '<span class="pcard__note mono">IMDb credit pending</span>' : ''}
+          ${cue}
+        </span>
+      </span>
+      <span class="pcard__title">${esc(c.t)}</span>
+      <span class="pcard__sub mono">${esc(c.role)}</span>`;
+    const label = `${c.t} — ${c.role}, ${c.studio}${c.pending ? ', IMDb credit pending' : ''}. ${c.yt ? 'Play trailer' : 'Open on IMDb'}`;
+    return c.yt
+      ? `<li><button class="pcard${isNew ? ' pcard--new' : ''}" type="button" data-tt="${esc(c.tt)}" aria-label="${esc(label)}">${inner}</button></li>`
+      : `<li><a class="pcard" href="${imdbTitle(c.tt)}" target="_blank" rel="noopener" aria-label="${esc(label)}">${inner}</a></li>`;
+  }
+
+  $('rowSelected').innerHTML = selected.map((x, i) => pcard(x, i, `PRIORITY · ${pad(i + 1)}`)).join('');
+  $('rowFeatures').innerHTML = features.map((c, i) => pcard({ c, poster: c.img }, i, `FILE ${fileNo(c)}`)).join('');
+  $('rowSeries').innerHTML = series.map((c, i) => pcard({ c, poster: c.img }, i, `FILE ${fileNo(c)}`)).join('');
+  $('selCount').textContent = `${selected.length} FILES`;
+  $('featCount').textContent = `${features.length} FILES`;
+  $('serCount').textContent = `${series.length} FILES`;
+
+  document.querySelectorAll('.drawer').forEach(row => {
+    const track = row.querySelector('.drawer__track');
+    const [prev, next] = row.querySelectorAll('.drawer__btn');
+    const update = () => {
+      prev.disabled = track.scrollLeft < 8;
+      next.disabled = track.scrollLeft + track.clientWidth > track.scrollWidth - 8;
+    };
+    [prev, next].forEach(b => b.addEventListener('click', () => {
+      track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth * 0.8, behavior: reduced ? 'auto' : 'smooth' });
+    }));
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+    track.addEventListener('click', e => {
+      const b = e.target.closest('button[data-tt]');
+      if (b) openCredit(byTT[b.dataset.tt], b);
+    });
+  });
+
+  /* ============================================================
+     INDEX OF PRODUCTIONS — search + filter + inline file card
+     ============================================================ */
+  const tableEl = $('indexTable');
+  const statusEl = $('indexStatus');
+  const searchEl = $('indexSearch');
+  const peek = $('peek');
+  const peekImg = $('peekImg');
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  const typeLabel = c => c.type === 'tv' ? 'TV' : c.type === 'short' ? 'SHORT' : 'FILM';
+  const typeLong = c => c.type === 'tv' ? 'TV / streaming series' : c.type === 'short' ? 'Short film' : 'Feature film';
+  const state = { filter: 'all', q: '', open: null };
+
+  function fileCard(c, id) {
+    return `
+      <div class="ifile" id="${id}" role="region" aria-label="${esc(c.t)} — file card">
+        <div class="ifile__poster">${c.img ? imgTag(c.img, c.yt ? [ytHq(c.yt)] : [], `${c.t} — poster`, false) : ''}</div>
+        <div class="ifile__body">
+          <div class="ifile__head mono">
+            <span>FILE ${fileNo(c)} · ${typeLabel(c)}</span>
+            ${c.pending ? '<span class="stamp stamp--red ifile__stamp">IMDb CREDIT PENDING</span>' : '<span class="stamp stamp--gold ifile__stamp">ON RECORD</span>'}
+          </div>
+          <h3 class="ifile__title">${esc(c.t)}</h3>
+          ${c.o ? `<p class="ifile__orig">${esc(c.o)}</p>` : ''}
+          <dl class="ifile__meta mono">
+            <div><dt>STUDIO</dt><dd>${esc(c.studio)}</dd></div>
+            <div><dt>ROLE</dt><dd class="ifile__role">${esc(c.role)}</dd></div>
+            <div><dt>FORMAT</dt><dd>${typeLong(c)}</dd></div>
+            ${c.pending ? '<div><dt>NOTE</dt><dd>Title is on IMDb; the credit under this name is not filed yet.</dd></div>' : ''}
+          </dl>
+          <div class="ifile__actions mono">
+            ${c.yt ? '<button class="ibtn ibtn--solid" type="button" data-play>▶ PLAY TRAILER</button>' : '<span class="ibtn ibtn--off">NO TRAILER ON FILE</span>'}
+            <a class="ibtn" href="${imdbTitle(c.tt)}" target="_blank" rel="noopener">IMDb ↗</a>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function toggleRow(c, viaKeyboard) {
+    state.open = state.open === c ? null : c;
+    renderIndex();
+    if (viaKeyboard) {
+      const row = [...tableEl.querySelectorAll('.irow')].find(r => r.getAttribute('aria-controls') === `ifile-${c.tt}`);
+      if (row) row.focus({ preventScroll: true });
+    }
+  }
+
+  function renderIndex() {
+    peek.classList.remove('on');
+    const q = norm(state.q.trim());
+    const list = credits.filter(c => {
+      const okType = state.filter === 'all' || (state.filter === 'tv' ? c.type === 'tv' : c.type !== 'tv');
+      if (!okType) return false;
+      if (!q) return true;
+      return norm([c.t, c.o, c.studio, c.role].join(' ')).includes(q);
+    });
+    if (state.open && !list.includes(state.open)) state.open = null;
+
+    statusEl.textContent = `SHOWING ${list.length} OF ${credits.length}`;
+    tableEl.innerHTML = '';
+    if (!list.length) {
+      tableEl.innerHTML = `<p class="index__empty mono">NO FILES MATCH “${esc(state.q.trim())}”.</p>`;
+      return;
+    }
+
+    const frag = document.createDocumentFragment();
+    list.forEach(c => {
+      const open = state.open === c;
+      const cardId = `ifile-${c.tt}`;
+      const row = document.createElement('div');
+      row.className = 'irow' + (open ? ' is-open' : '') + (c.pending ? ' irow--pending' : '');
+      row.tabIndex = 0;
+      row.setAttribute('role', 'button');
+      row.setAttribute('aria-expanded', String(open));
+      row.setAttribute('aria-controls', cardId);
+      row.innerHTML = `
+        <span class="irow__no">FILE ${fileNo(c)}</span>
+        <span class="irow__thumb">${c.img ? `<img src="${esc(c.img)}" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'" />` : ''}</span>
+        <span class="irow__title">${esc(c.t)}${c.o ? `<em>${esc(c.o)}</em>` : ''}${c.pending ? '<span class="irow__flag mono">IMDb CREDIT PENDING</span>' : ''}</span>
+        <span class="irow__studio">${esc(c.studio)}</span>
+        <span class="irow__role">${esc(c.role)}</span>
+        <span class="irow__type">${typeLabel(c)}</span>
+        <span class="irow__actions">
+          ${c.yt ? '<button class="irow__btn irow__btn--play" type="button" data-play aria-label="Play trailer">▶ PLAY</button>' : ''}
+          <span class="irow__toggle mono" aria-hidden="true">${open ? '−' : '+'}</span>
+        </span>`;
+
+      row.addEventListener('click', e => {
+        if (e.target.closest('[data-play]')) { e.stopPropagation(); openCredit(c, e.target.closest('[data-play]')); return; }
+        if (e.target.closest('a')) return;
+        toggleRow(c);
+      });
+      row.addEventListener('keydown', e => {
+        if (e.target !== row) return;
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleRow(c, true); }
+      });
+      if (finePointer && c.img && !open) {
+        row.addEventListener('mouseenter', () => { peekImg.src = c.img; peek.classList.add('on'); });
+        row.addEventListener('mouseleave', () => peek.classList.remove('on'));
+        row.addEventListener('mousemove', e => {
+          const w = 168, h = 252, m = 22;
+          let x = e.clientX + m, y = e.clientY - h / 2;
+          if (x + w > window.innerWidth - 12) x = e.clientX - w - m;
+          y = Math.max(12, Math.min(y, window.innerHeight - h - 12));
+          peek.style.left = x + 'px';
+          peek.style.top = y + 'px';
+        });
+      }
+      frag.appendChild(row);
+
+      if (open) {
+        const wrap = document.createElement('div');
+        wrap.innerHTML = fileCard(c, cardId);
+        const card = wrap.firstElementChild;
+        const play = card.querySelector('[data-play]');
+        if (play) play.addEventListener('click', () => openCredit(c, play));
+        frag.appendChild(card);
+      }
+    });
+    tableEl.appendChild(frag);
+  }
+  renderIndex();
+
+  document.querySelectorAll('.ifilter').forEach(btn => {
+    btn.setAttribute('aria-pressed', String(btn.classList.contains('active')));
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.ifilter').forEach(b => {
+        b.classList.toggle('active', b === btn);
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+      state.filter = btn.dataset.filter;
+      renderIndex();
+    });
+  });
+  searchEl.addEventListener('input', () => { state.q = searchEl.value; renderIndex(); });
+
+  /* ============================================================
+     FIELD OPERATIONS
+     ============================================================ */
+  const CODES = ['SCT', 'PRM', 'MGT', 'ARC'];
+  $('servicesGrid').innerHTML = profile.services.map(([h, p], i) => `
+    <div class="op">
+      <div class="op__head mono"><span class="op__phase">PHASE ${pad(i + 1)}</span><span class="op__code">${CODES[i] || ''}</span></div>
+      <h3>${esc(h)}</h3>
+      <p>${esc(p)}</p>
+    </div>`).join('');
+
+  /* ============================================================
+     NAV + MOBILE MENU
+     ============================================================ */
+  const nav = $('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const burger = $('burger');
+  const mobileMenu = $('mobileMenu');
+  mobileMenu.inert = true;
+  function setMobileMenu(open) {
+    mobileMenu.classList.toggle('is-open', open);
+    mobileMenu.setAttribute('aria-hidden', String(!open));
+    mobileMenu.inert = !open;
+    document.body.style.overflow = open ? 'hidden' : '';
+    burger.setAttribute('aria-expanded', String(open));
+  }
+  burger.addEventListener('click', () => setMobileMenu(!mobileMenu.classList.contains('is-open')));
+  document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => setMobileMenu(false)));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) setMobileMenu(false);
+  });
+
+  /* ============================================================
+     CONTACT FORM — opens the visitor's mail client
+     ============================================================ */
+  $('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.currentTarget;
+    const name = f.elements.name.value.trim();
+    const email = f.elements.email.value.trim();
+    const msg = f.elements.message.value.trim();
+    const subject = encodeURIComponent(`Project inquiry — ${name}`);
+    const body = encodeURIComponent(`${msg}\n\n—\n${name}\n${email}`);
+    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+  });
+
+  /* ============================================================
+     REVEAL — progressive enhancement only. Content is visible by
+     default; elements below the fold get a gentle rise when they
+     enter. A safety timer reveals everything.
+     ============================================================ */
+  (function reveal() {
+    if (!('IntersectionObserver' in window) || reduced) return;
+    const targets = document.querySelectorAll('.sec-head, .sec-lede, .about__grid, .stat, .drawer, .op, .contact__grid');
+    const vh = window.innerHeight;
+    const pending = [];
+    targets.forEach(el => {
+      if (el.getBoundingClientRect().top > vh * 1.05) { el.classList.add('pre-reveal'); pending.push(el); }
+    });
+    if (!pending.length) return;
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add('in-view'); obs.unobserve(en.target); }
+      });
+    }, { threshold: 0.08 });
+    pending.forEach(el => obs.observe(el));
+    setTimeout(() => pending.forEach(el => el.classList.add('in-view')), 2500);
+  })();
+})();
