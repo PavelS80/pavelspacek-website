@@ -945,3 +945,16 @@ body::after {
     to   { filter: none; }
   }
 }
+
+/* ---------- 16 Oct, Pavel after the V6 go-live: "bílé trošku potlačit, moc bílé" — the big display text a shade softer,
+   the section rule quieter; "bílý rámeček vyhodit" — the portrait without the polaroid frame; "Subject file vyhodit" ---------- */
+:root { --bone-soft: #D2CBB9; }
+.hero__name, .sec-head__title, .stat__num, .about__title { color: var(--bone-soft); }
+.sec-head__title { font-size: clamp(24px, 3.8vw, 46px); }
+.sec-head { border-bottom: 1px solid rgba(234,228,211,.38); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.about__grid--nohead { margin-top: clamp(20px, 4vh, 48px); }
+.polaroid { background: none; padding: 0; transform: none; box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+.polaroid img { border: 1px solid var(--line); }
+.polaroid figcaption { color: var(--dim); padding-top: 12px; }
+.polaroid__tape { display: none; }
