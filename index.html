@@ -39,6 +39,7 @@
     "honorificSuffix": "MgA.",
     "jobTitle": "Location Manager",
     "alumniOf": { "@type": "CollegeOrUniversity", "name": "FAMU — Film and TV School of the Academy of Performing Arts in Prague" },
+    "memberOf": { "@type": "Organization", "name": "Location Managers Guild International (LMGI)", "url": "https://locationmanagers.org" },
     "email": "mailto:pavel@filmhunters.cz",
     "telephone": "+420608966700",
     "url": "https://www.pavelspacek.com/",
@@ -91,11 +92,12 @@
       <div class="hero__stamps" aria-hidden="true">
         <span class="stamp stamp--red">ACTIVE — ACCEPTING PROJECTS</span>
         <span class="stamp stamp--gold">CZ · SK CLEARANCE</span>
+        <span class="stamp stamp--gold stamp--lmgi">LMGI MEMBER</span>
       </div>
     </div>
 
     <div class="hero__row">
-      <p class="hero__role mono">LOCATION MANAGER — FILE Nº 500+ PRODUCTIONS · 52 IMDb CREDITS</p>
+      <p class="hero__role mono">LOCATION MANAGER — FILE Nº 500+ PRODUCTIONS · <span data-imdb-count>52</span> IMDb CREDITS</p>
       <p class="hero__tag">I find the places where films happen.</p>
     </div>
 
@@ -148,7 +150,7 @@
           <p>Since 2001 — Czech and Slovak features, Hollywood studio pictures, Bollywood musicals, German, Turkish and Japanese productions.</p>
           <p>Need locations in Czech Republic or Slovakia? We can start with a conversation.</p>
           <a href="#contact" class="link-arrow mono">OPEN A FILE →</a>
-          <p class="about__edu mono">EDUCATION — MgA., FAMU PRAGUE</p>
+          <p class="about__edu mono">EDUCATION — MgA., FAMU PRAGUE · MEMBER — LMGI</p>
         </div>
       </div>
 
@@ -162,7 +164,7 @@
           <span class="stat__label mono">PRODUCTIONS DELIVERED</span>
         </div>
         <div class="stat">
-          <span class="stat__num">52</span>
+          <span class="stat__num" data-imdb-count>52</span>
           <span class="stat__label mono">IMDb CREDITS</span>
         </div>
         <div class="stat">
@@ -182,6 +184,7 @@
         <span class="sec-head__meta mono">20 SELECTED — TRAILERS ATTACHED</span>
       </div>
       <p class="sec-lede">Click any file to play the trailer.</p>
+      <div class="latest" id="latest"><!-- JS --></div>
       <div class="featured__grid" id="featuredGrid"><!-- JS --></div>
     </div>
   </section>
@@ -194,7 +197,7 @@
         <h2 class="sec-head__title">INDEX OF PRODUCTIONS</h2>
         <span class="sec-head__meta mono"><span id="indexCount">52</span> <span>FILES</span></span>
       </div>
-      <p class="sec-lede">The complete record as filed on IMDb — every role exactly as credited.</p>
+      <p class="sec-lede">The complete record as filed on IMDb — every role exactly as credited. Files stamped <span class="mono lede-flag">NEW</span> are not yet listed under my name on IMDb.</p>
 
       <div class="index__filters mono">
         <button class="ifilter active" data-filter="all"    >ALL FILES</button>

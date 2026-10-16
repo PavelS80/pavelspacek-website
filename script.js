@@ -10,6 +10,8 @@ const yt = id => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
    Roles exactly as credited on IMDb. One row per title,
    series shown with year range. Sorted by most recent year. */
 const credits = [
+  // — 2026 · pending: title is on IMDb, Pavel's credit not filed yet
+  { t: 'Kluci to vidí jinak než holky', o: "Don't You Know It's Different for Girls (working title)", y: 2026, studio: 'Lucky Man Films', role: 'locations', type: 'feature', img: A+'kluci-holky.jpg', yt: 'ubqQPxmJcJQ', tt: 'tt43663737', pending: true },
   // — 2025
   { t: 'FUBAR', y: 2023, ey: 2025, studio: 'Netflix', role: 'location manager · Prague unit', type: 'tv', img: A+'fubar.jpg', yt: 'vJlfAp7ZCAY', tt: 'tt13064902' },
   { t: 'FBI: International', y: 2021, ey: 2025, studio: 'CBS · Universal Television', role: 'location manager', type: 'tv', img: A+'fbi-international.jpg', yt: 'Ss717FniM9I', tt: 'tt14449470' },
@@ -107,6 +109,14 @@ const featured = [
   { t: 'Želary', y: '2003', studio: 'Barrandov · ALEF Film', dir: 'Ondřej Trojan', yt: 'z9MYQlU2V1s', img: A+'zelary.jpg', fb: yt('z9MYQlU2V1s') },
 ];
 
+/* ---- Latest files — new releases shown above the priority grid ---- */
+const latest = [
+  { t: 'Kluci to vidí jinak než holky', o: "Don't You Know It's Different for Girls (working title)", dir: 'David Ondříček', studio: 'Lucky Man Films',
+    cast: 'Jaroslav Plesl · Martha Issová · Václav Neužil · Denisa Barešová', role: 'Locations — FILM HUNTERS',
+    release: '2026-10-22', shot: '36 shooting days · Prague', yt: 'ubqQPxmJcJQ', img: A+'kluci-holky.jpg', tt: 'tt43663737',
+    line: 'A tragicomedy of seven Prague lives at midlife — the city as backdrop and catalyst. Bridges, embankments, galleries, a forest at the city line.' },
+];
+
 /* ---- Hero contact sheet ---- */
 const sheetFrames = [
   { yt: 'nulvWqYUM8k', t: 'Nosferatu', circled: true },
@@ -121,7 +131,7 @@ const studios = [
   'FOCUS FEATURES', 'WARNER BROS.', 'PARAMOUNT', 'NETFLIX', 'AMAZON PRIME VIDEO',
   'HBO MAX', 'SKY', 'LIONSGATE', 'CBS', 'ABC', 'SYFY', 'PEACOCK', 'IMAX',
   'RED CHILLIES', 'EROS INTERNATIONAL', 'ARTE', 'FUJI TV', 'STAR TV',
-  'ČESKÁ TELEVIZE', 'PRIMA', 'VOYO',
+  'ČESKÁ TELEVIZE', 'PRIMA', 'VOYO', 'LUCKY MAN FILMS',
 ];
 
 /* ============================================================
@@ -172,6 +182,45 @@ const tick = document.getElementById('tickerTrack');
 tick.innerHTML = [...studios, ...studios]
   .map(s => `<span>${s}</span><span class="tick-dot">●</span>`).join('');
 
+/* --- Latest files --- */
+const latestEl = document.getElementById('latest');
+const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+latest.forEach(f => {
+  const d = new Date(f.release + 'T00:00:00');
+  const date = `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+  const status = new Date() < d ? `IN CINEMAS ${date}` : `RELEASED ${date}`;
+  const card = document.createElement('article');
+  card.className = 'lfile reveal';
+  card.innerHTML = `
+    <div class="lfile__poster">
+      <img src="${f.img}" alt="${esc(f.t)} — poster" loading="lazy" decoding="async" />
+      <span class="lfile__play" aria-hidden="true">
+        <svg width="15" height="15" viewBox="0 0 14 14"><polygon points="2,1 2,13 13,7" fill="currentColor"/></svg>
+      </span>
+    </div>
+    <div class="lfile__body">
+      <div class="lfile__head mono"><span>LATEST FILE</span><span class="stamp stamp--red">${status}</span></div>
+      <h3 class="lfile__title">${esc(f.t)}</h3>
+      <p class="lfile__orig">${esc(f.o)}</p>
+      <p class="lfile__line">${esc(f.line)}</p>
+      <dl class="lfile__meta mono">
+        <div><dt>DIR.</dt><dd>${esc(f.dir)}</dd></div>
+        <div><dt>STUDIO</dt><dd>${esc(f.studio)}</dd></div>
+        <div><dt>CAST</dt><dd>${esc(f.cast)}</dd></div>
+        <div><dt>SHOOT</dt><dd>${esc(f.shot)}</dd></div>
+        <div><dt>ROLE</dt><dd class="lfile__role">${esc(f.role)}</dd></div>
+      </dl>
+      <div class="lfile__actions mono">
+        <button class="lfile__btn" type="button">▶ PLAY TRAILER</button>
+        <a class="lfile__btn lfile__btn--ghost" href="https://www.imdb.com/title/${f.tt}/" target="_blank" rel="noopener">IMDb ↗</a>
+      </div>
+    </div>`;
+  const play = () => openModal(f.yt, f.t, `${f.studio} · dir. ${f.dir}`);
+  card.querySelector('.lfile__btn').addEventListener('click', play);
+  makePlayable(card.querySelector('.lfile__poster'), `Play trailer: ${f.t}`, play);
+  latestEl.appendChild(card);
+});
+
 /* --- Featured --- */
 const featuredGrid = document.getElementById('featuredGrid');
 featured.forEach((f, i) => {
@@ -203,6 +252,8 @@ const typeLabel = c => c.type === 'tv' ? 'TV' : c.type === 'short' ? 'SHORT' : '
 /* Header count derived from the data itself */
 const countEl = document.getElementById('indexCount');
 if (countEl) countEl.textContent = credits.length;
+const imdbCount = credits.filter(c => !c.pending).length;
+document.querySelectorAll('[data-imdb-count]').forEach(el => { el.textContent = imdbCount; });
 
 function renderIndex(filter = 'all') {
   peek.classList.remove('on');
@@ -216,7 +267,7 @@ function renderIndex(filter = 'all') {
     row.innerHTML = `
       <span class="irow__no">FILE ${String(no).padStart(3, '0')}</span>
       <span class="irow__thumb">${c.img ? `<img src="${c.img}" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'" />` : ''}</span>
-      <span class="irow__title">${esc(c.t)}${c.o ? `<em>${esc(c.o)}</em>` : ''}</span>
+      <span class="irow__title">${esc(c.t)}${c.o ? `<em>${esc(c.o)}</em>` : ''}${c.pending ? '<span class="irow__flag mono">NEW · CREDIT PENDING ON IMDb</span>' : ''}</span>
       <span class="irow__studio">${esc(c.studio)}</span>
       <span class="irow__role">${esc(c.role)}</span>
       <span class="irow__type">${typeLabel(c)}</span>

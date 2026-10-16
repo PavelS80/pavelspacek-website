@@ -301,6 +301,67 @@ section { padding: clamp(72px, 11vh, 130px) 0; }
 .stat__num em { font-style: normal; color: var(--gold); }
 .stat__label { display: block; margin-top: 10px; font-size: 10px; letter-spacing: .18em; color: var(--dim); }
 
+/* ---------- Latest file — new release ---------- */
+.latest { margin-bottom: 14px; }
+.lfile {
+  display: grid; grid-template-columns: minmax(200px, 300px) 1fr; gap: clamp(22px, 3.4vw, 48px);
+  border: 1px solid var(--line); background: var(--card);
+  padding: clamp(16px, 2.2vw, 26px);
+  position: relative;
+}
+.lfile::before {
+  content: ''; position: absolute; top: 10px; left: 10px; width: 10px; height: 10px;
+  border-top: 1.5px solid var(--stamp); border-left: 1.5px solid var(--stamp);
+}
+.lfile__poster { position: relative; overflow: hidden; aspect-ratio: 3/4; border: 1px solid var(--line); cursor: pointer; }
+.lfile__poster img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(.2); transition: transform .6s cubic-bezier(.2,.7,.2,1), filter .6s; }
+.lfile__poster:hover img { transform: scale(1.04); filter: grayscale(0); }
+.lfile__play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 54px; height: 54px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--gold); color: var(--gold); background: rgba(11,10,8,.6);
+  transition: background .3s, color .3s;
+}
+.lfile__poster:hover .lfile__play { background: var(--gold); color: var(--ink); }
+.lfile__body { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+.lfile__head { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; font-size: 10.5px; letter-spacing: .3em; color: var(--dim); margin-bottom: 18px; }
+.lfile__head .stamp { font-size: 10px; padding: 4px 10px; letter-spacing: .14em; }
+.lfile__title { font-size: clamp(28px, 3.6vw, 52px); font-weight: 800; font-stretch: 112%; line-height: 1.02; }
+.lfile__orig { font-style: italic; color: var(--dim); margin-top: 8px; font-size: 15px; }
+.lfile__line { color: var(--bone); opacity: .8; margin-top: 18px; max-width: 620px; font-size: 16px; }
+.lfile__meta { margin-top: 22px; display: grid; gap: 7px; font-size: 11px; letter-spacing: .06em; }
+.lfile__meta div { display: grid; grid-template-columns: 72px 1fr; gap: 12px; border-bottom: 1px dashed var(--line); padding-bottom: 6px; }
+.lfile__meta dt { color: var(--dim); letter-spacing: .16em; }
+.lfile__meta dd { color: var(--bone); }
+.lfile__meta .lfile__role { color: var(--gold); text-transform: uppercase; }
+.lfile__actions { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+.lfile__btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+  color: var(--ink); background: var(--gold); border: 1px solid var(--gold); border-radius: 2px;
+  padding: 10px 16px; cursor: pointer; transition: background .3s, color .3s;
+}
+.lfile__btn:hover { background: var(--bone); border-color: var(--bone); }
+.lfile__btn--ghost { background: none; color: var(--gold); }
+.lfile__btn--ghost:hover { background: none; color: var(--bone); }
+.lfile__poster:focus-visible, .lfile__btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.irow__flag {
+  display: inline-block; margin-left: 10px; vertical-align: middle;
+  font-size: 9px; font-weight: 600; letter-spacing: .14em;
+  color: var(--stamp); border: 1.5px solid var(--stamp); border-radius: 2px;
+  padding: 2px 6px; transform: rotate(-2deg);
+}
+.lede-flag { font-size: .78em; letter-spacing: .14em; color: var(--stamp); border: 1.5px solid var(--stamp); border-radius: 2px; padding: 1px 5px; }
+.stamp--lmgi { transform: rotate(-1deg); }
+
+@media (max-width: 760px) {
+  .lfile { grid-template-columns: 1fr; }
+  .lfile__poster { max-width: 260px; }
+  .lfile__meta div { grid-template-columns: 60px 1fr; }
+  .irow__flag { display: block; width: max-content; margin: 6px 0 0; }
+}
+
 /* ---------- Featured — priority files ---------- */
 .featured__grid {
   display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px;
