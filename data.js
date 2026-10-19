@@ -1,11 +1,11 @@
 /* Site data (16 Oct 2026, from the V6 Archive Showreel variant).
-   credits: 54 titles (52 on IMDb + Kluci + Spálená hora, pending: true = Pavel's IMDb credit not filed yet).
+   credits: 55 titles (52 on IMDb + Kluci + Drive + Spálená hora, pending: true = Pavel's IMDb credit not filed yet).
    featured: the 20 hand-picked titles + Kluci (isNew). Fields: t title, o alt title, y/ey years,
    studio, role (exact IMDb credit), type feature|tv|short, img poster, yt YouTube trailer id, tt IMDb id. */
 const A = 'assets/';
 /* Clean 1280x720 frames grabbed from the trailers (no burned-in "OFFICIAL TRAILER" text or channel logos).
    Any trailer without a local still falls back to the YouTube thumbnail. */
-const STILLS = new Set(['nulvWqYUM8k', 'HPB7fV7f_f8', 'Uia6y9SRsj4', '1KsyZF590NM', '6FlNemUn78U', 'AQEN9V8r6TM', 'Ss717FniM9I']);
+const STILLS = new Set(['-sV69CJwUwU', 'nulvWqYUM8k', 'HPB7fV7f_f8', 'Uia6y9SRsj4', '1KsyZF590NM', '6FlNemUn78U', 'AQEN9V8r6TM', 'Ss717FniM9I']);
 const still = id => STILLS.has(id) ? `assets/stills/${id}.jpg` : null;
 const yt = id => still(id) || `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
 
@@ -15,6 +15,7 @@ const yt = id => still(id) || `https://img.youtube.com/vi/${id}/maxresdefault.jp
 const credits = [
   // — 2026 · pending: title is on IMDb, Pavel's credit not filed yet
   { t: 'Kluci to vidí jinak než holky', o: "Don't You Know It's Different for Girls (working title)", y: 2026, studio: 'Lucky Man Films', role: 'locations', type: 'feature', img: A+'kluci-holky.jpg', yt: 'ubqQPxmJcJQ', tt: 'tt43663737', pending: true },
+  { t: 'Drive – The Pretenders', o: 'Prime Video original · worldwide from 28 Oct 2026', y: 2026, studio: 'Bavaria Fiction · Amazon MGM Studios', role: 'locations', type: 'feature', img: A+'drive-the-pretenders.jpg', yt: '-sV69CJwUwU', tt: 'tt37180686', pending: true },
   // — 2026 · series wrapped in 2026 (FILM HUNTERS for FilmBrigade), not on IMDb yet: tt is a local key, no IMDb link until the title exists there
   { t: 'Spálená hora', y: 2026, studio: 'FilmBrigade', role: 'locations', type: 'tv', img: A+'spalena-hora.jpg', tt: 'sh-2026', pending: true },
   // — 2025
@@ -107,6 +108,7 @@ const featured = [
   { t: 'Iveta', y: '2022', studio: 'Voyo · TV Nova', dir: 'series', yt: 'fCWr9mpZvB8', img: A+'iveta.jpg', fb: yt('fCWr9mpZvB8') },
   { t: 'The Rookie', y: '2018', studio: 'ABC', dir: 'series', yt: '8BPlx6eK1vc', img: A+'the-rookie.jpg', fb: yt('8BPlx6eK1vc') },
   { t: 'Kluci to vidí jinak než holky', y: '2026', studio: 'Lucky Man Films', dir: 'David Ondříček', yt: 'ubqQPxmJcJQ', img: A+'kluci-holky.jpg', fb: yt('ubqQPxmJcJQ'), isNew: true },
+  { t: 'Drive – The Pretenders', y: '2026', studio: 'Prime Video · Bavaria Fiction', dir: 'Sergej Moya', yt: '-sV69CJwUwU', img: A+'drive-the-pretenders.jpg', fb: yt('-sV69CJwUwU'), isNew: true },
   { t: 'Live a Little', y: '2025', studio: 'Film i Väst · Amarcord', dir: 'Fanny Ovesen', yt: '8y1DHBLoMQw', img: A+'live-a-little.jpg', fb: yt('8y1DHBLoMQw'), isNew: true },
   { t: 'Franz', y: '2025', studio: 'X-Filme · Bioscop', dir: 'Agnieszka Holland', yt: 'f78r0tpG5fg', img: A+'franz.jpg', fb: yt('f78r0tpG5fg') },
   { t: 'Bratři', y: '2023', studio: 'FilmBrigade · Česká televize', dir: 'Tomáš Mašín', yt: '_ycEQ65wAbY', img: A+'bratri.jpg', fb: yt('_ycEQ65wAbY') },
