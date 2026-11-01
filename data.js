@@ -143,12 +143,12 @@ const profile = {
   education: 'MgA., FAMU Prague', lmgi: true, // LMGI member — confirmed in Pavel's personal profile
   portrait: A+'pavel-portrait.jpg',
   tagline: 'I find the places where films happen.',
-  about: ['Since 2001 — Czech and Slovak features, Hollywood studio pictures, Bollywood musicals, German, Turkish and Japanese productions.',
-          'Need locations in Czech Republic or Slovakia? We can start with a conversation.'],
+  about: ['Location manager in Prague since 2001: features, series, commercials and music videos, from Hollywood studio pictures to Czech, German, Turkish, Japanese and Bollywood productions.',
+          'Productions hire me directly for the location department, from one location for a one-day commercial to a full series. Send the script or a moodboard and your dates, and you get a first selection from my own archive within days. For larger shoots I bring my Film Hunters team.'],
   services: [
-    ['Location scouting', 'Script breakdown, creative consultation, location selection.'],
+    ['Location scouting', 'Script breakdown, creative consultation, location selection. One location or a whole show.'],
     ['Permits & authority liaison', 'Permits, contracts, municipalities, police, monument care.'],
     ['On-set location management', 'Base camp, set protection, logistics, restoration.'],
-    ['The archive — CZ & SK', '25 years of scouting, catalogued. A curated selection for any brief within days.'],
+    ['The archive — CZ & SK', '25 years of scouting, catalogued. A first selection for your brief within days.'],
   ],
 };
