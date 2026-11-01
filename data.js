@@ -14,10 +14,10 @@ const yt = id => still(id) || `https://img.youtube.com/vi/${id}/maxresdefault.jp
    series shown with year range. Sorted by most recent year. */
 const credits = [
   // — 2026 · pending: title is on IMDb, Pavel's credit not filed yet
-  { t: 'Kluci to vidí jinak než holky', o: "Don't You Know It's Different for Girls (working title)", y: 2026, studio: 'Lucky Man Films', role: 'locations', type: 'feature', img: A+'kluci-holky.jpg', yt: 'ubqQPxmJcJQ', tt: 'tt43663737', pending: true },
-  { t: 'Drive – The Pretenders', o: 'Prime Video original · worldwide from 28 Oct 2026', y: 2026, studio: 'Bavaria Fiction · Amazon MGM Studios', role: 'locations', type: 'feature', img: A+'drive-the-pretenders.jpg', yt: '-sV69CJwUwU', tt: 'tt37180686', pending: true },
+  { t: 'Kluci to vidí jinak než holky', o: "Don't You Know It's Different for Girls (working title)", y: 2026, studio: 'Lucky Man Films', role: 'supervising location manager', type: 'feature', img: A+'kluci-holky.jpg', yt: 'ubqQPxmJcJQ', tt: 'tt43663737', pending: true },
+  { t: 'Drive – The Pretenders', o: 'Prime Video original · worldwide from 28 Oct 2026', y: 2026, studio: 'Bavaria Fiction · Amazon MGM Studios', role: 'supervising location manager', type: 'feature', img: A+'drive-the-pretenders.jpg', yt: '-sV69CJwUwU', tt: 'tt37180686', pending: true },
   // — 2026 · series wrapped in 2026 (FILM HUNTERS for FilmBrigade), not on IMDb yet: tt is a local key, no IMDb link until the title exists there
-  { t: 'Spálená hora', y: 2026, studio: 'FilmBrigade', role: 'locations', type: 'tv', img: A+'spalena-hora.jpg', tt: 'sh-2026', pending: true },
+  { t: 'Spálená hora', y: 2026, studio: 'FilmBrigade', role: 'supervising location manager', type: 'tv', img: A+'spalena-hora.jpg', tt: 'sh-2026', pending: true },
   // — 2025
   { t: 'FUBAR', y: 2023, ey: 2025, studio: 'Netflix', role: 'location manager · Prague unit', type: 'tv', img: A+'fubar.jpg', yt: 'vJlfAp7ZCAY', tt: 'tt13064902' },
   { t: 'FBI: International', y: 2021, ey: 2025, studio: 'CBS · Universal Television', role: 'location manager', type: 'tv', img: A+'fbi-international.jpg', yt: 'Ss717FniM9I', tt: 'tt14449470' },
