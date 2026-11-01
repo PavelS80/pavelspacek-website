@@ -144,11 +144,11 @@ const profile = {
   portrait: A+'pavel-portrait.jpg',
   tagline: 'I find the places where films happen.',
   about: ['Location manager in Prague since 2001: features, series, commercials and music videos, from Hollywood studio pictures to Czech, German, Turkish, Japanese and Bollywood productions.',
-          'Productions hire me directly for the location department, from one location for a one-day commercial to a full series. Send the script or a moodboard and your dates, and you get a first selection from my own archive within days. For larger shoots I bring my Film Hunters team.'],
+          'Productions hire me directly for the location department, and I am happy to take on any size, from one location for a one-day commercial to a full series. Send the script or a moodboard and your dates, and you get a first selection from my archive of 25,000+ locations within days, free and with no obligation. For larger shoots I bring my Film Hunters team.'],
   services: [
     ['Location scouting', 'Script breakdown, creative consultation, location selection. One location or a whole show.'],
     ['Permits & authority liaison', 'Permits, contracts, municipalities, police, monument care.'],
     ['On-set location management', 'Base camp, set protection, logistics, restoration.'],
-    ['The archive — CZ & SK', '25 years of scouting, catalogued. A first selection for your brief within days.'],
+    ['The archive — CZ & SK', '25,000+ locations from 25 years of scouting. Your first selection is free, within days.'],
   ],
 };
